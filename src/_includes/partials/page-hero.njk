@@ -1,0 +1,8 @@
+<section class="page-hero">
+  <img class="page-hero__mandala" src="/assets/img/logo-mandala-376.webp" width="376" height="376" alt="" aria-hidden="true">
+  <div class="container">
+    {% if hero.eyebrow %}<p class="eyebrow" data-reveal>{{ hero.eyebrow }}</p>{% endif %}
+    <h1 data-reveal>{{ hero.title or title }}</h1>
+    {% if hero.lead %}<p class="lead narrow" data-reveal data-reveal-delay="1">{{ hero.lead }}</p>{% endif %}
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+title: Sobre mí
+description: Historia, recorrido y filosofía de Mujer Medicina.
+permalink: /sobre-mi/
+hero:
+  eyebrow: Sobre mí
+waMessage: "Hola, leí sobre vos en tu web y me gustaría conocer más sobre tu trabajo."
+---
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container narrow">
+    <h2 data-reveal>Mi historia</h2>
+    {% pendiente "Historia" %}<p>Su historia y el camino que la trajo hasta aquí, contados con sus palabras.</p>{% endpendiente %}
+    <div class="ornament" aria-hidden="true"><svg width="120" height="16" viewBox="0 0 120 16"><path d="M0 8h48M72 8h48" stroke="currentColor"/><circle cx="60" cy="8" r="4" fill="none" stroke="currentColor"/></svg></div>
+    <h2 data-reveal>Recorrido</h2>
+    {% pendiente "Recorrido y formaciones" %}<p>Solo se incluirán formaciones y experiencias que ella confirme.</p>{% endpendiente %}
+    <div class="ornament" aria-hidden="true"><svg width="120" height="16" viewBox="0 0 120 16"><path d="M0 8h48M72 8h48" stroke="currentColor"/><circle cx="60" cy="8" r="4" fill="none" stroke="currentColor"/></svg></div>
+    <h2 data-reveal>Filosofía</h2>
+    {% pendiente "Filosofía" %}<p>Su mirada sobre el bienestar, la espiritualidad y el acompañamiento.</p>{% endpendiente %}
+  </div>
+</section>
+{% include "partials/cta.njk" %}

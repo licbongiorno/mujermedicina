@@ -1,0 +1,20 @@
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label="{{ site.brand }}, ir al inicio">
+      <img class="brand__mark" src="/assets/img/logo-mandala-96.webp" width="44" height="44" alt="">
+      <span class="brand__name">{{ site.brand }}</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" data-nav-toggle>
+      <span class="nav-toggle__line"></span><span class="nav-toggle__line"></span>
+      <span class="visually-hidden">Abrir menú</span>
+    </button>
+    <nav class="site-nav" id="menu" aria-label="Principal" data-nav>
+      <ul>
+        {%- for item in navigation %}
+        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
+        <li><a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

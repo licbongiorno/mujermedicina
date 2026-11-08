@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- set pageTitle = (title + " · " + site.brand) if title and title != site.brand else site.brand %}
+  {%- set pageDesc = description or site.description %}
+  {%- set canonical = page.url | absoluteUrl(site.url) %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDesc }}">
+  <link rel="canonical" href="{{ canonical }}">
+  {% if noindex %}<meta name="robots" content="noindex">{% endif %}
+  <meta name="theme-color" content="#1D313B">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ site.locale }}">
+  <meta property="og:site_name" content="{{ site.brand }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDesc }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image" content="{{ '/assets/img/icon-512.png' | absoluteUrl(site.url) }}">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,50..100&family=Figtree:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>document.documentElement.classList.add("js")</script>
+
+  {% include "partials/schema.njk" %}
+</head>
+<body class="{{ bodyClass }}{% if not site.showPending %} hide-pending{% endif %}">
+  <a class="skip-link" href="#contenido">Ir al contenido</a>
+  {% include "partials/header.njk" %}
+  <main id="contenido">
+    {{ content | safe }}
+  </main>
+  {% include "partials/footer.njk" %}
+  {% include "partials/whatsapp-float.njk" %}
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
