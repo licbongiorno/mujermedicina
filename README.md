@@ -48,3 +48,11 @@ Títulos y descripciones por página, canonical, Open Graph, JSON-LD (WebSite, P
 Service por propuesta), `sitemap.xml`, `robots.txt`, `llms.txt` (resumen para asistentes de IA),
 URLs amigables, imágenes WebP con dimensiones, accesibilidad (saltar al contenido, foco visible,
 contraste AA, menú accesible por teclado).
+
+## Publicación en GitHub Pages
+
+El sitio se publica solo con GitHub Actions (`.github/workflows/deploy.yml`) cada vez que se actualiza `main`.
+Configuración única en GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Importante: no subir archivos sueltos con "Add files via upload". La estructura de carpetas
+(`src/assets/css/`, `src/_includes/`, etc.) es necesaria para que el sitio funcione.

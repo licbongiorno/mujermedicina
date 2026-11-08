@@ -1,5 +1,11 @@
 // Configuración de Eleventy: fuentes en /src, sitio generado en /_site
+import { HtmlBasePlugin } from "@11ty/eleventy";
+
 export default function (eleventyConfig) {
+  // Permite publicar en una subcarpeta (ej.: usuario.github.io/mujermedicina/).
+  // Ajusta automáticamente todos los enlaces internos del HTML.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
+
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy("src/favicon.ico");
 
@@ -11,7 +17,8 @@ export default function (eleventyConfig) {
     return `https://wa.me/${phone}?text=${encodeURIComponent(message || "")}`;
   });
 
-  eleventyConfig.addFilter("absoluteUrl", (path, base) => new URL(path, base).href);
+  // URL absoluta respetando la subcarpeta incluida en site.url
+  eleventyConfig.addFilter("absoluteUrl", (path, base) => String(base).replace(/\/$/, "") + path);
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v));
 
@@ -23,6 +30,7 @@ export default function (eleventyConfig) {
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },
+    pathPrefix: process.env.PATH_PREFIX || "/",
     templateFormats: ["njk", "md", "html"],
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",

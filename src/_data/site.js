@@ -5,8 +5,9 @@ export default {
   brand: "Mujer Medicina",
   // PENDIENTE: nombre y apellido de ella, tal como quiere presentarse
   person: "",
-  // PENDIENTE: dominio definitivo (se usa en canonical, sitemap y datos estructurados)
-  url: "https://mujermedicina.example",
+  // Dominio (canonical, sitemap, datos estructurados). Al publicar con GitHub Actions
+  // se completa solo; PENDIENTE: dominio propio definitivo.
+  url: (process.env.SITE_URL || "https://mujermedicina.example").replace(/\/$/, ""),
   lang: "es-AR",
   locale: "es_AR",
   // PENDIENTE: descripción general, a partir de sus propios textos
