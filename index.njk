@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+title: Mujer Medicina
+bodyClass: home
+---
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <p class="eyebrow" data-reveal>{{ site.person or site.brand }}</p>
+      <h1 data-reveal>{{ site.brand }}</h1>
+      {% pendiente "Propuesta de valor" %}
+        <p>Aquí va una frase de bienvenida y una breve presentación, escritas a partir de sus propios textos y con su voz.</p>
+      {% endpendiente %}
+      <div class="btn-row" data-reveal data-reveal-delay="2">
+        <a class="btn btn--primary" href="/propuestas/">Ver propuestas</a>
+        <a class="btn btn--ghost" href="{{ site.waMessages.general | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Escribime</a>
+      </div>
+    </div>
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__halo"></div>
+      <div class="hero__mandala">
+        <img src="/assets/img/logo-mandala-376.webp" srcset="/assets/img/logo-mandala-192.webp 192w, /assets/img/logo-mandala-376.webp 376w" sizes="(min-width: 900px) 420px, 78vw" width="376" height="376" alt="" fetchpriority="high">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--soft">
+  <div class="container narrow">
+    <p class="eyebrow" data-reveal>Sobre mí</p>
+    <h2 data-reveal>Presentación</h2>
+    {% pendiente "Presentación personal" %}
+      <p>Un primer acercamiento a quién es, su recorrido y su manera de acompañar. Se redacta con el material que ella comparta.</p>
+    {% endpendiente %}
+    <a class="card__link" href="/sobre-mi/">Leer más sobre mí <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>Propuestas</p>
+      <h2 data-reveal>Lo que comparto</h2>
+    </div>
+    {% if propuestas.length %}
+      <div class="cards">
+        {% for p in propuestas %}{% if loop.index <= 6 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+      </div>
+    {% else %}
+      {% pendiente "Propuestas y servicios" %}
+        <p>Las tarjetas de cada propuesta se generan automáticamente cuando se cargan en <code>src/_data/propuestas.json</code>.</p>
+      {% endpendiente %}
+    {% endif %}
+  </div>
+</section>
+
+<section class="section section--deep">
+  <div class="container narrow center">
+    <p class="eyebrow" data-reveal>Experiencias</p>
+    <h2 data-reveal>Encuentros y prácticas</h2>
+    {% pendiente "Experiencias" %}
+      <p>Espacio para encuentros, talleres o ceremonias, si corresponde.</p>
+    {% endpendiente %}
+    <a class="btn btn--light" href="/experiencias/">Ver experiencias</a>
+  </div>
+</section>
+
+{% set ctaMessage = site.waMessages.general %}
+{% include "partials/cta.njk" %}

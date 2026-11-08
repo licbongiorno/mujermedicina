@@ -1,0 +1,32 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: propuestas
+  size: 1
+  alias: p
+  addAllPagesToCollections: true
+permalink: "/propuestas/{{ p.slug }}/"
+---
+<div class="accent-{{ p.acento or 'agua' }}">
+  {% set hero = { eyebrow: p.categoria or "Propuesta", title: p.titulo, lead: p.resumen } %}
+  {% include "partials/page-hero.njk" %}
+  <section class="section">
+    <div class="container detail">
+      <div class="narrow">
+        {% for parrafo in p.descripcion %}<p data-reveal>{{ parrafo }}</p>{% endfor %}
+        {% if p.paraQuien %}<h2 data-reveal>¿A quién está dirigida?</h2><p data-reveal>{{ p.paraQuien }}</p>{% endif %}
+      </div>
+      <aside class="detail__aside" data-reveal>
+        <dl>
+          {% if p.modalidad %}<dt>Modalidad</dt><dd>{{ p.modalidad }}</dd>{% endif %}
+          {% if p.duracion %}<dt>Duración</dt><dd>{{ p.duracion }}</dd>{% endif %}
+          {% if p.lugar %}<dt>Lugar</dt><dd>{{ p.lugar }}</dd>{% endif %}
+        </dl>
+        <a class="btn btn--primary" style="width:100%" href="{{ waMessage | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Consultar por WhatsApp</a>
+      </aside>
+    </div>
+  </section>
+</div>
+<section class="section section--soft">
+  <div class="container"><a class="card__link" href="/propuestas/"><span aria-hidden="true">←</span> Todas las propuestas</a></div>
+</section>

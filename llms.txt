@@ -1,0 +1,16 @@
+# Mujer Medicina
+
+> Mujer Medicina: un espacio de bienestar, autoconocimiento y prácticas terapéuticas.
+
+
+## Páginas
+- [Inicio](https://mujermedicina.example/)
+- [Sobre mí](https://mujermedicina.example/sobre-mi/)
+- [Propuestas](https://mujermedicina.example/propuestas/)
+- [Experiencias](https://mujermedicina.example/experiencias/)
+- [Recursos](https://mujermedicina.example/recursos/)
+- [Contacto](https://mujermedicina.example/contacto/)
+
+
+## Contacto
+- Página de contacto: https://mujermedicina.example/contacto/

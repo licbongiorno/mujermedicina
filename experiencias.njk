@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+title: Experiencias
+description: Encuentros, talleres y prácticas compartidas de Mujer Medicina.
+permalink: /experiencias/
+hero:
+  eyebrow: Experiencias y prácticas
+waMessage: "Hola, me gustaría saber sobre los próximos encuentros y talleres."
+---
+{% include "partials/page-hero.njk" %}
+<section class="section">
+  <div class="container narrow">
+    {% pendiente "Encuentros, talleres y prácticas" %}
+      <p>Si ella realiza actividades grupales (encuentros, círculos, talleres, retiros), aquí se presentan con fechas, modalidad y forma de inscripción. Si no corresponde, esta página puede quitarse del menú.</p>
+    {% endpendiente %}
+  </div>
+</section>
+{% include "partials/cta.njk" %}
