@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://licbongiorno.github.io/mujermedicina/sitemap.xml
