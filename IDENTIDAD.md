@@ -25,9 +25,9 @@ es el propio logo.
 | Fondo general | `#F8FCFC` |
 | Secciones destacadas y pie | degradé `#A9DCDC → #8FCFCF → #9FD6C4` |
 
-**Los cuatro elementos** tienen cada uno un ícono animado y un tono:
-fuego (turquesa, la llama titila), agua (celeste, la gota forma ondas),
-aire (menta, el viento fluye) y tierra (verde, el brote se mece).
+**Los cuatro elementos** tienen cada uno un ícono animado y su color en pastel:
+fuego (rojo `#F2A29B`, la llama titila), agua (azul `#9CCBEB`, la gota forma ondas),
+aire (amarillo `#F3DC8E`, el viento fluye) y tierra (verde `#AFD49A`, el brote se mece).
 
 Contrastes verificados (WCAG AA): todos los textos superan 4.5:1.
 

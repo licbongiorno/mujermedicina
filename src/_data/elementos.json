@@ -1,6 +1,6 @@
 [
-  { "id": "fuego", "nombre": "Fuego", "acento": "turquesa" },
-  { "id": "agua", "nombre": "Agua", "acento": "celeste" },
-  { "id": "aire", "nombre": "Aire", "acento": "jade" },
-  { "id": "tierra", "nombre": "Tierra", "acento": "verde" }
+  { "id": "fuego", "nombre": "Fuego", "acento": "el-fuego" },
+  { "id": "agua", "nombre": "Agua", "acento": "el-agua" },
+  { "id": "aire", "nombre": "Aire", "acento": "el-aire" },
+  { "id": "tierra", "nombre": "Tierra", "acento": "el-tierra" }
 ]

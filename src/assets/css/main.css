@@ -985,3 +985,9 @@ details[open]::details-content { height: auto; }
 .footer-contact { display: grid; gap: .4rem; }
 .footer-contact a, .footer-contact span { display: inline-flex; align-items: center; gap: .45rem; }
 .breathe { animation: respirar 9s ease-in-out infinite; }
+
+/* Colores propios de los cuatro elementos, en pastel */
+.accent-el-fuego  { --accent: #F2A29B; --accent-soft: #FCE9E6; --accent-ink: #9C3B33; }
+.accent-el-agua   { --accent: #9CCBEB; --accent-soft: #E6F2FB; --accent-ink: #23607F; }
+.accent-el-aire   { --accent: #F3DC8E; --accent-soft: #FCF6DF; --accent-ink: #7A5D10; }
+.accent-el-tierra { --accent: #AFD49A; --accent-soft: #EDF6E6; --accent-ink: #3F6A2E; }
