@@ -109,6 +109,9 @@ bodyClass: landing
           {% endif %}
         {% endfor %}
 
+        {% set agendaSlug = p.slug %}{% include "partials/agenda.njk" %}
+        {% set testimoniosSlug = p.slug %}{% include "partials/testimonios.njk" %}
+
         {% if p.faq and p.faq.length %}
         <section class="faq" aria-labelledby="faq-title">
           <h2 id="faq-title" data-reveal>Preguntas frecuentes</h2>
@@ -135,11 +138,12 @@ bodyClass: landing
           <p class="detail__cat"><a href="/propuestas/#{{ cat.id }}">{{ cat.nombre }}</a></p>
           <dl>
             {% for k, label in [["formato","Formato"],["modalidad","Modalidad"],["lugar","Lugar"],["duracion","Duración"],["frecuencia","Frecuencia"]] %}
-              {% if p[k] %}<div class="meta-row">{{ icon(k) }}<div><dt>{{ label }}</dt><dd>{{ p[k] }}</dd></div></div>{% endif %}
+              {% if p[k] %}<div class="meta-row"><dt>{{ icon(k) }}{{ label }}</dt><dd>{{ p[k] }}</dd></div>{% endif %}
             {% endfor %}
           </dl>
           {% if p.nota %}<p class="detail__note">{{ p.nota }}</p>{% endif %}
           <a class="btn btn--primary btn--block" href="{{ waMessage | wa(site.whatsapp) }}" target="_blank" rel="noopener">{{ icon("whatsapp") }}Consultar por WhatsApp</a>
+          {% include "partials/compartir.njk" %}
         </div>
       </aside>
     </div>

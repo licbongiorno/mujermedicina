@@ -1,5 +1,6 @@
 // Configuración de Eleventy: fuentes en /src, sitio generado en /_site
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import { build } from "esbuild";
 
 export default function (eleventyConfig) {
   // Permite publicar en una subcarpeta (ej.: usuario.github.io/mujermedicina/).
@@ -22,6 +23,21 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v));
   eleventyConfig.addFilter("buscarId", (list, id) => (list || []).find((x) => x.id === id));
+  // Agenda: eventos futuros (opcionalmente de una propuesta), ordenados por fecha
+  eleventyConfig.addFilter("proximos", (list, slug) => {
+    const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    return (list || [])
+      .filter((e) => new Date(`${e.fecha}T00:00:00`) >= hoy && (!slug || e.propuesta === slug))
+      .sort((a, b) => a.fecha.localeCompare(b.fecha));
+  });
+  eleventyConfig.addFilter("fechaEvento", (iso) => {
+    const d = new Date(`${iso}T12:00:00`);
+    return {
+      dia: d.toLocaleDateString("es-AR", { day: "numeric" }),
+      mes: d.toLocaleDateString("es-AR", { month: "short" }).replace(".", ""),
+      larga: d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
+    };
+  });
   eleventyConfig.addFilter("rest", (list) => (list || []).slice(1));
   eleventyConfig.addFilter("ig", (handle) => `https://www.instagram.com/${handle}/`);
 
@@ -57,6 +73,19 @@ export default function (eleventyConfig) {
   // sin inventar textos. Se oculta en producción si site.showPending = false.
   eleventyConfig.addPairedShortcode("pendiente", function (content, label) {
     return `<div class="pending" role="note"><span class="pending__label">${label || "Contenido pendiente"}</span>${content}</div>`;
+  });
+
+  // Al terminar, minifica CSS y JS del sitio generado
+  eleventyConfig.on("eleventy.after", async ({ dir }) => {
+    await build({
+      entryPoints: [`${dir.output}/assets/css/main.css`, `${dir.output}/assets/js/main.js`],
+      outdir: `${dir.output}/assets`,
+      outbase: `${dir.output}/assets`,
+      allowOverwrite: true,
+      minify: true,
+      target: ["es2020", "chrome100", "safari15", "firefox100"],
+      logLevel: "warning",
+    });
   });
 
   return {

@@ -103,6 +103,15 @@ bodyClass: home
   </div>
 </section>
 
+{# ================= AGENDA (solo si hay fechas cargadas) ================= #}
+{%- set agendaSlug = null %}{% set agendaTitulo = "Próximos encuentros" %}
+{%- set hayAgenda = (eventos | proximos).length %}
+{% if hayAgenda %}
+<section class="section section--tight" data-agenda-wrap>
+  <div class="container narrow">{% include "partials/agenda.njk" %}</div>
+</section>
+{% endif %}
+
 {# ================= DESTACADA ================= #}
 {% if destacada %}
 <section class="section section--tight">
@@ -155,6 +164,12 @@ bodyClass: home
     <div class="tacu-band__tree" data-draw data-parallax="-0.05">{% include "ilustraciones/algarrobo.njk" %}</div>
   </div>
 </section>
+
+{% if testimonios.length %}
+<section class="section section--soft">
+  <div class="container">{% set testimoniosSlug = null %}{% include "partials/testimonios.njk" %}</div>
+</section>
+{% endif %}
 
 {# ================= ESCRITOS ================= #}
 <section class="section">

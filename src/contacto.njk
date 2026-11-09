@@ -7,6 +7,15 @@ hero:
   eyebrow: Contacto
   title: Conversemos
   lead: "Elegí sobre qué querés consultar y se abre WhatsApp con el mensaje listo para enviar."
+faqItems:
+  - q: "¿Cómo reservo mi lugar?"
+    a: "Escribime por WhatsApp y te paso las próximas fechas y los valores. En la Transmisión de Cantos Medicina, el lugar se reserva con el 50 %."
+  - q: "¿Cómo se paga?"
+    a: "Por Mercado Pago o transferencia bancaria. Si estás fuera de Argentina, también por Western Union. Los datos te los paso por WhatsApp."
+  - q: "¿Puedo participar desde otro país?"
+    a: "Sí: la Transmisión de Cantos Medicina es virtual, por Meet, y tiene valores para quienes participan desde el exterior."
+  - q: "¿Dónde está Tacu?"
+    a: "En las sierras de Córdoba, Argentina. Escribime y te paso cómo llegar."
 ---
 {%- from "partials/icon.njk" import icon %}
 {% include "partials/page-hero.njk" %}
@@ -36,5 +45,16 @@ hero:
       <h3 class="contact-card__sub">Facebook</h3>
       <p>{% if site.facebook.url %}<a href="{{ site.facebook.url }}" target="_blank" rel="noopener">{{ site.facebook.name }}</a>{% else %}{{ site.facebook.name }}{% endif %}</p>
     </div>
+  </div>
+</section>
+<section class="section section--soft">
+  <div class="container narrow faq">
+    <h2 data-reveal>Preguntas frecuentes</h2>
+    {% for f in faqItems %}
+    <details class="faq__item" data-reveal>
+      <summary>{{ f.q }}<span class="faq__icon" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>{{ f.a }}</p></div>
+    </details>
+    {% endfor %}
   </div>
 </section>

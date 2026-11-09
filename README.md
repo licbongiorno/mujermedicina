@@ -59,6 +59,25 @@ en el sitemap, en `llms.txt` y sus datos estructurados. No hace falta tocar plan
 
 Los bloques con `"contexto": true` explican la práctica en general (no son afirmaciones sobre Lucía).
 
+### Agenda de próximas fechas
+
+`src/_data/eventos.json`. Cada fecha aparece en la landing de su propuesta y en el inicio,
+con botón «Reservar» por WhatsApp y datos estructurados de evento para Google.
+Si no hay fechas, la sección no se muestra; las fechas pasadas se ocultan solas.
+
+```json
+[{ "propuesta": "ceremonias-de-temazcal", "fecha": "2026-12-12", "hora": "17:00", "titulo": "", "lugar": "", "modalidad": "", "nota": "" }]
+```
+
+### Testimonios
+
+`src/_data/testimonios.json`. Se muestran en el inicio y en la landing de la propuesta indicada.
+Usar solo testimonios reales y con permiso de la persona.
+
+```json
+[{ "texto": "…", "nombre": "Nombre", "lugar": "Córdoba", "propuesta": "transmision-de-cantos-medicina" }]
+```
+
 ## Contenido pendiente
 
 Los recuadros punteados marcan dónde va el contenido real (no se inventan textos).

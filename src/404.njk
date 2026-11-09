@@ -12,6 +12,7 @@ eleventyExcludeFromCollections: true
     <p class="lead">Puede que la página haya cambiado de lugar. Quizás alguna de estas propuestas es lo que estabas buscando:</p>
   </div>
   <div class="container" style="margin-top:var(--space-4)">
+    <h2 class="visually-hidden">Algunas propuestas</h2>
     <div class="cards">{% for p in propuestas %}{% if loop.index <= 3 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
     <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--primary" href="/">Volver al inicio</a> <a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a></p>
   </div>

@@ -1,0 +1,16 @@
+{#- Testimonios (se muestran solo si hay). Variable opcional: testimoniosSlug -#}
+{%- set ts = [] %}
+{%- for t in testimonios %}{% if not testimoniosSlug or t.propuesta == testimoniosSlug %}{% set ts = (ts.push(t), ts) %}{% endif %}{% endfor %}
+{%- if ts.length %}
+<section class="testimonios" aria-labelledby="testimonios-title">
+  <h2 id="testimonios-title" data-reveal>Voces que pasaron por aquí</h2>
+  <div class="testimonios__list">
+    {% for t in ts %}
+    <figure class="testimonio" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}">
+      <blockquote><p>«{{ t.texto }}»</p></blockquote>
+      <figcaption>{{ t.nombre }}{% if t.lugar %} · {{ t.lugar }}{% endif %}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+{%- endif %}

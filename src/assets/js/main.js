@@ -221,6 +221,36 @@
     if (initial && blocks.some((bl) => bl.dataset.catBlock === initial)) apply(initial, true);
   }
 
+  /* ---------- Agenda: oculta fechas que ya pasaron (por si el sitio no se regeneró) ---------- */
+  const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+  $$("[data-fecha]").forEach((li) => {
+    if (new Date(`${li.dataset.fecha}T00:00:00`) < hoy) li.hidden = true;
+  });
+  $$(".agenda").forEach((sec) => {
+    if ($$("[data-fecha]", sec).every((li) => li.hidden)) {
+      sec.hidden = true;
+      const wrap = sec.closest("[data-agenda-wrap]");
+      if (wrap) wrap.hidden = true;
+    }
+  });
+
+  /* ---------- Compartir ---------- */
+  $$("[data-share]").forEach((box) => {
+    const url = box.dataset.url;
+    const native = $("[data-native-share]", box);
+    if (navigator.share && native) {
+      native.hidden = false;
+      native.addEventListener("click", () => navigator.share({ title: box.dataset.title, url }).catch(() => {}));
+    }
+    const copy = $("[data-copy]", box);
+    copy?.addEventListener("click", async () => {
+      const label = $("[data-copy-label]", copy);
+      try { await navigator.clipboard.writeText(url); label.textContent = "¡Enlace copiado!"; }
+      catch { label.textContent = url; }
+      setTimeout(() => { label.textContent = "Copiar enlace"; }, 2500);
+    });
+  });
+
   /* ---------- Formulario de consulta → WhatsApp ---------- */
   $$("[data-consult]").forEach((form) => {
     form.addEventListener("submit", (e) => {

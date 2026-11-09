@@ -14,6 +14,9 @@ eleventyExcludeFromCollections: true
 ## Escritos
 {% for e in collections.escritos %}- [{{ e.data.title | safe }}]({{ e.url | absoluteUrl(site.url) }}): {{ e.data.description | safe }}
 {% endfor %}
+## Más
+- Contenido completo: {{ "/llms-full.txt" | absoluteUrl(site.url) }}
+
 ## Páginas
 {% for item in navigation %}- [{{ item.label }}]({{ item.url | absoluteUrl(site.url) }})
 {% endfor %}

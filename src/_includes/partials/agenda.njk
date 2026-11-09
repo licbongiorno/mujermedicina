@@ -1,0 +1,28 @@
+{#- Agenda de próximas fechas. Variables: agendaSlug (opcional, filtra por propuesta), agendaTitulo -#}
+{%- from "partials/icon.njk" import icon %}
+{%- set evs = eventos | proximos(agendaSlug) %}
+{%- if evs.length %}
+<section class="agenda" aria-labelledby="agenda-{{ agendaSlug or 'general' }}">
+  <h2 id="agenda-{{ agendaSlug or 'general' }}" data-reveal>{{ agendaTitulo or "Próximas fechas" }}</h2>
+  <ul class="agenda__list">
+    {% for e in evs %}
+    {%- set f = e.fecha | fechaEvento %}
+    {%- set pr = propuestas | porSlug([e.propuesta]) | first %}
+    <li class="agenda__item accent-{{ pr.acento if pr else 'agua' }}" data-reveal data-fecha="{{ e.fecha }}">
+      <time class="agenda__date" datetime="{{ e.fecha }}{% if e.hora %}T{{ e.hora }}{% endif %}"><span class="agenda__d">{{ f.dia }}</span><span class="agenda__m">{{ f.mes }}</span></time>
+      <div class="agenda__body">
+        <p class="agenda__title">{{ e.titulo or (pr.titulo if pr) }}</p>
+        <p class="agenda__meta">
+          <span>{{ f.larga }}{% if e.hora %} · {{ e.hora }} h{% endif %}</span>
+          {% if e.lugar or (pr and pr.lugar) %}<span>{{ icon("lugar") }}{{ e.lugar or pr.lugar }}</span>{% endif %}
+          {% if e.modalidad or (pr and pr.modalidad) %}<span>{{ icon("modalidad") }}{{ e.modalidad or pr.modalidad }}</span>{% endif %}
+        </p>
+        {% if e.nota %}<p class="agenda__note">{{ e.nota }}</p>{% endif %}
+      </div>
+      <a class="btn btn--primary agenda__cta" href="{{ ('Hola Lucía, quisiera reservar mi lugar para ' + (e.titulo or pr.titulo) + ' del ' + f.larga + '.') | wa(site.whatsapp) }}" target="_blank" rel="noopener">Reservar</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% set graphEventos = evs %}
+{%- endif %}

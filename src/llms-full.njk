@@ -1,0 +1,56 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.person }} · {{ site.brand | safe }} — contenido completo
+
+> {{ site.description | safe }}
+
+Sitio: {{ site.url }}/
+
+
+## Quién es
+
+{{ site.person }} ({{ site.spiritName }}) es {{ site.roles | join(", ") | lower }}. Es mamá de Benjamín y vive en las {{ site.location }}. Estudió música desde los 7 años en el conservatorio Félix Garzón y luego cuatro años en Collegium, escuela de música. A los 16 años se encontró con una planta maestra que le abrió el camino espiritual. Vivió ocho años en una comunidad donde se formó y recibió como mujer medicina; allí aprendió a guiar temazcales y muchos de los cantos medicina que comparte. Participó cuatro años consecutivos en las danzas del sol y realizó una búsqueda de visión. Hace quince años estudia el camino de la pipa sagrada. Es tejedora, un don legado por sus abuelas. En las sierras de Córdoba abrió Tacu (algarrobo), un espacio holístico.
+
+Sus propuestas apuntan a la evolución consciente del ser, el aprendizaje y la sanación, compartiendo herramientas para crecer con Amor.
+
+{% for p in propuestas %}
+## {{ p.titulo | safe }}
+
+URL: {{ ("/propuestas/" + p.slug + "/") | absoluteUrl(site.url) }}
+Categoría: {{ (categorias | categoria(p.categoria)).nombre }}
+{% if p.formato %}Formato: {{ p.formato }}
+{% endif %}{% if p.modalidad %}Modalidad: {{ p.modalidad }}
+{% endif %}{% if p.lugar %}Lugar: {{ p.lugar }}
+{% endif %}{% if p.duracion %}Duración: {{ p.duracion }}
+{% endif %}{% if p.frecuencia %}Frecuencia: {{ p.frecuencia }}
+{% endif %}
+{{ p.resumen | safe }}
+
+{% for t in p.intro %}{{ t | safe }}
+{% endfor %}
+{% for b in p.bloques %}{% if b.titulo %}### {{ b.titulo | safe }}{% if b.contexto %} (contexto general de la práctica){% endif %}
+{% endif %}{% for t in b.parrafos %}{{ t | safe }}
+{% endfor %}{% for it in b.items %}- {% if it.titulo %}{{ it.titulo | safe }}: {{ it.texto | safe }}{% else %}{{ it | safe }}{% endif %}
+{% endfor %}{% if b.tipo == "cita" %}«{{ b.texto | safe }}» ({{ b.fuente | safe }})
+{% endif %}
+{% endfor %}{% if p.faq %}### Preguntas frecuentes
+{% for f in p.faq %}- {{ f.q | safe }} {{ f.a | safe }}
+{% endfor %}{% endif %}
+Consultas: https://wa.me/{{ site.whatsapp }}
+{% endfor %}
+
+## Escritos
+
+{% for e in collections.escritos %}### {{ e.data.title | safe }}
+URL: {{ e.url | absoluteUrl(site.url) }}
+
+{{ e.content | striptags(true) | safe }}
+
+{% endfor %}
+## Contacto
+- WhatsApp: https://wa.me/{{ site.whatsapp }} ({{ site.phoneDisplay }})
+- Correo: {{ site.email }}
+{% for i in site.instagram %}- Instagram: https://www.instagram.com/{{ i.handle }}/ ({{ i.label }})
+{% endfor %}

@@ -52,4 +52,20 @@
   {%- for f in faqItems %}{% set qa = (qa.push({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }), qa) %}{% endfor %}
   {%- set graph = (graph.push({ "@type": "FAQPage", "mainEntity": qa }), graph) %}
 {%- endif %}
+{%- set evsSchema = (eventos | proximos(p.slug if p else null)) if (p or page.url == "/") else [] %}
+{%- for e in evsSchema %}
+  {%- set pr = propuestas | porSlug([e.propuesta]) | first %}
+  {%- set virtual = ((e.modalidad or (pr.modalidad if pr) or "") | lower).indexOf("virtual") != -1 %}
+  {%- set graph = (graph.push({
+    "@type": "Event",
+    "name": e.titulo or pr.titulo,
+    "startDate": e.fecha + ("T" + e.hora if e.hora else ""),
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode" if virtual else "https://schema.org/OfflineEventAttendanceMode",
+    "location": { "@type": "VirtualLocation", "url": site.url + "/propuestas/" + e.propuesta + "/" } if virtual else { "@type": "Place", "name": e.lugar or (pr.lugar if pr) or site.location, "address": { "@type": "PostalAddress", "addressRegion": site.region, "addressCountry": site.country } },
+    "organizer": { "@id": site.url + "/#lucia" },
+    "url": site.url + "/propuestas/" + e.propuesta + "/",
+    "description": e.nota or (pr.resumen if pr)
+  }), graph) %}
+{%- endfor %}
 <script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": graph } | json | safe }}</script>
