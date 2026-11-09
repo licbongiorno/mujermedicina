@@ -57,3 +57,15 @@ Verde hondo sobre blanco 4.9:1 · Petróleo sobre Bruma 8:1.
   si la persona tiene activada la opción de reducir movimiento.
 - Cada propuesta puede tener su acento (`agua`, `jade`, `salvia`, `ocre`, `coral`, `noche`)
   para diferenciarse sin romper la unidad.
+
+## Voz narrativa
+
+Tomada de sus cuadernillos («Transmisión de Cantos Medicina» y «Conectando con los cuatro elementos»).
+
+- **Cercana y de tú a tú.** Habla de vos (voseo) y a veces de tú; usa la primera persona del plural para caminar *con* la persona: «iremos recorriendo», «nos encontraremos».
+- **Ritual y ancestral.** Vocabulario recurrente: *medicina*, *pulso*, *recordar*, *abuelos y abuelas*, *Gran Espíritu*, *Pacha*, *altar*, *ofrenda*, *honrar*, *convidar*, *chispa divina*, *somos uno*, *memoria ancestral*, *vibración*, *crecer con Amor*.
+- **Inclusiva.** «preparada, o preparado», «vos misma, vos mismo», «todxs», «abuelxs».
+- **Simple y profunda a la vez.** Frases breves, afirmaciones directas («Así de simple es el poder que tenemos»), preguntas que se responde sola («¿Lleva trabajo? Sí»).
+- **Alentadora.** Cierra invitando a animarse: «Si yo pude, vos también», «Que sea pura medicina para el alma».
+
+En la web se respetan sus palabras; solo se corrigió la ortografía y se ordenaron los textos para la lectura en pantalla.

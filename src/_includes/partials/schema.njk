@@ -1,37 +1,44 @@
-{#- Datos estructurados (JSON-LD). Se amplían cuando haya datos reales:
-    nombre, servicios, ubicación, redes. Nada se declara si no está cargado. -#}
+{#- Datos estructurados (JSON-LD): ayudan a buscadores y asistentes de IA
+    a entender quién es, qué hace y dónde. -#}
 {%- set sameAs = [] %}
-{%- for name, link in site.social %}{% if link %}{% set sameAs = (sameAs.push(link), sameAs) %}{% endif %}{% endfor %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "{{ site.url }}/#website",
-      "url": "{{ site.url }}/",
-      "name": {{ site.brand | json | safe }},
-      "description": {{ site.description | json | safe }},
-      "inLanguage": "{{ site.lang }}"
-    },
-    {
-      "@type": "{{ 'Person' if site.person else 'Organization' }}",
-      "@id": "{{ site.url }}/#identidad",
-      "name": {{ (site.person or site.brand) | json | safe }},
-      {% if site.person %}"alternateName": {{ site.brand | json | safe }},{% endif %}
-      "url": "{{ site.url }}/",
-      "image": "{{ site.url }}/assets/img/icon-512.png"
-      {%- if sameAs.length %},
-      "sameAs": {{ sameAs | json | safe }}{% endif %}
-    },
-    {
-      "@type": "WebPage",
-      "url": "{{ page.url | absoluteUrl(site.url) }}",
-      "name": {{ (title or site.brand) | json | safe }},
-      "isPartOf": { "@id": "{{ site.url }}/#website" },
-      "about": { "@id": "{{ site.url }}/#identidad" }
-    }{% if schemaExtra %},
-    {{ schemaExtra | json | safe }}{% endif %}
-  ]
-}
-</script>
+{%- for i in site.instagram %}{% set sameAs = (sameAs.push(i.handle | ig), sameAs) %}{% endfor %}
+{%- if site.facebook.url %}{% set sameAs = (sameAs.push(site.facebook.url), sameAs) %}{% endif %}
+{%- set knows = [] %}
+{%- for p in propuestas %}{% set knows = (knows.push(p.titulo), knows) %}{% endfor %}
+{%- set graph = [
+  {
+    "@type": "WebSite",
+    "@id": site.url + "/#website",
+    "url": site.url + "/",
+    "name": site.brand + " · " + site.person,
+    "description": site.description,
+    "inLanguage": site.lang,
+    "publisher": { "@id": site.url + "/#lucia" }
+  },
+  {
+    "@type": "Person",
+    "@id": site.url + "/#lucia",
+    "name": site.person,
+    "alternateName": [site.brand, site.spiritName],
+    "description": site.description,
+    "jobTitle": site.roles | join(", "),
+    "url": site.url + "/",
+    "image": site.url + "/assets/img/icon-512.png",
+    "email": "mailto:" + site.email,
+    "telephone": site.phoneDisplay,
+    "homeLocation": { "@type": "Place", "name": site.location, "address": { "@type": "PostalAddress", "addressRegion": site.region, "addressCountry": site.country } },
+    "knowsAbout": knows,
+    "sameAs": sameAs
+  },
+  {
+    "@type": "WebPage",
+    "url": page.url | absoluteUrl(site.url),
+    "name": title or site.brand,
+    "description": description or site.description,
+    "isPartOf": { "@id": site.url + "/#website" },
+    "about": { "@id": site.url + "/#lucia" },
+    "inLanguage": site.lang
+  }
+] %}
+{%- if schemaExtra %}{% set graph = (graph.push(schemaExtra), graph) %}{% endif %}
+<script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": graph } | json | safe }}</script>

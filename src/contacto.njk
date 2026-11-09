@@ -1,35 +1,37 @@
 ---
 layout: layouts/base.njk
 title: Contacto
-description: Escribile a Mujer Medicina por WhatsApp para consultas, turnos e información.
+description: "Escribile a Lucía Di Mauro por WhatsApp o correo para consultar por cantos medicina, temazcal, talleres, Tameana y las actividades de Tacu en Córdoba."
 permalink: /contacto/
 hero:
   eyebrow: Contacto
+  title: Conversemos
+  lead: "Elegí sobre qué querés consultar y se abre WhatsApp con el mensaje listo para enviar."
 ---
 {% include "partials/page-hero.njk" %}
 <section class="section">
   <div class="container contact-grid">
-    <div class="contact-card" data-reveal>
-      <h2 style="font-size:var(--fs-h3)">WhatsApp</h2>
-      {% if site.whatsapp %}
-        <p>Elegí el tema y se abre la conversación con un mensaje listo para enviar.</p>
-        <ul class="wa-topics">
-          <li><a href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consulta general <span aria-hidden="true">→</span></a></li>
-          <li><a href="{{ site.waMessages.propuestas | wa(site.whatsapp) }}" target="_blank" rel="noopener">Propuestas y sesiones <span aria-hidden="true">→</span></a></li>
-          <li><a href="{{ site.waMessages.experiencias | wa(site.whatsapp) }}" target="_blank" rel="noopener">Encuentros y talleres <span aria-hidden="true">→</span></a></li>
-          {% for p in propuestas %}<li><a href="{{ (p.waMensaje or ('Hola, me gustaría recibir información sobre ' + p.titulo + '.')) | wa(site.whatsapp) }}" target="_blank" rel="noopener">{{ p.titulo }} <span aria-hidden="true">→</span></a></li>{% endfor %}
-        </ul>
-      {% else %}
-        {% pendiente "Número de WhatsApp" %}<p>Se completa en <code>src/_data/site.js</code> (campo <code>whatsapp</code>). Todos los botones del sitio se activan automáticamente.</p>{% endpendiente %}
-      {% endif %}
+    <div class="contact-card contact-card--wide" data-reveal>
+      <h2 class="contact-card__title">WhatsApp</h2>
+      <ul class="wa-topics">
+        <li><a href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consulta general <span aria-hidden="true">→</span></a></li>
+        {% for p in propuestas %}<li><a href="{{ p | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">{{ p.titulo }} <span aria-hidden="true">→</span></a></li>{% endfor %}
+        <li><a href="{{ site.waMessages.tacu | wa(site.whatsapp) }}" target="_blank" rel="noopener">Tacu, espacio holístico <span aria-hidden="true">→</span></a></li>
+      </ul>
     </div>
     <div class="contact-card" data-reveal data-reveal-delay="1">
-      <h2 style="font-size:var(--fs-h3)">Otros canales</h2>
-      {% if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
-      {% if site.location %}<p>{{ site.location }}</p>{% endif %}
-      {% if not site.email and not site.location %}
-        {% pendiente "Correo, redes y zona de atención" %}<p>Correo, redes sociales y si atiende de forma presencial (dónde) u online.</p>{% endpendiente %}
-      {% endif %}
+      <h2 class="contact-card__title">Datos de contacto</h2>
+      <dl class="contact-list">
+        <dt>Teléfono</dt><dd><a href="tel:+{{ site.whatsapp }}">{{ site.phoneDisplay }}</a></dd>
+        <dt>Correo</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+        <dt>Dónde</dt><dd>{{ site.location }}. Propuestas presenciales en Tacu y encuentros virtuales.</dd>
+      </dl>
+      <h3 class="contact-card__sub">Instagram</h3>
+      <ul class="social social--dark">
+        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">@{{ i.handle }}</a> <span>· {{ i.label }}</span></li>{% endfor %}
+      </ul>
+      <h3 class="contact-card__sub">Facebook</h3>
+      <p>{% if site.facebook.url %}<a href="{{ site.facebook.url }}" target="_blank" rel="noopener">{{ site.facebook.name }}</a>{% else %}{{ site.facebook.name }}{% endif %}</p>
     </div>
   </div>
 </section>

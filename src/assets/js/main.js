@@ -21,7 +21,7 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav?.classList.contains("is-open")) { setMenu(false); toggle.focus(); }
   });
-  window.matchMedia("(min-width: 900px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
+  window.matchMedia("(min-width: 1080px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
 
   // Apariciones suaves
   const items = document.querySelectorAll("[data-reveal]");

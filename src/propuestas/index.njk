@@ -1,32 +1,24 @@
 ---
 layout: layouts/base.njk
 title: Propuestas
-description: Terapias, prácticas y acompañamientos de Mujer Medicina.
+description: Cantos medicina, ceremonias de temazcal, talleres, terapia vibracional Tameana, armonizaciones, yoga y más propuestas de Lucía Di Mauro en Córdoba y en forma virtual.
 permalink: /propuestas/
 hero:
-  eyebrow: Servicios y propuestas
-waMessage: "Hola, me gustaría recibir información sobre tus propuestas."
+  eyebrow: Propuestas
+  title: Herramientas para crecer con Amor
+  lead: "Ceremonias, rondas, talleres y terapias que apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación."
+waMessage: "Hola Lucía, me gustaría recibir información sobre tus propuestas."
 ---
 {% include "partials/page-hero.njk" %}
 <section class="section">
   <div class="container">
-    {% if propuestas.length %}
-      {%- set categorias = [] %}
-      {%- for p in propuestas %}{% if p.categoria and not (p.categoria in categorias) %}{% set categorias = (categorias.push(p.categoria), categorias) %}{% endif %}{% endfor %}
-      {% if categorias.length > 1 %}
-        {% for cat in categorias %}
-          <div class="section__head"><h2 data-reveal>{{ cat }}</h2></div>
-          <div class="cards">{% for p in propuestas %}{% if p.categoria == cat %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
-          {% if not loop.last %}<div style="height:var(--space-5)"></div>{% endif %}
-        {% endfor %}
-      {% else %}
-        <div class="cards">{% for p in propuestas %}{% include "partials/propuesta-card.njk" %}{% endfor %}</div>
-      {% endif %}
-    {% else %}
-      {% pendiente "Listado de propuestas" %}
-        <p>Cada propuesta tendrá su tarjeta aquí y su propia página (<code>/propuestas/nombre-de-la-propuesta/</code>) con descripción, a quién está dirigida, modalidad y un botón de WhatsApp con mensaje específico.</p>
-      {% endpendiente %}
-    {% endif %}
+    {% for cat in propuestas | categorias %}
+      <div class="section__head"><h2 data-reveal>{{ cat }}</h2></div>
+      <div class="cards">{% for p in propuestas %}{% if p.categoria == cat %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
+      {% if not loop.last %}<div class="spacer"></div>{% endif %}
+    {% endfor %}
   </div>
 </section>
+{% set ctaTitle = "¿Sentís el llamado?" %}
+{% set ctaText = "Escribime y conversamos sobre la propuesta que resuene con vos, las próximas fechas y cómo participar." %}
 {% include "partials/cta.njk" %}

@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+---
+<article>
+  <header class="page-hero">
+    <img class="page-hero__mandala" src="/assets/img/logo-mandala-376.webp" width="376" height="376" alt="" aria-hidden="true">
+    <div class="container narrow">
+      <p class="eyebrow">Escritos · {{ page.date | fechaLarga }}</p>
+      <h1>{{ title }}</h1>
+      {% if description %}<p class="lead">{{ description }}</p>{% endif %}
+    </div>
+  </header>
+  <div class="section section--tight">
+    <div class="container narrow prose prose--article">
+      {{ content | safe }}
+      <p class="gratitude__sign">— {{ site.person }}, {{ site.spiritName }}</p>
+    </div>
+  </div>
+</article>
+<section class="section section--soft section--tight">
+  <div class="container narrow"><a class="card__link" href="/recursos/"><span aria-hidden="true">←</span> Todos los escritos</a></div>
+</section>
+{% set ctaTitle = "Que sea pura medicina para el alma" %}
+{% include "partials/cta.njk" %}

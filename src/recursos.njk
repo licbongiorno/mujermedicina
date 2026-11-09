@@ -1,18 +1,27 @@
 ---
 layout: layouts/base.njk
-title: Recursos
-description: Reflexiones, contenidos y materiales compartidos por Mujer Medicina.
 permalink: /recursos/
+title: Escritos
+description: "Escritos y reflexiones de Lucía Di Mauro sobre los cuatro elementos, los cantos medicina, el altar y la sabiduría ancestral."
 hero:
-  eyebrow: Recursos
-waMessage: "Hola, estuve leyendo los recursos de tu web y quisiera hacerte una consulta."
+  eyebrow: Escritos y recursos
+  title: Palabras para recordar
+  lead: "Reflexiones y prácticas que comparto en los encuentros, para seguir caminando con ellas."
+waMessage: "Hola Lucía, estuve leyendo tus escritos en la web y quisiera hacerte una consulta."
 ---
 {% include "partials/page-hero.njk" %}
 <section class="section">
-  <div class="container narrow">
-    {% pendiente "Reflexiones y materiales" %}
-      <p>Espacio para sus escritos, reflexiones, meditaciones o materiales descargables. Puede convertirse en un blog con una página por artículo, lo que además favorece el posicionamiento.</p>
-    {% endpendiente %}
+  <div class="container">
+    <div class="cards">
+      {% for e in collections.escritos %}
+      <article class="card accent-{{ e.data.acento or 'agua' }}" data-reveal>
+        <p class="eyebrow">{{ e.date | fechaLarga }}</p>
+        <h2 class="card__title">{{ e.data.title }}</h2>
+        <p>{{ e.data.description }}</p>
+        <a class="card__link" href="{{ e.url }}">Leer <span aria-hidden="true">→</span></a>
+      </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% include "partials/cta.njk" %}

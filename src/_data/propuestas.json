@@ -1,1 +1,154 @@
-[]
+[
+  {
+    "slug": "transmision-de-cantos-medicina",
+    "pagina": true,
+    "destacada": true,
+    "titulo": "Transmisión de Cantos Medicina",
+    "categoria": "Talleres y ciclos",
+    "acento": "noche",
+    "modalidad": "Virtual, por Meet",
+    "formato": "Ciclo de 4 encuentros",
+    "duracion": "Aproximadamente 2 horas por encuentro",
+    "frecuencia": "Cada 15 días o una vez por mes, a convenir con el grupo",
+    "resumen": "Un ciclo de cuatro encuentros virtuales para sacar la voz, descubrirla y, a través de la vibración, conectar con la medicina de los cuatro elementos: fuego, agua, aire y tierra.",
+    "cita": "Reconectar con la naturaleza y las memorias ancestrales a través del sonido, la voz, los sentidos, el ritual y la vibración.",
+    "descripcion": [
+      "Este pulso nace de las ganas de compartir y generar un encuentro con esto que llamamos Canto Medicina.",
+      "Se trata de sacar la voz, descubrirla y, a través de la vibración, conectarnos con la medicina de los cuatro elementos principales —fuego, aire, tierra y agua—, maestros dadores de vida, con la información que guardan y su misterio. Abrazando nuestra propia transformación a través del ritual.",
+      "En cada encuentro propongo una ceremonia ritual diferente, para profundizar en la medicina que nos trae cada elemento. Con tambores y sonajas, altares, siembras y ofrendas iremos recorriendo cada elemento, cada instrumento, cada canto, reconociendo y recordando lo que nos traen."
+    ],
+    "elementos": [
+      { "nombre": "Fuego", "acento": "coral" },
+      { "nombre": "Agua", "acento": "agua" },
+      { "nombre": "Aire", "acento": "jade" },
+      { "nombre": "Tierra", "acento": "ocre" }
+    ],
+    "secciones": [
+      {
+        "titulo": "¿Qué aprenderás en este ciclo?",
+        "items": [
+          "Qué es el canto como medicina: para qué sirve, qué nos trae, por qué y cuándo el canto es medicina.",
+          "Un elemento por encuentro: qué relación tenemos con cada uno y para qué nos sirve.",
+          "Cantos medicina para honrar a cada elemento: de dónde viene cada canto y para qué es.",
+          "El significado de cada elemento —agua, tierra, aire y fuego— y cómo conectar con su medicina a través de los cantos y los rituales.",
+          "Ejercicios de vocalización, respiración y relajación para sacar la voz.",
+          "Armado de altar: su composición y su significado.",
+          "Rituales para honrar a los cuatro elementos.",
+          "La medicina de los instrumentos que nos acompañan: el tambor de mano y la sonaja."
+        ]
+      },
+      {
+        "titulo": "¿Qué nos traen los cantos medicina?",
+        "items": [
+          "Nos conectan con la ancestralidad: los cantos medicina guardan una memoria ancestral muy profunda que iremos recorriendo en cada encuentro.",
+          "Nos ayudan a sacar la voz, a destrabar lo que la retiene y a ser más libres en nuestra expresión.",
+          "Reconocer de qué estamos hechos y tomar conciencia de quién soy.",
+          "Impulsar nuestros deseos más profundos en pos de nuestra propia salud y la de nuestro entorno.",
+          "Darnos fuerza y poder para seguir adelante.",
+          "Recuperar memoria ancestral: conectar con verdades universales que trascienden religiones y fronteras, con la conciencia de unidad.",
+          "Conectar con el momento presente y aquietar el parloteo mental.",
+          "De lo simple a lo complejo: recordar que estamos hechos de los cuatro elementos y aprender a honrarlos de manera ritual."
+        ]
+      },
+      {
+        "titulo": "Cómo nos encontramos",
+        "items": [
+          "Cuatro encuentros virtuales en vivo, por la plataforma Meet.",
+          "Cada 15 días o una vez por mes, a convenir con el grupo.",
+          "Cada encuentro dura aproximadamente 2 horas.",
+          "Armamos un grupo de WhatsApp para compartir información y material."
+        ]
+      },
+      {
+        "titulo": "¿Qué te quedará?",
+        "items": [
+          "Todo el contenido de cada encuentro en material PDF.",
+          "Audios de cada uno de los cantos.",
+          "Material con las letras de los cantos de cada encuentro.",
+          "Certificado."
+        ]
+      }
+    ],
+    "nota": "Los valores y las próximas fechas se consultan por WhatsApp. El lugar se reserva con el 50 %.",
+    "agradecimiento": "A Fernando Lusardi, Carolina Rivas y Santiago Rivas, por enseñarme tantos cantos medicina; al Gran Espíritu, que me regaló la relación con los espíritus y la memoria de lo sagrado; y a todxs ustedes, por resonar con esta propuesta. Que sea pura medicina para el alma.",
+    "waMensaje": "Hola Lucía, quisiera información sobre el ciclo de Transmisión de Cantos Medicina: próximas fechas y valores."
+  },
+  {
+    "slug": "temazcal",
+    "titulo": "Ceremonias de temazcal",
+    "categoria": "Ceremonias y rondas",
+    "acento": "coral",
+    "modalidad": "Presencial, en Tacu",
+    "resumen": "Ceremonias de temazcal guiadas por Lucía, que aprendió a guiarlas durante sus ocho años de formación en comunidad.",
+    "waMensaje": "Hola Lucía, quisiera información sobre las próximas ceremonias de temazcal."
+  },
+  {
+    "slug": "rondas-de-canto-medicina",
+    "titulo": "Rondas de canto medicina",
+    "categoria": "Ceremonias y rondas",
+    "acento": "agua",
+    "modalidad": "Presencial, en Tacu",
+    "resumen": "Rondas para encontrarnos a compartir y cantar juntos cantos medicina.",
+    "waMensaje": "Hola Lucía, quisiera información sobre las próximas rondas de canto medicina."
+  },
+  {
+    "slug": "talleres-de-canto",
+    "titulo": "Talleres de canto",
+    "categoria": "Talleres y ciclos",
+    "acento": "salvia",
+    "resumen": "Talleres para sacar la voz y descubrirla, desde su formación como música y su camino con los cantos medicina.",
+    "waMensaje": "Hola Lucía, quisiera información sobre los talleres de canto."
+  },
+  {
+    "slug": "sahumo-medicina",
+    "titulo": "Sahúmo Medicina",
+    "categoria": "Talleres y ciclos",
+    "acento": "ocre",
+    "resumen": "Uno de los talleres que crea Lucía, que podés conocer en su página @mandalasquetzalcoatl.",
+    "instagram": "mandalasquetzalcoatl",
+    "waMensaje": "Hola Lucía, quisiera información sobre el taller Sahúmo Medicina."
+  },
+  {
+    "slug": "mandalas-tejidas",
+    "titulo": "Mandalas tejidas",
+    "categoria": "Talleres y ciclos",
+    "acento": "jade",
+    "resumen": "Tejer es uno de los dones que le legaron sus abuelas, y ama enseñar y transmitir lo que se le fue concedido.",
+    "instagram": "mandalasquetzalcoatl",
+    "waMensaje": "Hola Lucía, quisiera información sobre el taller de mandalas tejidas."
+  },
+  {
+    "slug": "tameana",
+    "titulo": "Tameana",
+    "categoria": "Terapias y armonizaciones",
+    "acento": "noche",
+    "resumen": "Terapia vibracional pleyadiana que Lucía facilita.",
+    "instagram": "tamea.na",
+    "waMensaje": "Hola Lucía, quisiera información sobre la terapia vibracional Tameana."
+  },
+  {
+    "slug": "armonizaciones",
+    "titulo": "Armonizaciones",
+    "categoria": "Terapias y armonizaciones",
+    "acento": "jade",
+    "resumen": "Espacios de armonización que forman parte de las propuestas de Tacu.",
+    "waMensaje": "Hola Lucía, quisiera información sobre las armonizaciones."
+  },
+  {
+    "slug": "yoga",
+    "titulo": "Yoga",
+    "categoria": "Otras propuestas en Tacu",
+    "acento": "salvia",
+    "modalidad": "En Tacu",
+    "resumen": "Clases de yoga en Tacu, el espacio holístico en las sierras de Córdoba.",
+    "waMensaje": "Hola Lucía, quisiera información sobre las clases de yoga en Tacu."
+  },
+  {
+    "slug": "clases-de-ingles",
+    "titulo": "Clases de inglés",
+    "categoria": "Otras propuestas en Tacu",
+    "acento": "agua",
+    "resumen": "Clases de inglés, otra de las herramientas que comparte en Tacu para seguir aprendiendo y creciendo.",
+    "waMensaje": "Hola Lucía, quisiera información sobre las clases de inglés."
+  }
+]

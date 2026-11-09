@@ -1,3 +1,4 @@
+{%- set navUrls = [] %}{% for item in navigation %}{% set navUrls = (navUrls.push(item.url), navUrls) %}{% endfor %}
 <header class="site-header" data-header>
   <div class="container site-header__inner">
     <a class="brand" href="/" aria-label="{{ site.brand }}, ir al inicio">
@@ -11,7 +12,7 @@
     <nav class="site-nav" id="menu" aria-label="Principal" data-nav>
       <ul>
         {%- for item in navigation %}
-        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
+        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url) and not (page.url in navUrls)) %}
         <li><a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
         {%- endfor %}
       </ul>

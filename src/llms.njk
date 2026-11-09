@@ -2,19 +2,23 @@
 permalink: /llms.txt
 eleventyExcludeFromCollections: true
 ---
-# {{ site.brand }}{% if site.person %} — {{ site.person }}{% endif %}
+# {{ site.person }} · {{ site.brand | safe }}
 
 > {{ site.description | safe }}
 
-{% if site.location %}Ubicación / modalidad: {{ site.location }}
-{% endif %}
+{{ site.person }} ({{ site.spiritName }}) es {{ site.roles | join(", ") | lower }}. Vive en las {{ site.location }}, donde abrió Tacu, un espacio holístico. Estudió música desde los 7 años (conservatorio Félix Garzón y Collegium, en Córdoba), se formó durante 8 años en una comunidad como mujer medicina, guía ceremonias de temazcal, participó 4 años en las danzas del sol, realizó la búsqueda de visión y estudia hace 15 años el camino de la pipa sagrada.
+
+## Propuestas
+{% for p in propuestas %}- {% if p.pagina %}[{{ p.titulo | safe }}]({{ ('/propuestas/' + p.slug + '/') | absoluteUrl(site.url) }}){% else %}{{ p.titulo | safe }}{% endif %}{% if p.modalidad %} ({{ p.modalidad }}){% endif %}: {{ p.resumen | safe }}
+{% endfor %}
+## Escritos
+{% for e in collections.escritos %}- [{{ e.data.title | safe }}]({{ e.url | absoluteUrl(site.url) }}): {{ e.data.description | safe }}
+{% endfor %}
 ## Páginas
 {% for item in navigation %}- [{{ item.label }}]({{ item.url | absoluteUrl(site.url) }})
 {% endfor %}
-{% if propuestas.length %}## Propuestas
-{% for p in propuestas %}- [{{ p.titulo | safe }}]({{ ('/propuestas/' + p.slug + '/') | absoluteUrl(site.url) }}): {{ p.resumen | safe }}
-{% endfor %}{% endif %}
 ## Contacto
-{% if site.whatsapp %}- WhatsApp: https://wa.me/{{ site.whatsapp }}
-{% endif %}{% if site.email %}- Correo: {{ site.email }}
-{% endif %}- Página de contacto: {{ "/contacto/" | absoluteUrl(site.url) }}
+- WhatsApp: https://wa.me/{{ site.whatsapp }} ({{ site.phoneDisplay }})
+- Correo: {{ site.email }}
+{% for i in site.instagram %}- Instagram: https://www.instagram.com/{{ i.handle }}/ ({{ i.label }})
+{% endfor %}

@@ -2,7 +2,8 @@
   { "label": "Inicio", "url": "/" },
   { "label": "Sobre mí", "url": "/sobre-mi/" },
   { "label": "Propuestas", "url": "/propuestas/" },
-  { "label": "Experiencias", "url": "/experiencias/" },
-  { "label": "Recursos", "url": "/recursos/" },
+  { "label": "Cantos Medicina", "url": "/propuestas/transmision-de-cantos-medicina/" },
+  { "label": "Tacu", "url": "/tacu/" },
+  { "label": "Escritos", "url": "/recursos/" },
   { "label": "Contacto", "url": "/contacto/" }
 ]

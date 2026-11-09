@@ -1,23 +1,48 @@
 ---
 layout: layouts/base.njk
 title: Sobre mí
-description: Historia, recorrido y filosofía de Mujer Medicina.
+description: "Lucía Di Mauro, mujer medicina, artista, música, danzante y tejedora. Su camino con la pipa sagrada, la música, el temazcal y los cantos medicina en Córdoba, Argentina."
 permalink: /sobre-mi/
 hero:
-  eyebrow: Sobre mí
-waMessage: "Hola, leí sobre vos en tu web y me gustaría conocer más sobre tu trabajo."
+  eyebrow: Lucía Di Mauro · Estrella del Mar
+  title: Mujer medicina, artista, música, danzante y tejedora
+waMessage: "Hola Lucía, leí sobre tu camino en tu web y me gustaría conocer más."
 ---
 {% include "partials/page-hero.njk" %}
-<section class="section">
+
+<section class="section section--tight">
   <div class="container narrow">
-    <h2 data-reveal>Mi historia</h2>
-    {% pendiente "Historia" %}<p>Su historia y el camino que la trajo hasta aquí, contados con sus palabras.</p>{% endpendiente %}
-    <div class="ornament" aria-hidden="true"><svg width="120" height="16" viewBox="0 0 120 16"><path d="M0 8h48M72 8h48" stroke="currentColor"/><circle cx="60" cy="8" r="4" fill="none" stroke="currentColor"/></svg></div>
-    <h2 data-reveal>Recorrido</h2>
-    {% pendiente "Recorrido y formaciones" %}<p>Solo se incluirán formaciones y experiencias que ella confirme.</p>{% endpendiente %}
-    <div class="ornament" aria-hidden="true"><svg width="120" height="16" viewBox="0 0 120 16"><path d="M0 8h48M72 8h48" stroke="currentColor"/><circle cx="60" cy="8" r="4" fill="none" stroke="currentColor"/></svg></div>
-    <h2 data-reveal>Filosofía</h2>
-    {% pendiente "Filosofía" %}<p>Su mirada sobre el bienestar, la espiritualidad y el acompañamiento.</p>{% endpendiente %}
+    <blockquote class="quote" data-reveal>
+      <p>«Tu verdad y tu verdadero poder, nadie más que tú lo vas a ver y descubrir cuando te animes a mirarte de verdad como eres. Estoy aquí para acompañarte en este viaje.»</p>
+    </blockquote>
   </div>
 </section>
+
+<section class="section section--tight">
+  <div class="container narrow prose">
+    <h2 data-reveal>Su camino</h2>
+    <p data-reveal>Lucía es mamá de Benjamín y vive en las sierras de Córdoba, Argentina. Hace ya quince años que estudia el camino de la pipa sagrada y sus rituales.</p>
+    <p data-reveal>A los 7 años comenzó a estudiar música en el conservatorio Félix Garzón, en Córdoba capital, donde cursó los cuatro años del nivel inicial. Luego continuó cuatro años más en Collegium, una escuela de música.</p>
+    <p data-reveal>A los 16 años se encontró con una de las plantas maestras que le abriría la puerta a todo su camino espiritual. Al terminar el secundario se fue a vivir a una comunidad, donde durante ocho años se formó y recibió como mujer medicina.</p>
+
+    <div class="milestones" data-reveal>
+      <div><span class="milestones__n">8</span><span>años de formación en comunidad</span></div>
+      <div><span class="milestones__n">4</span><span>años consecutivos en las danzas del sol</span></div>
+      <div><span class="milestones__n">15</span><span>años en el camino de la pipa sagrada</span></div>
+    </div>
+
+    <p data-reveal>Durante esos años aprendió a guiar temazcales, participó cuatro años consecutivos en las danzas del sol, convidando plantas medicinales con sus diseños rituales, y subió una vez a la montaña para realizar la búsqueda de visión. En ese recorrido aprendió muchos de los cantos medicina que hoy comparte.</p>
+    <p data-reveal>Las experiencias de búsqueda de medicina enriquecieron todo su ser artista: desde el ser, el arte, la cosmovisión ancestral y la música.</p>
+
+    <h2 data-reveal>Tejedora</h2>
+    <p data-reveal>Tejer es uno de los dones que le legaron sus abuelas, y ama enseñar y transmitir lo que se le fue concedido. Crea distintos talleres, como el de Sahúmo Medicina y el de Mandalas tejidas, que podés conocer en <a href="{{ 'mandalasquetzalcoatl' | ig }}" target="_blank" rel="noopener">@mandalasquetzalcoatl</a>.</p>
+
+    <h2 data-reveal>Hoy</h2>
+    <p data-reveal>Vive en las sierras de Córdoba, donde abrió <a href="/tacu/">Tacu</a>, un espacio holístico. Allí comparte ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga, talleres de canto y clases de inglés. También facilita la terapia vibracional pleyadiana Tameana.</p>
+    <p data-reveal>Todas sus propuestas apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación, compartiendo y facilitando herramientas que nos ayuden a crecer con Amor.</p>
+  </div>
+</section>
+
+{% set ctaTitle = "Si yo pude, vos también" %}
+{% set ctaText = "Si algo de este camino resuena con vos, escribime." %}
 {% include "partials/cta.njk" %}

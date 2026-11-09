@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: Tacu, espacio holístico
+description: "Tacu es el espacio holístico de Lucía Di Mauro en las sierras de Córdoba: ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga, talleres de canto y clases de inglés."
+permalink: /tacu/
+hero:
+  eyebrow: Espacio holístico · Sierras de Córdoba
+  title: Tacu
+  lead: "Tacu significa algarrobo: árbol sagrado autóctono, medicina y alimento ancestral."
+waMessage: "Hola Lucía, me gustaría saber más sobre Tacu y las actividades del espacio."
+---
+{% include "partials/page-hero.njk" %}
+<section class="section section--tight">
+  <div class="container narrow prose">
+    <p class="lead" data-reveal>En las sierras de Córdoba, Lucía abrió un espacio al que llamó Tacu, en honor al algarrobo. Allí comparte distintas propuestas que apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación.</p>
+  </div>
+</section>
+<section class="section section--tight">
+  <div class="container">
+    <div class="section__head"><h2 data-reveal>Lo que compartimos en Tacu</h2></div>
+    <div class="cards">
+      {% for p in propuestas %}{% if p.modalidad and "Tacu" in p.modalidad %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+      {% for p in propuestas %}{% if p.slug in ["armonizaciones", "talleres-de-canto", "clases-de-ingles"] %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section section--soft">
+  <div class="container narrow center">
+    <h2 data-reveal>Seguí a Tacu</h2>
+    <p data-reveal>Novedades, ceremonias y la tienda holística, en Instagram.</p>
+    <div class="btn-row" style="justify-content:center" data-reveal>
+      <a class="btn btn--primary" href="{{ 'tacu_espacioholistico' | ig }}" target="_blank" rel="noopener">@tacu_espacioholistico</a>
+      <a class="btn btn--ghost" href="{{ 'tacu_tiendaholistica' | ig }}" target="_blank" rel="noopener">@tacu_tiendaholistica</a>
+    </div>
+  </div>
+</section>
+{% set ctaTitle = "¿Querés venir a Tacu?" %}
+{% set ctaText = "Escribime para conocer las próximas actividades del espacio." %}
+{% include "partials/cta.njk" %}

@@ -4,7 +4,8 @@
     <div class="site-footer__brand">
       <img src="/assets/img/logo-mandala-192.webp" width="88" height="88" alt="" loading="lazy">
       <p class="site-footer__name">{{ site.brand }}</p>
-      {% if site.person %}<p>{{ site.person }}</p>{% endif %}
+      <p>{{ site.person }} · {{ site.spiritName | replace("Mujer Medicina ", "") }}</p>
+      <p class="site-footer__small">{{ site.roles | join(" · ") }}</p>
     </div>
     <nav aria-label="Pie de página">
       <ul class="site-footer__nav">
@@ -12,13 +13,13 @@
       </ul>
     </nav>
     <div class="site-footer__contact">
-      <a class="btn btn--light" href="{{ site.waMessages.general | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Escribime por WhatsApp</a>
-      {% if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
-      {% if site.location %}<p>{{ site.location }}</p>{% endif %}
+      <a class="btn btn--light" href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime por WhatsApp</a>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>{{ site.location }}</p>
       <ul class="social">
-        {% for name, link in site.social %}{% if link %}<li><a href="{{ link }}" target="_blank" rel="noopener">{{ name | capitalize }}</a></li>{% endif %}{% endfor %}
+        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">@{{ i.handle }}</a></li>{% endfor %}
+        {% if site.facebook.url %}<li><a href="{{ site.facebook.url }}" target="_blank" rel="noopener">Facebook</a></li>{% endif %}
       </ul>
     </div>
   </div>
-  <p class="container site-footer__legal">© {{ site.year }} {{ site.brand }}</p>
+  <p class="container site-footer__legal">© {{ site.year }} {{ site.person }} · {{ site.brand }}</p>
 </footer>

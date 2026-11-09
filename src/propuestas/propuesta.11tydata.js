@@ -1,18 +1,19 @@
-// Datos calculados para cada página de propuesta (sin escapar HTML dos veces)
-const msg = (p) => p.waMensaje || `Hola, me gustaría recibir información sobre ${p.titulo}.`;
-
+// Datos calculados para cada página de propuesta
 export default {
   eleventyComputed: {
     title: (data) => data.p?.titulo,
     description: (data) => data.p?.resumen,
-    waMessage: (data) => (data.p ? msg(data.p) : undefined),
+    waMessage: (data) => (data.p ? data.p.waMensaje || `Hola Lucía, quisiera información sobre ${data.p.titulo}.` : undefined),
     schemaExtra: (data) =>
       data.p && {
-        "@type": "Service",
+        "@type": "Course",
         name: data.p.titulo,
         description: data.p.resumen,
-        ...(data.p.categoria && { serviceType: data.p.categoria }),
-        provider: { "@id": `${data.site.url}/#identidad` },
+        provider: { "@id": `${data.site.url}/#lucia` },
+        inLanguage: "es",
+        ...(data.p.modalidad?.toLowerCase().includes("virtual") && {
+          hasCourseInstance: { "@type": "CourseInstance", courseMode: "online", instructor: { "@id": `${data.site.url}/#lucia` } },
+        }),
       },
   },
 };

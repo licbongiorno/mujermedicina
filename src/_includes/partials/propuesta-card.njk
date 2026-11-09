@@ -4,6 +4,14 @@
   </div>
   {% if p.categoria %}<p class="eyebrow">{{ p.categoria }}</p>{% endif %}
   <h3>{{ p.titulo }}</h3>
+  {% if p.modalidad or p.formato %}<p class="card__meta">{{ [p.formato, p.modalidad] | select | join(" · ") }}</p>{% endif %}
   <p>{{ p.resumen }}</p>
-  <a class="card__link" href="/propuestas/{{ p.slug }}/">Conocer más <span aria-hidden="true">→</span></a>
+  <div class="card__actions">
+    {% if p.pagina %}
+      <a class="card__link" href="/propuestas/{{ p.slug }}/">Conocer más <span aria-hidden="true">→</span></a>
+    {% else %}
+      <a class="card__link" href="{{ p | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
+      {% if p.instagram %}<a class="card__ig" href="{{ p.instagram | ig }}" target="_blank" rel="noopener">@{{ p.instagram }}</a>{% endif %}
+    {% endif %}
+  </div>
 </article>

@@ -1,19 +1,21 @@
 ---
 layout: layouts/base.njk
-title: Mujer Medicina
+title: "Lucía Di Mauro · Mujer Medicina en Córdoba"
+description: "Lucía Di Mauro, mujer medicina, música y tejedora en las sierras de Córdoba. Transmisión de cantos medicina, ceremonias de temazcal, rondas, talleres y Tameana."
 bodyClass: home
 ---
+{%- set destacada = propuestas | selectattr("destacada") | first %}
+
 <section class="hero">
   <div class="container hero__grid">
     <div>
-      <p class="eyebrow" data-reveal>{{ site.person or site.brand }}</p>
-      <h1 data-reveal>{{ site.brand }}</h1>
-      {% pendiente "Propuesta de valor" %}
-        <p>Aquí va una frase de bienvenida y una breve presentación, escritas a partir de sus propios textos y con su voz.</p>
-      {% endpendiente %}
+      <p class="eyebrow" data-reveal>{{ site.person }} · {{ site.spiritName | replace("Mujer Medicina ", "") }}</p>
+      <h1 data-reveal>Mujer <em>Medicina</em></h1>
+      <p class="hero__roles" data-reveal>{% for r in site.roles %}{% if not loop.first %}{{ r }}{% if not loop.last %} · {% endif %}{% endif %}{% endfor %}</p>
+      <p class="lead" data-reveal data-reveal-delay="1">{{ site.tagline }}</p>
       <div class="btn-row" data-reveal data-reveal-delay="2">
-        <a class="btn btn--primary" href="/propuestas/">Ver propuestas</a>
-        <a class="btn btn--ghost" href="{{ site.waMessages.general | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Escribime</a>
+        <a class="btn btn--primary" href="/propuestas/">Conocer las propuestas</a>
+        <a class="btn btn--ghost" href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime</a>
       </div>
     </div>
     <div class="hero__visual" aria-hidden="true">
@@ -26,44 +28,82 @@ bodyClass: home
 </section>
 
 <section class="section section--soft">
-  <div class="container narrow">
-    <p class="eyebrow" data-reveal>Sobre mí</p>
-    <h2 data-reveal>Presentación</h2>
-    {% pendiente "Presentación personal" %}
-      <p>Un primer acercamiento a quién es, su recorrido y su manera de acompañar. Se redacta con el material que ella comparta.</p>
-    {% endpendiente %}
-    <a class="card__link" href="/sobre-mi/">Leer más sobre mí <span aria-hidden="true">→</span></a>
+  <div class="container intro">
+    <div class="intro__text">
+      <p class="eyebrow" data-reveal>Bienvenida, bienvenido</p>
+      <h2 data-reveal>Somos el agua, somos el fuego, somos la tierra, somos el viento</h2>
+      <p data-reveal>Estamos compuestos por los cuatro elementos. No solo de ellos estamos hechos: también son parte del mundo que nos rodea, y son lo que nos da vida. Por eso necesitamos volver a recordar quiénes somos.</p>
+      <p data-reveal>Hay algo en nuestras células que recuerda de qué estamos hechos. Siempre estamos a tiempo de volver a la pureza de nuestro ser. El canto, el tambor, la sonaja y el ritual son medicinas que nos ayudan a sacar el polvo que nos nubla.</p>
+      <p data-reveal>Estoy aquí para acompañarte en este viaje, en este recorrido hacia tu propia verdad.</p>
+      <a class="card__link" href="/sobre-mi/" data-reveal>Conocé mi camino <span aria-hidden="true">→</span></a>
+    </div>
+    <ul class="element-ring" aria-label="Los cuatro elementos">
+      <li class="accent-coral" data-reveal><span>Fuego</span></li>
+      <li class="accent-agua" data-reveal data-reveal-delay="1"><span>Agua</span></li>
+      <li class="accent-jade" data-reveal data-reveal-delay="1"><span>Aire</span></li>
+      <li class="accent-ocre" data-reveal data-reveal-delay="2"><span>Tierra</span></li>
+    </ul>
   </div>
 </section>
+
+{% if destacada %}
+<section class="section">
+  <div class="container">
+    <article class="feature accent-{{ destacada.acento }}" data-reveal>
+      <div class="feature__body">
+        <p class="eyebrow">{{ destacada.formato }} · {{ destacada.modalidad }}</p>
+        <h2>{{ destacada.titulo }}</h2>
+        <p class="lead">{{ destacada.resumen }}</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="/propuestas/{{ destacada.slug }}/">Ver el ciclo completo</a>
+          <a class="btn btn--ghost" href="{{ destacada | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar fechas</a>
+        </div>
+      </div>
+      {% if destacada.elementos %}
+      <ol class="feature__elements" aria-label="Un elemento por encuentro">
+        {% for e in destacada.elementos %}<li class="accent-{{ e.acento }}"><span class="element__n">{{ loop.index }}</span> {{ e.nombre }}</li>{% endfor %}
+      </ol>
+      {% endif %}
+    </article>
+  </div>
+</section>
+{% endif %}
 
 <section class="section">
   <div class="container">
     <div class="section__head">
       <p class="eyebrow" data-reveal>Propuestas</p>
       <h2 data-reveal>Lo que comparto</h2>
+      <p class="lead" data-reveal>Ceremonias, rondas de canto, talleres y terapias, compartiendo y facilitando herramientas que nos ayuden a crecer con Amor.</p>
     </div>
-    {% if propuestas.length %}
-      <div class="cards">
-        {% for p in propuestas %}{% if loop.index <= 6 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
-      </div>
-    {% else %}
-      {% pendiente "Propuestas y servicios" %}
-        <p>Las tarjetas de cada propuesta se generan automáticamente cuando se cargan en <code>src/_data/propuestas.json</code>.</p>
-      {% endpendiente %}
-    {% endif %}
+    <div class="cards">
+      {% for p in propuestas | rejectattr("destacada") %}{% if loop.index <= 6 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+    </div>
+    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a></p>
   </div>
 </section>
 
 <section class="section section--deep">
   <div class="container narrow center">
-    <p class="eyebrow" data-reveal>Experiencias</p>
-    <h2 data-reveal>Encuentros y prácticas</h2>
-    {% pendiente "Experiencias" %}
-      <p>Espacio para encuentros, talleres o ceremonias, si corresponde.</p>
-    {% endpendiente %}
-    <a class="btn btn--light" href="/experiencias/">Ver experiencias</a>
+    <p class="eyebrow" data-reveal>Tacu · Espacio holístico</p>
+    <h2 data-reveal>Un algarrobo en las sierras de Córdoba</h2>
+    <p class="lead" data-reveal>Tacu significa algarrobo: árbol sagrado autóctono, medicina y alimento ancestral. Así se llama el espacio donde comparto ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga y talleres.</p>
+    <a class="btn btn--light" href="/tacu/" data-reveal>Conocer Tacu</a>
   </div>
 </section>
 
-{% set ctaMessage = site.waMessages.general %}
+{% set ultimo = collections.escritos | first %}
+{% if ultimo %}
+<section class="section">
+  <div class="container narrow">
+    <p class="eyebrow" data-reveal>Escritos</p>
+    <h2 data-reveal>{{ ultimo.data.title }}</h2>
+    <p class="lead" data-reveal>{{ ultimo.data.description }}</p>
+    <a class="card__link" href="{{ ultimo.url }}" data-reveal>Leer el escrito <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+{% endif %}
+
+{% set ctaTitle = "Si estás aquí, es porque estás preparada, o preparado" %}
+{% set ctaText = "Escribime y conversamos sobre lo que estás buscando y la propuesta que resuene con vos." %}
 {% include "partials/cta.njk" %}

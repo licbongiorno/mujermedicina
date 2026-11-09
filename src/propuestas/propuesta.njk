@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 pagination:
-  data: propuestas
+  data: collections.propuestasConPagina
   size: 1
   alias: p
   addAllPagesToCollections: true
@@ -10,23 +10,58 @@ permalink: "/propuestas/{{ p.slug }}/"
 <div class="accent-{{ p.acento or 'agua' }}">
   {% set hero = { eyebrow: p.categoria or "Propuesta", title: p.titulo, lead: p.resumen } %}
   {% include "partials/page-hero.njk" %}
-  <section class="section">
+
+  {% if p.cita %}
+  <section class="section section--tight">
+    <div class="container narrow center">
+      <blockquote class="quote" data-reveal><p>«{{ p.cita }}»</p></blockquote>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="section section--tight">
     <div class="container detail">
-      <div class="narrow">
+      <div class="prose">
         {% for parrafo in p.descripcion %}<p data-reveal>{{ parrafo }}</p>{% endfor %}
-        {% if p.paraQuien %}<h2 data-reveal>¿A quién está dirigida?</h2><p data-reveal>{{ p.paraQuien }}</p>{% endif %}
+
+        {% if p.elementos %}
+        <ol class="elements" aria-label="Los cuatro encuentros">
+          {% for e in p.elementos %}
+          <li class="element accent-{{ e.acento }}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}">
+            <span class="element__n">Encuentro {{ loop.index }}</span>
+            <span class="element__name">{{ e.nombre }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+        {% endif %}
+
+        {% for s in p.secciones %}
+          <h2 data-reveal>{{ s.titulo }}</h2>
+          <ul class="list" data-reveal>{% for it in s.items %}<li>{{ it }}</li>{% endfor %}</ul>
+        {% endfor %}
+
+        {% if p.agradecimiento %}
+          <div class="gratitude" data-reveal>
+            <h2>Agradecimientos</h2>
+            <p>{{ p.agradecimiento }}</p>
+            <p class="gratitude__sign">— {{ site.person }}, {{ site.spiritName }}</p>
+          </div>
+        {% endif %}
       </div>
+
       <aside class="detail__aside" data-reveal>
         <dl>
+          {% if p.formato %}<dt>Formato</dt><dd>{{ p.formato }}</dd>{% endif %}
           {% if p.modalidad %}<dt>Modalidad</dt><dd>{{ p.modalidad }}</dd>{% endif %}
           {% if p.duracion %}<dt>Duración</dt><dd>{{ p.duracion }}</dd>{% endif %}
-          {% if p.lugar %}<dt>Lugar</dt><dd>{{ p.lugar }}</dd>{% endif %}
+          {% if p.frecuencia %}<dt>Frecuencia</dt><dd>{{ p.frecuencia }}</dd>{% endif %}
         </dl>
-        <a class="btn btn--primary" style="width:100%" href="{{ waMessage | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Consultar por WhatsApp</a>
+        {% if p.nota %}<p class="detail__note">{{ p.nota }}</p>{% endif %}
+        <a class="btn btn--primary btn--block" href="{{ waMessage | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
       </aside>
     </div>
   </section>
 </div>
-<section class="section section--soft">
+<section class="section section--soft section--tight">
   <div class="container"><a class="card__link" href="/propuestas/"><span aria-hidden="true">←</span> Todas las propuestas</a></div>
 </section>

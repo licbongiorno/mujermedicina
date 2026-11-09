@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- set pageTitle = (title + " · " + site.brand) if title and title != site.brand else site.brand %}
+  {%- set pageTitle = (title + " · " + site.person + ", " + site.brand) if (title and not (site.brand in title)) else (title or site.brand) %}
   {%- set pageDesc = description or site.description %}
   {%- set canonical = page.url | absoluteUrl(site.url) %}
   <title>{{ pageTitle }}</title>
