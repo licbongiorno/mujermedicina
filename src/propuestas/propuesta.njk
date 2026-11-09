@@ -11,6 +11,7 @@ bodyClass: landing
 {%- from "partials/icon.njk" import icon %}
 {%- set cat = categorias | categoria(p.categoria) %}
 {%- set lado = "izq" if (pagination.pageNumber % 2) else "der" %}
+<div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
 <div class="accent-{{ p.acento or 'agua' }}">
 
   {# ---------- Encabezado ---------- #}
@@ -48,7 +49,7 @@ bodyClass: landing
   {# ---------- Contenido ---------- #}
   <section class="section section--tight" id="descubrir">
     <div class="container landing-body">
-      <div class="landing-main">
+      <div class="landing-main" data-article>
         {% if p.cita %}
         <blockquote class="quote quote--lg" data-reveal><p>«{{ p.cita.texto }}»</p></blockquote>
         {% endif %}
@@ -100,6 +101,12 @@ bodyClass: landing
             <ol class="steps" data-steps>
               {% for it in b.items %}<li data-reveal><span class="steps__dot" aria-hidden="true"></span>{{ it }}</li>{% endfor %}
             </ol>
+
+          {% elif b.tipo == "experiencia" %}
+            <section class="exp-block" aria-label="{{ b.titulo }}">
+              {% if b.titulo %}<h2 data-reveal>{{ b.titulo }}</h2>{% endif %}
+              {% include "experiencias/" + b.id + ".njk" %}
+            </section>
 
           {% elif b.tipo == "cita" %}
             <figure class="pull" data-reveal>

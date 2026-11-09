@@ -59,6 +59,18 @@ en el sitemap, en `llms.txt` y sus datos estructurados. No hace falta tocar plan
 
 Los bloques con `"contexto": true` explican la práctica en general (no son afirmaciones sobre Lucía).
 
+### Experiencias interactivas
+
+Ver `EXPERIENCIAS.md` (mapa por página y bloque). Cada experiencia es un archivo en
+`src/_includes/experiencias/` y se agrega a una propuesta con un bloque:
+
+```json
+{ "tipo": "experiencia", "id": "ronda", "titulo": "Cada voz se suma" }
+```
+
+En un escrito (Markdown): `{% include "experiencias/tambor.njk" %}`.
+La lógica está en `src/assets/js/experiencias.js`, que se descarga solo en las páginas que la usan.
+
 ### Agenda de próximas fechas
 
 `src/_data/eventos.json`. Cada fecha aparece en la landing de su propuesta y en el inicio,

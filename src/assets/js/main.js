@@ -3,6 +3,14 @@
 // "reducir movimiento" activado se desactivan parallax, rotaciones y efectos.
 (() => {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Experiencias interactivas: el módulo se descarga solo si la página tiene alguna
+  if (document.querySelector("[data-exp]")) {
+    const s = document.createElement("script");
+    s.src = document.body.dataset.expSrc;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -248,6 +256,21 @@
       if (wrap) wrap.hidden = true;
     }
   });
+
+  /* ---------- Onda de agua desde el punto donde se toca un botón ---------- */
+  if (!reduce) {
+    document.addEventListener("pointerdown", (e) => {
+      const b = e.target.closest(".btn, .exp__btn");
+      if (!b) return;
+      const r = b.getBoundingClientRect();
+      const size = Math.max(r.width, r.height);
+      const span = document.createElement("span");
+      span.className = "ripple";
+      span.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+      b.appendChild(span);
+      span.addEventListener("animationend", () => span.parentNode && span.parentNode.removeChild(span));
+    });
+  }
 
   /* ---------- Compartir ---------- */
   $$("[data-share]").forEach((box) => {

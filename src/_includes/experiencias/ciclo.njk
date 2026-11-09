@@ -1,0 +1,17 @@
+{# Cantos Medicina: «un elemento por encuentro» — cuatro cuartos que completan un círculo #}
+<figure class="exp exp-ciclo" data-exp="ciclo">
+  <div class="ciclo__stage">
+    <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="70" fill="none" stroke="#D3E9E8" stroke-width="10"/>
+      {% for c in geo.ciclo %}<path class="ciclo__arco accent-{{ elementos[loop.index0].acento }}" d="{{ c.d }}" pathLength="1" style="--i:{{ loop.index0 }}"/>{% endfor %}
+      <g class="ciclo__centro"><circle cx="100" cy="100" r="40" fill="#fff"/></g>
+    </svg>
+    {% for c in geo.ciclo %}{% set el = elementos[loop.index0] %}
+    <button type="button" class="ciclo__nodo" style="left:{{ c.badge.x / 2 }}%;top:{{ c.badge.y / 2 }}%;--i:{{ loop.index0 }}" data-ciclo-nodo="{{ loop.index0 }}" aria-pressed="false">
+      {% include "partials/el-badge.njk" %}<span class="visually-hidden">Encuentro {{ loop.index }}: {{ el.nombre }}</span>
+    </button>
+    {% endfor %}
+    <p class="ciclo__texto" aria-live="polite" data-ciclo-texto><span>Un círculo</span><span>completo</span></p>
+  </div>
+  <figcaption class="exp__hint">Tocá cada elemento para ver su encuentro.</figcaption>
+</figure>

@@ -1,0 +1,37 @@
+{# Temazcal: la ceremonia como proceso (del texto «¿Qué es el temazcal?») #}
+{%- set pasos = ["El fuego calienta", "Entran las abuelas", "Se vierte agua", "Vapor y cantos"] %}
+<figure class="exp exp-temazcal" data-exp="pasos" data-paso="0">
+  <svg class="exp__svg" viewBox="0 0 240 180" aria-hidden="true">
+    <path d="M10 150h220" stroke="#C9B79A" stroke-width="2"/>
+    <path class="tz__domo" d="M60 150c0-44 26-68 60-68s60 24 60 68" fill="#FCE9E6" stroke="#9C3B33" stroke-width="1.6"/>
+    <path d="M108 150c0-10 5-16 12-16s12 6 12 16" fill="#fff" stroke="#9C3B33" stroke-width="1.4"/>
+    <g class="tz__fuego"><path d="M196 150c-9 0-14-6-14-13 0-6 4-9 6-13 1 3 3 4 4 5 1-5 3-8 7-11 0 7 9 10 9 19 0 7-5 13-12 13z" fill="#F2A29B" stroke="#9C3B33" stroke-width="1.2"/></g>
+    <g class="tz__piedras" fill="#8A6F5A">
+      <ellipse cx="0" cy="0" rx="7" ry="5" style="--x0:190px;--y0:156px;--x1:112px;--y1:140px"/>
+      <ellipse cx="0" cy="0" rx="6" ry="4" style="--x0:202px;--y0:158px;--x1:124px;--y1:142px"/>
+      <ellipse cx="0" cy="0" rx="5" ry="4" style="--x0:196px;--y0:160px;--x1:118px;--y1:134px"/>
+    </g>
+    <g class="tz__agua" fill="#9CCBEB" stroke="#23607F" stroke-width="1">
+      <path d="M118 96c3 5 5 7 5 10a5 5 0 0 1-10 0c0-3 2-5 5-10z"/>
+      <path d="M128 104c2 4 4 5 4 7.5a4 4 0 0 1-8 0c0-2.5 2-3.5 4-7.5z"/>
+    </g>
+    <g class="tz__vapor" fill="none" stroke="#85CFD1" stroke-width="1.6" stroke-linecap="round">
+      <path d="M106 128c-5-7 5-10 0-17s5-10 0-16"/><path d="M120 126c-5-7 5-10 0-17s5-10 0-17"/><path d="M134 128c-5-7 5-10 0-17s5-10 0-16"/>
+    </g>
+    <g class="tz__cantos" fill="#2B6F72" font-family="Fraunces, Georgia, serif" font-size="14">
+      <text x="78" y="70">♪</text><text x="150" y="64">♫</text><text x="118" y="52">♪</text>
+    </g>
+  </svg>
+  <figcaption>
+    <p class="exp__caption" aria-live="polite" data-paso-texto>{{ pasos[0] }}</p>
+    <ol class="pasos__dots" aria-label="Pasos de la ceremonia">
+      {% for t in pasos %}<li><button type="button" data-paso-ir="{{ loop.index0 }}" aria-label="Paso {{ loop.index }}: {{ t }}"{% if loop.first %} aria-current="step"{% endif %}></button></li>{% endfor %}
+    </ol>
+    <div class="pasos__ctrl">
+      <button type="button" class="exp__btn" data-paso-prev aria-label="Paso anterior">←</button>
+      <button type="button" class="exp__btn exp__btn--play" data-paso-play aria-pressed="false">Ver la secuencia</button>
+      <button type="button" class="exp__btn" data-paso-next aria-label="Paso siguiente">→</button>
+    </div>
+  </figcaption>
+  <template data-pasos>{{ pasos | json | safe }}</template>
+</figure>

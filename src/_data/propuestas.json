@@ -26,7 +26,9 @@
     ],
     "bloques": [
       {
-        "tipo": "elementos"
+        "tipo": "experiencia",
+        "id": "ciclo",
+        "titulo": "Un elemento por encuentro"
       },
       {
         "tipo": "lista",
@@ -145,6 +147,11 @@
         ]
       },
       {
+        "tipo": "experiencia",
+        "id": "temazcal",
+        "titulo": "La ceremonia, paso a paso"
+      },
+      {
         "tipo": "pilares",
         "titulo": "Los cuatro elementos en la ceremonia",
         "items": [
@@ -229,6 +236,11 @@
         "fuente": "Del escrito «Somos los cuatro elementos»"
       },
       {
+        "tipo": "experiencia",
+        "id": "ronda",
+        "titulo": "Cada voz se suma"
+      },
+      {
         "tipo": "pilares",
         "titulo": "Lo que nos acompaña en la ronda",
         "items": [
@@ -293,18 +305,9 @@
     ],
     "bloques": [
       {
-        "tipo": "pilares",
-        "titulo": "Dos fuentes",
-        "items": [
-          {
-            "titulo": "Formación musical",
-            "texto": "Conservatorio Félix Garzón desde los 7 años y cuatro años en Collegium, escuela de música."
-          },
-          {
-            "titulo": "Canto medicina",
-            "texto": "Los cantos aprendidos durante sus años de formación en comunidad."
-          }
-        ]
+        "tipo": "experiencia",
+        "id": "confluencia",
+        "titulo": "Dos fuentes"
       }
     ],
     "faq": [
@@ -344,6 +347,11 @@
           "Sahumar es quemar plantas, resinas o maderas para que su humo perfume y envuelva un espacio. Es una práctica presente en muchas tradiciones de nuestro continente.",
           "En el sahumo se encuentran dos elementos: el fuego, que enciende, y el aire, que lleva el humo."
         ]
+      },
+      {
+        "tipo": "experiencia",
+        "id": "humo",
+        "titulo": "Fuego y aire"
       },
       {
         "tipo": "cita",
@@ -387,6 +395,11 @@
         "parrafos": [
           "Mandala es una palabra sánscrita que significa «círculo». Es una forma que parte de un centro y se expande hacia afuera, como el mandala que es símbolo de esta web."
         ]
+      },
+      {
+        "tipo": "experiencia",
+        "id": "tejido",
+        "titulo": "Un mandala que se teje"
       }
     ],
     "relacionadas": [
@@ -421,6 +434,11 @@
         ]
       },
       {
+        "tipo": "experiencia",
+        "id": "pleyades",
+        "titulo": "Las Siete Hermanas"
+      },
+      {
         "tipo": "cita",
         "texto": "Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz.",
         "enlace": "/recursos/somos-los-cuatro-elementos/",
@@ -451,6 +469,11 @@
       "Las armonizaciones son parte de las propuestas que Lucía comparte en Tacu, todas orientadas a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación."
     ],
     "bloques": [
+      {
+        "tipo": "experiencia",
+        "id": "armonia",
+        "titulo": "Hacia la calma"
+      },
       {
         "tipo": "cita",
         "texto": "Siempre estamos a tiempo de volver a la pureza de nuestro ser, sea lo que sea que nos haya tocado pasar en la vida.",
@@ -490,6 +513,11 @@
         "parrafos": [
           "Yoga es una palabra sánscrita que suele traducirse como «unión». Es una práctica que reúne posturas, respiración y atención."
         ]
+      },
+      {
+        "tipo": "experiencia",
+        "id": "respiracion",
+        "titulo": "Una pausa para respirar"
       }
     ],
     "relacionadas": [
@@ -516,7 +544,13 @@
     "intro": [
       "Entre las propuestas de Tacu también hay clases de inglés. Como todo lo que se comparte en el espacio, apuntan a la evolución consciente del ser y al aprendizaje."
     ],
-    "bloques": [],
+    "bloques": [
+      {
+        "tipo": "experiencia",
+        "id": "palabras",
+        "titulo": "Los cuatro elementos, en inglés"
+      }
+    ],
     "relacionadas": [
       "yoga",
       "talleres-de-canto"

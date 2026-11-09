@@ -1044,3 +1044,232 @@ details[open]::details-content { height: auto; }
 .prose--article .share { margin-top: var(--space-4); }
 .filter { scroll-margin-top: 90px; }
 .universe__rings { pointer-events: none; z-index: 0; } .universe__center { z-index: 1; } .u-node { z-index: 2; }
+
+/* =========================================================
+   EXPERIENCIAS INTERACTIVAS (ver EXPERIENCIAS.md)
+   Cada escena: estado inicial → acción → imagen final estable.
+   ========================================================= */
+.exp { margin: var(--space-4) 0; padding: var(--space-3); border-radius: calc(var(--radius) * 1.3); background: linear-gradient(160deg, #fff 0%, var(--accent-soft, var(--c-bruma)) 100%); border: 1px solid var(--border); box-shadow: var(--shadow); text-align: center; position: relative; overflow: hidden; }
+.exp__svg { width: min(100%, 340px); height: auto; margin: 0 auto; display: block; overflow: visible; }
+.exp__caption { margin: var(--space-2) 0 .2rem; font-family: var(--font-display); font-size: clamp(1.3rem, 1.1rem + .8vw, 1.7rem); color: var(--c-petroleo); line-height: 1.2; min-height: 1.2em; transition: opacity .4s; }
+.exp__hint { margin: .3rem 0 0; font-size: .9rem; color: var(--text-soft); }
+.exp__link { border: 0; background: none; padding: .2rem .1rem; font: inherit; color: var(--c-agua); text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.exp__btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: .5rem 1.1rem; border-radius: 999px; border: 1px solid var(--border); background: #fff; color: var(--c-petroleo); font: 600 .95rem var(--font-body); cursor: pointer; transition: background-color .3s, transform .35s var(--ease); }
+.exp__btn:hover { background: var(--c-bruma); }
+.exp__btn:active { transform: scale(.96); }
+.exp__btn--play { background: var(--c-agua); color: #fff; border-color: var(--c-agua); }
+.exp__btn--play:hover { background: var(--c-petroleo); }
+.exp__btn[hidden], .exp__link[hidden] { display: none; }
+.pasos__ctrl { display: flex; justify-content: center; align-items: center; gap: .5rem; margin-top: var(--space-2); flex-wrap: wrap; }
+.exp-block > h2 { margin-top: var(--space-5); font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); }
+.exp-block .exp { margin-top: var(--space-2); }
+.prose--article .exp ul, .prose--article .exp ol { display: flex; gap: .5rem; }
+.prose--article .exp li { padding-left: 0; }
+.prose--article .exp li::before { display: none; }
+
+/* ---- Escena: polvo de estrellas que se une en luz ---- */
+.exp-estrellas { background: radial-gradient(circle at 50% 40%, #F3FAFA, #E1F4F4); }
+.estrellas__p { fill: #5FB0B3; transform: translate(var(--x0), var(--y0)); opacity: .55; transition: transform 2.4s var(--ease) var(--d), opacity 1s, fill 1.5s 1.8s; }
+.estrellas__halo { opacity: 0; transform-origin: 100px 100px; transform: scale(.4); transition: opacity 1.6s 1.6s, transform 2s var(--ease) 1.6s; }
+.estrellas__core { fill: #fff; opacity: 0; transition: opacity 1.4s 2s; }
+.is-en-escena .estrellas__p { transform: translate(var(--x1), var(--y1)); opacity: 1; fill: #E7C65A; }
+.is-en-escena .estrellas__halo { opacity: 1; transform: scale(1); }
+.is-en-escena .estrellas__core { opacity: 1; animation: respirar 6s ease-in-out 3.4s infinite; transform-origin: 100px 100px; }
+
+/* ---- Escena: la luz se abre en sol y luna ---- */
+.dual__sol, .dual__luna { transition: transform 1.8s var(--ease) .4s; }
+.dual__rayos line { opacity: 0; transition: opacity .6s calc(1.6s + var(--i) * .12s); }
+.dual__creciente { opacity: 0; transition: opacity .8s 1.8s; }
+.dual__union { transition: opacity .8s .2s; }
+.is-en-escena .dual__sol { transform: translateX(14px); }
+.is-en-escena .dual__luna { transform: translateX(-14px); }
+.is-en-escena .dual__rayos line { opacity: 1; }
+.is-en-escena .dual__creciente { opacity: .55; }
+.is-en-escena .dual__union { opacity: 0; }
+
+/* ---- Escena: la chispa sigue ahí, aunque la rodeen anillos ---- */
+.chispa__anillo { fill: none; stroke: #A9B8B9; stroke-width: 6; opacity: 0; transform-origin: 100px 100px; transform: scale(1.3); transition: opacity 1s calc(.3s + var(--i) * .35s), transform 1.4s var(--ease) calc(.3s + var(--i) * .35s); }
+.chispa__luz { transform-origin: 100px 100px; }
+.is-en-escena .chispa__anillo { opacity: .35; transform: scale(1); }
+.is-en-escena .chispa__luz { animation: latir-chispa 2.2s ease-in-out 2s infinite; }
+@keyframes latir-chispa { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 #E7C65A); } 50% { transform: scale(1.15); filter: drop-shadow(0 0 8px #E7C65A); } }
+
+/* ---- Ejercicio: el tambor ---- */
+.tambor__stage { position: relative; width: min(100%, 300px); margin: 0 auto 18%; }
+.tambor__polvo circle { fill: #9A8B78; opacity: .7; transition: transform 1.4s var(--ease), opacity 1.4s; }
+.tambor__polvo circle.is-barrido { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+.tambor__chispa { transform-origin: 100px 100px; opacity: calc(.3 + var(--brillo, 0) * .7); transform: scale(calc(.7 + var(--brillo, 0) * .5)); transition: opacity .8s, transform .8s var(--ease); }
+.exp-tambor.is-completo .tambor__chispa { animation: latir-chispa 2.2s ease-in-out infinite; }
+.tambor__onda { fill: none; stroke: #C9A93E; stroke-width: 2; transform-origin: 100px 100px; animation: tambor-onda 1.6s var(--ease) forwards; }
+@keyframes tambor-onda { from { transform: scale(.6); opacity: .9; } to { transform: scale(5); opacity: 0; } }
+.tambor__btn { position: absolute; left: 50%; top: 100%; width: 30%; aspect-ratio: 1; transform: translate(-50%, -50%); border: 0; background: none; padding: 0; cursor: pointer; border-radius: 50%; opacity: .92; }
+.tambor__btn svg { width: 100%; height: 100%; display: block; }
+.tambor__btn.is-golpe svg { animation: golpe .35s var(--ease); }
+@keyframes golpe { 30% { transform: scale(.9); } 100% { transform: scale(1); } }
+.tambor__btn:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 4px; }
+
+/* ---- Ejercicio: el altar ---- */
+.altar__stage { position: relative; width: min(100%, 380px); aspect-ratio: 1; margin: 0 auto; touch-action: none; }
+.altar__tela { width: 100%; height: 100%; display: block; }
+.altar__mandala > * { stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--tejido, 0)); transition: stroke-dashoffset 1.2s var(--ease); }
+.altar__lazo { opacity: 0; transition: opacity .8s; }
+.exp-altar.is-completo .altar__lazo { opacity: 1; }
+.exp-altar.is-completo .altar__centro { animation: latir-chispa 2.4s ease-in-out infinite; transform-origin: 100px 100px; }
+.altar__item { position: absolute; transform: translate(-50%, -50%); border: 0; background: none; padding: 0; cursor: grab; touch-action: none; border-radius: 50%; }
+.altar__item .el-badge { --el-size: clamp(48px, 13vw, 60px); background: #fff; }
+.altar__item.is-llega { animation: llegar .6s var(--ease); }
+.altar__item.is-arrastrando { cursor: grabbing; z-index: 2; }
+.altar__item.is-arrastrando .el-badge { transform: scale(1.12); box-shadow: 0 14px 28px -12px rgba(29,49,59,.5); }
+.altar__item:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; }
+@keyframes llegar { from { opacity: 0; transform: translate(-50%, -30%) scale(.6); } }
+.altar__bandeja { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: .6rem; margin-top: var(--space-2); text-align: left; }
+.altar__toggle { width: 100%; text-align: left; display: flex; align-items: center; gap: .7rem; padding: .6rem .8rem; border-radius: 16px; border: 1px solid var(--border); background: #fff; cursor: pointer; font: inherit; color: var(--text); transition: background-color .3s, border-color .3s, transform .3s var(--ease); }
+.altar__toggle .el-badge { --el-size: 42px; }
+.altar__toggle strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; color: var(--c-noche); }
+.altar__toggle small { display: block; font-size: .85rem; color: var(--text-soft); line-height: 1.3; }
+.altar__toggle[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.altar__toggle:active { transform: scale(.98); }
+
+/* ---- Ciclo de cuatro encuentros ---- */
+.ciclo__stage { position: relative; width: min(100%, 360px); aspect-ratio: 1; margin: 0 auto; }
+.ciclo__stage .exp__svg { width: 100%; }
+.ciclo__arco { fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s var(--ease) calc(.3s + var(--i) * .9s), opacity .4s; }
+.is-en-escena .ciclo__arco { stroke-dashoffset: 0; }
+.exp-ciclo[data-activo] .ciclo__arco { opacity: .3; }
+.exp-ciclo[data-activo="0"] .ciclo__arco:nth-of-type(1), .exp-ciclo[data-activo="1"] .ciclo__arco:nth-of-type(2),
+.exp-ciclo[data-activo="2"] .ciclo__arco:nth-of-type(3), .exp-ciclo[data-activo="3"] .ciclo__arco:nth-of-type(4) { opacity: 1; }
+.ciclo__nodo { position: absolute; transform: translate(-50%, -50%) scale(.4); opacity: 0; border: 0; background: none; padding: 0; cursor: pointer; border-radius: 50%; transition: transform .6s var(--ease) calc(1s + var(--i) * .9s), opacity .6s calc(1s + var(--i) * .9s); }
+.ciclo__nodo .el-badge { --el-size: clamp(46px, 12vw, 58px); background: #fff; }
+.is-en-escena .ciclo__nodo { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.ciclo__nodo[aria-pressed="true"] .el-badge { box-shadow: 0 0 0 4px var(--accent), 0 12px 24px -12px rgba(29,49,59,.5); }
+.ciclo__nodo:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; }
+.ciclo__texto { position: absolute; inset: 0; display: grid; place-content: center; margin: 0; font-family: var(--font-display); font-size: clamp(1.05rem, .9rem + .6vw, 1.35rem); color: var(--c-petroleo); line-height: 1.2; opacity: 0; transition: opacity .8s 4.2s; pointer-events: none; }
+.ciclo__texto span { display: block; }
+.is-en-escena .ciclo__texto { opacity: 1; }
+
+/* ---- Temazcal paso a paso ---- */
+.exp-temazcal { background: linear-gradient(180deg, #FFF9F7 0%, var(--accent-soft) 100%); }
+.exp-temazcal .exp__svg { width: min(100%, 420px); }
+.tz__fuego { transform-origin: 196px 150px; transition: opacity .6s, transform .6s; }
+.exp-temazcal[data-paso="0"] .tz__fuego { animation: el-flama 1.8s ease-in-out infinite; }
+.exp-temazcal:not([data-paso="0"]) .tz__fuego { opacity: .35; }
+.tz__piedras ellipse { transform: translate(var(--x0), var(--y0)); transition: transform 1.4s var(--ease), fill .8s; fill: #8A6F5A; }
+.exp-temazcal[data-paso="0"] .tz__piedras ellipse { fill: #D2694F; }
+.exp-temazcal:not([data-paso="0"]) .tz__piedras ellipse { transform: translate(var(--x1), var(--y1)); fill: #C0624A; }
+.tz__agua { opacity: 0; transform: translateY(-14px); transition: opacity .5s, transform 1s var(--ease); }
+.exp-temazcal[data-paso="2"] .tz__agua { opacity: 1; transform: translateY(18px); }
+.tz__vapor, .tz__cantos { opacity: 0; transition: opacity .8s; }
+.exp-temazcal[data-paso="3"] .tz__vapor { opacity: 1; }
+.exp-temazcal[data-paso="3"] .tz__vapor path { animation: vapor 3.2s ease-in-out infinite; }
+.exp-temazcal[data-paso="3"] .tz__vapor path:nth-child(2) { animation-delay: 1s; }
+.exp-temazcal[data-paso="3"] .tz__vapor path:nth-child(3) { animation-delay: 2s; }
+.exp-temazcal[data-paso="3"] .tz__cantos { opacity: 1; }
+.exp-temazcal[data-paso="3"] .tz__cantos text { animation: letra 3.5s ease-in-out infinite; }
+.exp-temazcal[data-paso="3"] .tz__cantos text:nth-child(2) { animation-delay: 1.1s; }
+.exp-temazcal[data-paso="3"] .tz__cantos text:nth-child(3) { animation-delay: 2.2s; }
+.pasos__dots { list-style: none; display: flex; justify-content: center; gap: .6rem; margin: .6rem 0 0; padding: 0; }
+.pasos__dots { gap: .2rem; }
+.pasos__dots button { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; display: grid; place-items: center; }
+.pasos__dots button::before { content: ""; width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--accent-ink); transition: background-color .3s, transform .3s var(--ease); }
+.pasos__dots button[aria-current="step"]::before { background: var(--accent-ink); transform: scale(1.15); }
+
+/* ---- Ronda: cada voz se suma ---- */
+.ronda__circulo { fill: none; stroke: var(--accent, #85CFD1); stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--ronda, 0)); transform: rotate(-90deg); transform-origin: 100px 100px; transition: stroke-dashoffset 1s var(--ease); }
+.ronda__fuego { fill: #FCE9E6; stroke: #9C3B33; stroke-width: 1.4; transform-origin: 100px 118px; animation: llama 2.4s ease-in-out infinite; }
+.ronda__vacio { fill: #fff; stroke: #C9D8D7; stroke-width: 1.4; stroke-dasharray: 3 3; }
+.ronda__voz { opacity: 0; transform: scale(.3); transition: opacity .5s, transform .6s var(--ease); }
+.ronda__voz > circle:first-child { fill: var(--accent-soft, #E3F5F5); stroke: var(--accent-ink, #2B6F72); stroke-width: 1.6; }
+.ronda__onda { fill: none; stroke: var(--accent, #85CFD1); stroke-width: 1.2; opacity: 0; }
+.is-voz .ronda__voz { opacity: 1; transform: scale(1); }
+.is-voz .ronda__onda { animation: ronda-onda 2.4s ease-out infinite; animation-delay: calc(var(--k, 0) * .3s); }
+.exp-ronda.is-completa .ronda__onda { animation: ronda-onda 1.6s ease-out infinite; animation-delay: 0s; }
+.exp-ronda.is-completa .ronda__voz > circle:first-child { animation: pulso 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes ronda-onda { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.4); opacity: 0; } }
+
+/* ---- Confluencia: dos fuentes, una voz ---- */
+.exp-confluencia .exp__svg { width: min(100%, 460px); }
+.conf__rio { fill: none; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 6 10; opacity: 0; transition: opacity 1s; }
+.conf__rio--a { stroke: #9CCBEB; transition-delay: .2s; } .conf__rio--b { stroke: #A6CE98; transition-delay: .5s; }
+.conf__rio--c { stroke: #5FB0B3; stroke-width: 9; transition-delay: 1.2s; }
+.is-en-escena .conf__rio { opacity: 1; animation: fluir 1.6s linear infinite; }
+@keyframes fluir { to { stroke-dashoffset: -32; } }
+.conf__fuente { fill: #fff; stroke: #5FB0B3; stroke-width: 2; }
+.conf__voz { fill: #DDF0F0; stroke: #24666A; stroke-width: 2; opacity: 0; transform-origin: 300px 100px; transform: scale(.5); transition: opacity .8s 1.8s, transform .8s var(--ease) 1.8s; }
+.is-en-escena .conf__voz { opacity: 1; transform: scale(1); }
+.conf__labels { display: grid; gap: .6rem; margin-top: var(--space-2); text-align: left; }
+@media (min-width: 640px) { .conf__labels { grid-template-columns: 1fr 1fr; } }
+.conf__l { margin: 0; padding: .8rem 1rem; border-radius: 14px; background: #fff; border-left: 4px solid; font-size: .93rem; color: var(--text-soft); }
+.conf__l strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; color: var(--c-noche); }
+.conf__l--a { border-color: #9CCBEB; } .conf__l--b { border-color: #A6CE98; }
+
+/* ---- Humo que sigue la brisa ---- */
+.humo__stage { width: min(100%, 300px); margin: 0 auto; touch-action: pan-y; cursor: crosshair; }
+.humo__brasa { fill: #F2A29B; animation: brasa 2s ease-in-out infinite; }
+@keyframes brasa { 50% { fill: #E7C65A; } }
+
+/* ---- Mandala que se teje con la lectura ---- */
+.tejido__vuelta { fill: none; stroke-width: 4.5; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.exp-tejido .exp__svg { animation: girar 120s linear infinite; }
+.exp__progreso { width: min(100%, 240px); height: 4px; margin: .5rem auto 0; border-radius: 4px; background: var(--border); overflow: hidden; }
+.exp__progreso span { display: block; height: 100%; width: 0; background: var(--grad-mandala); transition: width .2s; }
+
+/* ---- Pléyades ---- */
+.exp-pleyades { background: linear-gradient(180deg, #F3FAFA, #E2EFEF); }
+.exp-pleyades .exp__svg, .pley__estrellas { width: min(100%, 340px); }
+.pley__estrellas { position: absolute; left: 50%; top: var(--space-3); aspect-ratio: 1; transform: translateX(-50%); }
+.pley__linea { stroke: #F3DC8E; stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1s var(--ease); }
+.pley__linea.is-on { stroke-dashoffset: 0; }
+.pley__estrella { position: absolute; width: 44px; height: 44px; transform: translate(-50%, -50%); border: 0; background: none; padding: 8px; cursor: pointer; border-radius: 50%; }
+.pley__estrella svg { width: 100%; height: 100%; fill: #6E8A8E; transition: fill .5s, transform .5s var(--ease), filter .5s; }
+.pley__estrella:hover svg { transform: scale(1.2); }
+.pley__estrella[aria-pressed="true"] svg { fill: #FCF6DF; filter: drop-shadow(0 0 6px #F3DC8E); animation: titilar 3s ease-in-out infinite; }
+.pley__estrella:focus-visible { outline: 2px solid #F3DC8E; outline-offset: 0; }
+.exp-pleyades.is-completa .exp__svg rect { fill: #24464C; transition: fill 1s; }
+
+/* ---- Armonía: de la agitación a la calma ---- */
+.exp-armonia .exp__svg { width: min(100%, 460px); filter: saturate(calc(.6 + var(--calma, 0) * .6)); }
+.armonia__control { display: grid; gap: .4rem; justify-items: center; margin-top: var(--space-2); }
+.armonia__control input { width: min(100%, 320px); accent-color: var(--c-agua); height: 32px; }
+
+/* ---- Respiración guiada ---- */
+.resp__stage { position: relative; width: min(70vw, 260px); aspect-ratio: 1; margin: 0 auto; display: grid; place-items: center; }
+.resp__circulo, .resp__aura { position: absolute; inset: 18%; border-radius: 50%; background: radial-gradient(circle, #fff, var(--accent-soft) 60%, var(--accent)); transform: scale(.75); transition: transform 4s ease-in-out; }
+.resp__aura { inset: 6%; background: radial-gradient(circle, transparent 55%, color-mix(in srgb, var(--accent) 35%, transparent)); opacity: .5; }
+.exp-respiracion.is-inhala .resp__circulo, .exp-respiracion.is-inhala .resp__aura { transform: scale(1.12); }
+.exp-respiracion.is-exhala .resp__circulo, .exp-respiracion.is-exhala .resp__aura { transform: scale(.75); }
+.exp-respiracion:not(.is-activa) .resp__circulo { animation: respirar 9s ease-in-out infinite; }
+.resp__texto { position: relative; margin: 0; font-family: var(--font-display); font-size: 1.5rem; color: var(--c-petroleo); }
+
+/* ---- Palabras: los elementos en dos idiomas ---- */
+.palabras__lista { list-style: none; padding: 0; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: .8rem; max-width: 420px; }
+.palabra { position: relative; width: 100%; aspect-ratio: 1.15; border: 0; padding: 0; background: none; cursor: pointer; perspective: 600px; font: inherit; }
+.palabra__cara { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: .4rem; border-radius: 18px; background: #fff; border: 1px solid var(--border); backface-visibility: hidden; transition: transform .7s var(--ease); box-shadow: var(--shadow); }
+.palabra__cara strong { font-family: var(--font-display); font-weight: 400; font-size: 1.3rem; color: var(--c-noche); }
+.palabra__cara--en { transform: rotateY(180deg); background: var(--accent-soft); }
+.palabra[aria-pressed="true"] .palabra__cara--es { transform: rotateY(-180deg); }
+.palabra[aria-pressed="true"] .palabra__cara--en { transform: rotateY(0); }
+.palabra:focus-visible { outline: 3px solid var(--c-turquesa); outline-offset: 3px; border-radius: 18px; }
+
+/* ---- Microinteracción global: onda de agua al tocar un botón ---- */
+.btn, .exp__btn { position: relative; overflow: hidden; }
+.ripple { position: absolute; border-radius: 50%; pointer-events: none; background: currentColor; opacity: .25; transform: scale(0); animation: ripple .7s ease-out forwards; }
+@keyframes ripple { to { transform: scale(2.6); opacity: 0; } }
+
+/* ---- Recorrido del inicio: al llegar a «Hoy», un brote germina ---- */
+.path li:last-child .brote { position: absolute; width: 30px; height: 30px; left: -3px; top: -24px; color: var(--c-verde-hondo); }
+@media (max-width: 959px) { .path li:last-child .brote { left: -4px; top: -18px; } }
+.brote path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--ease) .6s; }
+.path li.is-visible:last-child .brote path { stroke-dashoffset: 0; }
+
+/* ---- Movimiento reducido: imágenes finales, sin desplazamientos ---- */
+@media (prefers-reduced-motion: reduce) {
+  .estrellas__p { transform: translate(var(--x1), var(--y1)); opacity: 1; fill: #E7C65A; }
+  .estrellas__halo, .estrellas__core { opacity: 1; transform: none; }
+  .dual__sol { transform: translateX(14px); } .dual__luna { transform: translateX(-14px); }
+  .dual__rayos line, .dual__creciente { opacity: 1; } .dual__union { opacity: 0; }
+  .chispa__anillo { opacity: .35; transform: none; }
+  .ciclo__arco { stroke-dashoffset: 0; } .ciclo__nodo { transform: translate(-50%, -50%); opacity: 1; } .ciclo__texto { opacity: 1; }
+  .conf__rio, .conf__voz { opacity: 1; transform: none; }
+  .brote path { stroke-dashoffset: 0; }
+  .ripple { display: none; }
+}

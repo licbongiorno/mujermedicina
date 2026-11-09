@@ -1,0 +1,24 @@
+{# «Los instrumentos nos ayudan, a través del sonido y la vibración, a activar esta memoria…
+   Hay que sacar el polvo que nos nubla.» — Ejercicio: tocar el tambor #}
+<figure class="exp exp-tambor" data-exp="tambor">
+  <div class="tambor__stage">
+    <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
+      <g class="tambor__ondas"></g>
+      <g class="tambor__polvo">
+        {% for p in geo.polvo %}<circle cx="{{ p.x }}" cy="{{ p.y }}" r="{{ p.r }}" style="--dx:{{ ((p.x - 100) * 0.9) | round(1) }}px;--dy:{{ ((p.y - 100) * 0.9) | round(1) }}px"/>{% endfor %}
+      </g>
+      <g class="tambor__chispa">
+        <circle cx="100" cy="100" r="13" fill="#FCF6DF"/>
+        <path d="M100 87c1.2 7.5 5.5 11.8 13 13-7.5 1.2-11.8 5.5-13 13-1.2-7.5-5.5-11.8-13-13 7.5-1.2 11.8-5.5 13-13z" fill="#E7C65A"/>
+      </g>
+    </svg>
+    <button class="tambor__btn" type="button" data-tambor-golpe aria-describedby="tambor-estado">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="#FCF6DF" stroke="#7A5D10" stroke-width="2"/><circle cx="60" cy="60" r="46" fill="none" stroke="#7A5D10" stroke-width="1" stroke-dasharray="3 5" opacity=".6"/><path d="M60 14v92M14 60h92M27 27l66 66M93 27 27 93" stroke="#7A5D10" stroke-width="1" opacity=".35"/><circle cx="60" cy="60" r="5" fill="#7A5D10"/></svg>
+      <span class="visually-hidden">Tocar el tambor</span>
+    </button>
+  </div>
+  <figcaption>
+    <p class="exp__caption" id="tambor-estado" aria-live="polite" data-tambor-estado>Tocá el tambor</p>
+    <p class="exp__hint">Cada latido barre un poco de polvo. <button type="button" class="exp__link" data-tambor-sonido aria-pressed="true">Sonido: sí</button></p>
+  </figcaption>
+</figure>

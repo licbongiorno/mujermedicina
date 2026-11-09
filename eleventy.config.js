@@ -86,7 +86,7 @@ export default function (eleventyConfig) {
   // Al terminar, minifica CSS y JS del sitio generado
   eleventyConfig.on("eleventy.after", async ({ dir }) => {
     await build({
-      entryPoints: [`${dir.output}/assets/css/main.css`, `${dir.output}/assets/js/main.js`],
+      entryPoints: [`${dir.output}/assets/css/main.css`, `${dir.output}/assets/js/main.js`, `${dir.output}/assets/js/experiencias.js`],
       outdir: `${dir.output}/assets`,
       outbase: `${dir.output}/assets`,
       allowOverwrite: true,

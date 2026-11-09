@@ -1,0 +1,16 @@
+{# Inglés: el aprendizaje como parte del camino — los cuatro elementos en dos idiomas #}
+{%- set en = { "fuego": "Fire", "agua": "Water", "aire": "Air", "tierra": "Earth" } %}
+<figure class="exp exp-palabras" data-exp="palabras">
+  <ul class="palabras__lista">
+    {% for el in elementos %}
+    <li>
+      <button type="button" class="palabra accent-{{ el.acento }}" aria-pressed="false" data-palabra>
+        <span class="palabra__cara palabra__cara--es">{% include "partials/el-badge.njk" %}<strong>{{ el.nombre }}</strong></span>
+        <span class="palabra__cara palabra__cara--en" aria-hidden="true">{% include "partials/el-badge.njk" %}<strong lang="en">{{ en[el.id] }}</strong></span>
+        <span class="visually-hidden">: en inglés, <span lang="en">{{ en[el.id] }}</span></span>
+      </button>
+    </li>
+    {% endfor %}
+  </ul>
+  <figcaption class="exp__caption" aria-live="polite" data-palabras-estado>Tocá para traducir</figcaption>
+</figure>

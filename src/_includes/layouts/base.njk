@@ -39,7 +39,7 @@
 
   {% include "partials/schema.njk" %}
 </head>
-<body class="{{ bodyClass }}{% if not site.showPending %} hide-pending{% endif %}">
+<body class="{{ bodyClass }}{% if not site.showPending %} hide-pending{% endif %}" data-exp-src="{{ '/assets/js/experiencias.js' | version }}">
   <a class="skip-link" href="#contenido">Ir al contenido</a>
   {% include "partials/header.njk" %}
   <main id="contenido">

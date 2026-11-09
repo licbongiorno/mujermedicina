@@ -13,7 +13,11 @@ Hemos reconocido y recordado a través del tiempo que estamos compuestos por los
 
 De allí la necesidad de volver a recordar que **somos el agua, somos el fuego, somos la tierra, somos el viento**. Y así es que a través de cada elemento podemos conectar y convocar de manera consciente, para pedirles su ayuda y su medicina para nuestro cuerpo, nuestra mente, nuestras emociones y nuestro espíritu.
 
+{% include "experiencias/estrellas.njk" %}
+
 Cuando venimos a la tierra a encarnar en un cuerpo, toda nuestra energía y nuestro sistema están puros. Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz. Y al venir a la tierra, a este plano, todo se vuelve dual: aquí existen la luz y la oscuridad, lo bueno y lo malo, el día y la noche, el sol y la luna.
+
+{% include "experiencias/dualidad.njk" %}
 
 ## La chispa divina que sos
 
@@ -23,6 +27,8 @@ Pero la verdad es que tú eres chispa divina de creación. No hay diferencia ent
 
 Mientras vamos creciendo nos vamos formando según el mundo que nos rodea, pero esa chispa divina que sos, tu esencia, no se muere: sigue estando ahí. A veces le damos alimento, a veces no, dependiendo de cada ser y del entorno. Lo importante es saber y reconocer que **siempre estamos a tiempo de volver a la pureza de nuestro ser**, sea lo que sea que nos haya tocado pasar en la vida.
 
+{% include "experiencias/chispa.njk" %}
+
 Los abuelos y las abuelas nos dicen: reflexionen, piensen cómo quieren ser. Somos creadores, todo lo podemos cambiar, todo lo podemos lograr. La sabiduría ancestral nos dice: sé como tú eres. Venimos de allá arriba con todo el potencial, venimos con una misión, venimos a recordar y a devolvernos a la divinidad que somos.
 
 ## La medicina del canto, del tambor y la sonaja
@@ -30,6 +36,8 @@ Los abuelos y las abuelas nos dicen: reflexionen, piensen cómo quieren ser. Som
 Hay algo en nuestras células que recuerda quiénes somos y de qué estamos hechos. Hay que sacar el polvo que nos nubla, y por eso son tan importantes las medicinas que nos ayudan a hacerlo. Una de estas medicinas ancestrales es **la medicina del canto, del tambor y la sonaja**.
 
 Los instrumentos nos ayudan, a través del sonido y la vibración, a activar, reactivar y energizar esta memoria celular de que somos seres divinos. Es a través del latido del corazón del tambor que la conciencia se eleva, que se eleva la vibración.
+
+{% include "experiencias/tambor.njk" %}
 
 Por eso la música sana: porque nos eleva la vibración. La música es vibración. La música es medicina porque es capaz de hacernos cambiar de emoción, de pensamiento, de vibra. Así de simple es la sabiduría que comparten nuestros abuelitos. Así de simple es el poder que tenemos. Simple y complejo a la vez.
 

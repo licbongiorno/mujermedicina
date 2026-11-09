@@ -1,0 +1,17 @@
+{# «Al venir a la tierra, a este plano, todo se vuelve dual: el día y la noche, el sol y la luna» #}
+<figure class="exp exp-scene exp-dualidad" data-exp="escena" aria-label="Ilustración: un círculo de luz que se abre en sol y luna">
+  <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
+    <g class="dual__sol">
+      <path d="M100 52a48 48 0 0 1 0 96z" fill="#FCF6DF" stroke="#C9A93E" stroke-width="1.4"/>
+      <g class="dual__rayos" stroke="#C9A93E" stroke-width="1.4" stroke-linecap="round">
+        {% for a in [-60,-30,0,30,60] %}<line x1="156" y1="100" x2="168" y2="100" transform="rotate({{ a }} 100 100)" style="--i:{{ loop.index0 }}"/>{% endfor %}
+      </g>
+    </g>
+    <g class="dual__luna">
+      <path d="M100 52a48 48 0 0 0 0 96z" fill="#E2EFEF" stroke="#4E7F84" stroke-width="1.4"/>
+      <path class="dual__creciente" d="M86 76a26 26 0 1 0 0 48 20 20 0 1 1 0-48z" fill="#4E7F84" opacity=".55"/>
+    </g>
+    <circle class="dual__union" cx="100" cy="100" r="48" fill="none" stroke="#85CFD1" stroke-width="1.4"/>
+  </svg>
+  <figcaption class="exp__caption">Luz y oscuridad</figcaption>
+</figure>

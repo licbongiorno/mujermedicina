@@ -1,0 +1,32 @@
+{# Armado de altar: «La ubicación de los elementos será como tú lo sientas» — Ejercicio interactivo #}
+{%- set altarTxt = { "tierra": "Un recipiente con un poquito de tierra, o una planta.", "agua": "Un vaso con agua.", "aire": "Plumas.", "fuego": "Una vela." } %}
+<figure class="exp exp-altar" data-exp="altar">
+  <div class="altar__stage" data-altar-stage>
+    <svg class="altar__tela" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="94" fill="#FBF8F2" stroke="#D3E9E8" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#E7DCC6" stroke-dasharray="2 5"/>
+      <g class="altar__mandala" fill="none" stroke="#85CFD1" stroke-width="1">
+        {% for r in [18, 34, 50] %}<circle cx="100" cy="100" r="{{ r }}" pathLength="1"/>{% endfor %}
+        {% for a in range(0, 360, 30) %}<line x1="100" y1="100" x2="100" y2="40" transform="rotate({{ a }} 100 100)" pathLength="1"/>{% endfor %}
+      </g>
+      <polygon class="altar__lazo" points="" data-altar-lazo fill="none" stroke="#5FB0B3" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle class="altar__centro" cx="100" cy="100" r="7" fill="#FCF6DF" stroke="#E7C65A"/>
+    </svg>
+    {% for el in elementos %}
+    <button type="button" class="altar__item accent-{{ el.acento }}" data-altar-item="{{ el.id }}" hidden aria-label="{{ el.nombre }} en el altar. Arrastrá o usá las flechas para moverlo">
+      {% include "partials/el-badge.njk" %}
+    </button>
+    {% endfor %}
+  </div>
+  <figcaption>
+    <p class="exp__caption" aria-live="polite" data-altar-estado>Elegí un elemento</p>
+    <div class="altar__bandeja" role="group" aria-label="Elementos para el altar">
+      {% for el in elementos %}
+      <button type="button" class="altar__toggle accent-{{ el.acento }}" data-altar-toggle="{{ el.id }}" aria-pressed="false">
+        {% include "partials/el-badge.njk" %}<span><strong>{{ el.nombre }}</strong><small>{{ altarTxt[el.id] }}</small></span>
+      </button>
+      {% endfor %}
+    </div>
+    <p class="exp__hint">Tocá un elemento para ponerlo en la tela. Después movelo donde lo sientas. <button type="button" class="exp__link" data-altar-reset>Empezar de nuevo</button></p>
+  </figcaption>
+</figure>

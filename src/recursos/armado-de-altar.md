@@ -13,10 +13,7 @@ Buscá un espacio en tu casa. Puede ser un lugar íntimo y privado o un lugar ab
 
 La invitación es a que, principalmente, nos conectemos con los cuatro elementos:
 
-{% set altar = {"tierra": "Un recipiente con un poquito de tierra, o una planta.", "agua": "Un vaso con agua.", "aire": "Plumas.", "fuego": "Una vela."} %}
-<ul class="el-list">
-{% for id in ["tierra", "agua", "aire", "fuego"] %}{% set el = elementos | buscarId(id) %}<li class="accent-{{ el.acento }}">{% include "partials/el-badge.njk" %}<span><strong>{{ el.nombre }}</strong><span class="el-list__t">{{ altar[id] }}</span></span></li>
-{% endfor %}</ul>
+{% include "experiencias/altar.njk" %}
 
 La ubicación de los elementos será como tú lo sientas.
 

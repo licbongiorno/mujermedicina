@@ -1,0 +1,10 @@
+{# «Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz» #}
+<figure class="exp exp-scene exp-estrellas" data-exp="escena" aria-label="Ilustración: partículas de luz que se unen en un círculo">
+  <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
+    <defs><radialGradient id="g-luz"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#E3F5F5"/><stop offset="1" stop-color="#BAE4E3" stop-opacity="0"/></radialGradient></defs>
+    <circle class="estrellas__halo" cx="100" cy="100" r="62" fill="url(#g-luz)"/>
+    {% for s in geo.estrellas %}<circle class="estrellas__p" r="{{ s.r }}" cx="0" cy="0" style="--x0:{{ s.x0 }}px;--y0:{{ s.y0 }}px;--x1:{{ s.x1 }}px;--y1:{{ s.y1 }}px;--d:{{ s.d }}s"/>{% endfor %}
+    <circle class="estrellas__core" cx="100" cy="100" r="14"/>
+  </svg>
+  <figcaption class="exp__caption">Somos luz</figcaption>
+</figure>

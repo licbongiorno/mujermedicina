@@ -1,0 +1,20 @@
+{# Tameana: las Pléyades, siete estrellas #}
+<figure class="exp exp-pleyades" data-exp="pleyades">
+  <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
+    <rect width="200" height="200" rx="28" fill="#1F3F45"/>
+    {% for l in geo.pleyadesLineas %}{% set a = geo.pleyades[l[0]] %}{% set b = geo.pleyades[l[1]] %}
+    <line class="pley__linea" x1="{{ a.x }}" y1="{{ a.y }}" x2="{{ b.x }}" y2="{{ b.y }}" pathLength="1" data-une="{{ l[0] }}-{{ l[1] }}"/>
+    {% endfor %}
+  </svg>
+  <div class="pley__estrellas">
+    {% for s in geo.pleyades %}
+    <button type="button" class="pley__estrella" style="left:{{ s.x / 2 }}%;top:{{ s.y / 2 }}%" data-estrella="{{ loop.index0 }}" aria-pressed="false" aria-label="Estrella {{ loop.index }} de 7">
+      <svg viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-9C.8-2 2-.8 9 0 2 .8.8 2 0 9-.8 2-2 .8-9 0-2-.8-.8-2 0-9z"/></svg>
+    </button>
+    {% endfor %}
+  </div>
+  <figcaption>
+    <p class="exp__caption" aria-live="polite" data-pley-estado>Encendé las siete</p>
+    <p class="exp__hint">Tocá cada estrella. <button type="button" class="exp__link" data-pley-reset hidden>Apagarlas</button></p>
+  </figcaption>
+</figure>
