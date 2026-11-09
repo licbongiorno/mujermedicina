@@ -66,11 +66,11 @@ bodyClass: home
     <div class="section__head center">
       <p class="eyebrow" data-reveal>Propuestas</p>
       <h2 class="split" data-split>{{ "Un universo para recorrer" | palabras | safe }}</h2>
-      <p class="lead" data-reveal>Cada propuesta tiene su propio espacio. Pasá por encima o tocá cada una para conocerla.</p>
+      <p class="lead" data-reveal>Cada propuesta tiene su propio espacio. Tocá una para verla en el centro, o elegí una categoría.</p>
     </div>
 
     <ul class="legend" aria-label="Categorías" data-reveal>
-      {% for c in categorias %}<li><button type="button" class="legend__btn accent-{{ c.acento }}" data-legend="{{ c.id }}"><span class="mega__dot accent-{{ c.acento }}" aria-hidden="true"></span>{{ c.nombre }}</button></li>{% endfor %}
+      {% for c in categorias %}<li><a class="legend__btn accent-{{ c.acento }}" href="/propuestas/#{{ c.id }}" data-legend="{{ c.id }}"><span class="mega__dot accent-{{ c.acento }}" aria-hidden="true"></span>{{ c.nombre }}</a></li>{% endfor %}
     </ul>
 
     <div class="universe" data-universe>

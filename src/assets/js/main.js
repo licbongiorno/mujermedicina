@@ -195,18 +195,20 @@
     det.addEventListener("mouseenter", () => clearTimeout(hideTimer));
     det.addEventListener("mouseleave", reset);
 
-    // Leyenda: resalta las propuestas de una categoría
-    $$("[data-legend]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.legend;
-        const active = btn.classList.toggle("is-active");
-        $$("[data-legend]").forEach((b) => { if (b !== btn) b.classList.remove("is-active"); });
-        btn.setAttribute("aria-pressed", String(active));
-        universe.classList.toggle("is-filtered", active);
-        $$(".u-node", universe).forEach((li) => li.classList.toggle("is-match", active && li.dataset.cat === id));
+    // Leyenda: cada categoría lleva a su sección en Propuestas.
+    // Con mouse, al pasar por encima resalta sus propuestas en el círculo.
+    if (finePointer) {
+      const highlight = (id) => {
+        universe.classList.toggle("is-filtered", Boolean(id));
+        $$(".u-node", universe).forEach((li) => li.classList.toggle("is-match", li.dataset.cat === id));
+      };
+      $$("[data-legend]").forEach((btn) => {
+        btn.addEventListener("mouseenter", () => highlight(btn.dataset.legend));
+        btn.addEventListener("focus", () => highlight(btn.dataset.legend));
+        btn.addEventListener("mouseleave", () => highlight(null));
+        btn.addEventListener("blur", () => highlight(null));
       });
-      btn.setAttribute("aria-pressed", "false");
-    });
+    }
   }
 
   /* ---------- Filtro por categoría (propuestas) ---------- */
@@ -226,7 +228,8 @@
     filter.addEventListener("click", (e) => {
       const b = e.target.closest("[data-filter-value]");
       if (!b) return;
-      apply(b.dataset.filterValue, false);
+      apply(b.dataset.filterValue, true);
+      b.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest", inline: "center" });
       history.replaceState(null, "", b.dataset.filterValue === "todas" ? location.pathname : `#${b.dataset.filterValue}`);
     });
     const initial = location.hash.slice(1);
