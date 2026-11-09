@@ -1,0 +1,13 @@
+{#- Llamado a WhatsApp reutilizable. Variables: ctaTitle, ctaText, ctaMessage -#}
+<section class="section">
+  <div class="container">
+    <div class="cta" data-reveal>
+      <h2>{{ ctaTitle or "¿Charlamos?" }}</h2>
+      {% if ctaText %}<p>{{ ctaText }}</p>{% endif %}
+      <div class="btn-row">
+        <a class="btn btn--light" href="{{ (ctaMessage or waMessage or site.waMessages.general) | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Escribime por WhatsApp</a>
+        {% if page.url != "/contacto/" %}<a class="btn btn--ghost" href="/contacto/">Otras formas de contacto</a>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>

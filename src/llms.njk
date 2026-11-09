@@ -1,0 +1,20 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.brand }}{% if site.person %} — {{ site.person }}{% endif %}
+
+> {{ site.description | safe }}
+
+{% if site.location %}Ubicación / modalidad: {{ site.location }}
+{% endif %}
+## Páginas
+{% for item in navigation %}- [{{ item.label }}]({{ item.url | absoluteUrl(site.url) }})
+{% endfor %}
+{% if propuestas.length %}## Propuestas
+{% for p in propuestas %}- [{{ p.titulo | safe }}]({{ ('/propuestas/' + p.slug + '/') | absoluteUrl(site.url) }}): {{ p.resumen | safe }}
+{% endfor %}{% endif %}
+## Contacto
+{% if site.whatsapp %}- WhatsApp: https://wa.me/{{ site.whatsapp }}
+{% endif %}{% if site.email %}- Correo: {{ site.email }}
+{% endif %}- Página de contacto: {{ "/contacto/" | absoluteUrl(site.url) }}

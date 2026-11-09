@@ -1,0 +1,8 @@
+[
+  { "label": "Inicio", "url": "/" },
+  { "label": "Sobre mí", "url": "/sobre-mi/" },
+  { "label": "Propuestas", "url": "/propuestas/" },
+  { "label": "Experiencias", "url": "/experiencias/" },
+  { "label": "Recursos", "url": "/recursos/" },
+  { "label": "Contacto", "url": "/contacto/" }
+]

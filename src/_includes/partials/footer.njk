@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 48c160-30 320-44 480-30s320 50 480 52 320-30 480-46V80H0z"/></svg>
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <img src="/assets/img/logo-mandala-192.webp" width="88" height="88" alt="" loading="lazy">
+      <p class="site-footer__name">{{ site.brand }}</p>
+      {% if site.person %}<p>{{ site.person }}</p>{% endif %}
+    </div>
+    <nav aria-label="Pie de página">
+      <ul class="site-footer__nav">
+        {%- for item in navigation %}<li><a href="{{ item.url }}">{{ item.label }}</a></li>{% endfor %}
+      </ul>
+    </nav>
+    <div class="site-footer__contact">
+      <a class="btn btn--light" href="{{ site.waMessages.general | wa(site.whatsapp) }}" {% if site.whatsapp %}target="_blank" rel="noopener"{% endif %}>Escribime por WhatsApp</a>
+      {% if site.email %}<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
+      {% if site.location %}<p>{{ site.location }}</p>{% endif %}
+      <ul class="social">
+        {% for name, link in site.social %}{% if link %}<li><a href="{{ link }}" target="_blank" rel="noopener">{{ name | capitalize }}</a></li>{% endif %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+  <p class="container site-footer__legal">© {{ site.year }} {{ site.brand }}</p>
+</footer>

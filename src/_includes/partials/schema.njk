@@ -1,0 +1,37 @@
+{#- Datos estructurados (JSON-LD). Se amplían cuando haya datos reales:
+    nombre, servicios, ubicación, redes. Nada se declara si no está cargado. -#}
+{%- set sameAs = [] %}
+{%- for name, link in site.social %}{% if link %}{% set sameAs = (sameAs.push(link), sameAs) %}{% endif %}{% endfor %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": {{ site.brand | json | safe }},
+      "description": {{ site.description | json | safe }},
+      "inLanguage": "{{ site.lang }}"
+    },
+    {
+      "@type": "{{ 'Person' if site.person else 'Organization' }}",
+      "@id": "{{ site.url }}/#identidad",
+      "name": {{ (site.person or site.brand) | json | safe }},
+      {% if site.person %}"alternateName": {{ site.brand | json | safe }},{% endif %}
+      "url": "{{ site.url }}/",
+      "image": "{{ site.url }}/assets/img/icon-512.png"
+      {%- if sameAs.length %},
+      "sameAs": {{ sameAs | json | safe }}{% endif %}
+    },
+    {
+      "@type": "WebPage",
+      "url": "{{ page.url | absoluteUrl(site.url) }}",
+      "name": {{ (title or site.brand) | json | safe }},
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "about": { "@id": "{{ site.url }}/#identidad" }
+    }{% if schemaExtra %},
+    {{ schemaExtra | json | safe }}{% endif %}
+  ]
+}
+</script>
