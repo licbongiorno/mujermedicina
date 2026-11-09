@@ -169,12 +169,24 @@
       det.style.animation = "none"; void det.offsetWidth; det.style.animation = "";
     };
     const reset = () => {
+      if (!finePointer) return; // en táctil, la selección queda hasta tocar otra
       hideTimer = setTimeout(() => {
         nodes.forEach((n) => n.parentElement.classList.remove("is-active"));
         def.hidden = false; det.hidden = true;
       }, 1800);
     };
+    // En pantallas táctiles: primer toque muestra la propuesta en el centro, el segundo abre su página
+    if (!finePointer) {
+      nodes.forEach((a) => {
+        a.addEventListener("click", (e) => {
+          if (a.parentElement.classList.contains("is-active")) return;
+          e.preventDefault();
+          show(a);
+        });
+      });
+    }
     nodes.forEach((a) => {
+      if (!finePointer) return; // en táctil se maneja solo con el toque (arriba)
       a.addEventListener("mouseenter", () => show(a));
       a.addEventListener("focus", () => show(a));
       a.addEventListener("mouseleave", reset);
