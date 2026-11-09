@@ -31,8 +31,7 @@ bodyClass: home
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__halo" data-parallax="0.04"></div>
       <div class="hero__orbit">
-        <span class="orbit-dot accent-coral"></span><span class="orbit-dot accent-agua"></span>
-        <span class="orbit-dot accent-jade"></span><span class="orbit-dot accent-ocre"></span>
+        {% for el in elementos %}<span class="orbit-el">{% include "partials/el-badge.njk" %}</span>{% endfor %}
       </div>
       <div class="hero__mandala" data-parallax="-0.05">
         <img src="/assets/img/logo-mandala-376.webp" srcset="/assets/img/logo-mandala-192.webp 192w, /assets/img/logo-mandala-376.webp 376w" sizes="(min-width: 900px) 420px, 70vw" width="376" height="376" alt="" fetchpriority="high">
@@ -54,10 +53,9 @@ bodyClass: home
       <a class="card__link" href="/sobre-mi/" data-reveal>Conocé mi camino <span aria-hidden="true">→</span></a>
     </div>
     <ul class="element-ring" aria-label="Los cuatro elementos">
-      <li class="accent-coral" data-reveal><span>Fuego</span></li>
-      <li class="accent-agua" data-reveal data-reveal-delay="1"><span>Agua</span></li>
-      <li class="accent-jade" data-reveal data-reveal-delay="1"><span>Aire</span></li>
-      <li class="accent-ocre" data-reveal data-reveal-delay="2"><span>Tierra</span></li>
+      {% for el in elementos %}
+      <li class="accent-{{ el.acento }}" data-reveal data-reveal-delay="{{ [0,1,1,2][loop.index0] }}"><span>{% include "partials/el-badge.njk" %}<span>{{ el.nombre }}</span></span></li>
+      {% endfor %}
     </ul>
   </div>
 </section>
@@ -120,7 +118,7 @@ bodyClass: home
         </div>
       </div>
       <ol class="feature__elements" aria-label="Un elemento por encuentro">
-        {% for e in [["Fuego","coral"],["Agua","agua"],["Aire","jade"],["Tierra","ocre"]] %}<li class="accent-{{ e[1] }}"><span class="element__n">{{ loop.index }}</span> {{ e[0] }}</li>{% endfor %}
+        {% for el in elementos %}<li class="accent-{{ el.acento }}">{% include "partials/el-badge.njk" %} <span><small class="feature__n">Encuentro {{ loop.index }}</small>{{ el.nombre }}</span></li>{% endfor %}
       </ol>
     </article>
   </div>

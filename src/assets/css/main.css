@@ -5,41 +5,43 @@
    ========================================================= */
 
 :root {
-  /* --- Agua profunda (imagen de referencia) --- */
-  --c-noche: #1D313B;        /* texto principal, fondos profundos */
-  --c-petroleo: #284C53;     /* títulos, fondos de sección oscura */
-  --c-agua: #2B6F72;         /* botones y enlaces (versión accesible de #358487) */
-  --c-turquesa: #3CA0A3;     /* acentos, íconos */
-  --c-celeste: #7EC5C8;      /* detalles, bordes activos */
-  --c-celeste-claro: #A8D6D7;
-  --c-bruma: #D8F2F3;        /* fondos suaves */
+  /* Paleta: blanco, celeste y verde en tonos medios y pastel,
+     tomados de la imagen de referencia (aguas turquesa) y del verde del mandala. */
 
-  /* --- Verde (logo) --- */
-  --c-jade: #70C19E;         /* acento vivo del mandala */
-  --c-salvia: #88B176;       /* verde hoja */
-  --c-verde-hondo: #3F7D5F;  /* verde con contraste para texto/botones */
-  --c-verde-niebla: #E4F1E6; /* fondos suaves verdes */
+  /* --- Agua: de lo profundo a lo claro --- */
+  --c-noche: #1D313B;        /* texto principal */
+  --c-petroleo: #284C53;     /* títulos */
+  --c-agua: #2B6F72;         /* botones y enlaces (contraste AA sobre blanco) */
+  --c-agua-media: #4E9A9D;   /* fondos medios, pie de página */
+  --c-turquesa: #5FB0B3;     /* acentos medios */
+  --c-celeste: #85CFD1;      /* detalles, bordes activos */
+  --c-celeste-claro: #BAE4E3;
+  --c-bruma: #E1F4F4;        /* fondos suaves */
 
-  /* --- Tierra cálida (bordes del logo; uso puntual) --- */
-  --c-ocre: #C8A465;
-  --c-coral: #D48A63;
+  /* --- Verde pastel (mandala) --- */
+  --c-jade: #7FCBA9;         /* menta */
+  --c-salvia: #A6CE98;       /* verde hoja pastel */
+  --c-verde-hondo: #3B7A5C;  /* verde con contraste para el botón de WhatsApp */
+  --c-verde-niebla: #E7F4EC; /* fondos suaves verdes */
 
   /* --- Blancos --- */
   --c-blanco: #FFFFFF;
-  --c-luz: #FBFAF6;          /* blanco cálido de fondo */
+  --c-luz: #F8FCFC;          /* blanco con un velo de agua */
 
   /* --- Roles --- */
   --bg: var(--c-luz);
   --surface: var(--c-blanco);
   --text: var(--c-noche);
-  --text-soft: #4F6B70;
+  --text-soft: #4A6A6F;
   --heading: var(--c-petroleo);
   --link: var(--c-agua);
-  --border: #D5E6E4;
+  --border: #D3E9E8;
 
-  /* Degradé de firma: el recorrido de color del mandala */
-  --grad-mandala: linear-gradient(135deg, var(--c-coral) 0%, var(--c-ocre) 22%, var(--c-salvia) 45%, var(--c-jade) 65%, var(--c-celeste) 100%);
+  /* Degradé de firma: del verde al celeste, como el agua sobre la hierba */
+  --grad-mandala: linear-gradient(135deg, var(--c-salvia) 0%, var(--c-jade) 35%, var(--c-turquesa) 65%, var(--c-celeste) 100%);
   --grad-agua: linear-gradient(160deg, var(--c-bruma) 0%, var(--c-blanco) 55%, var(--c-verde-niebla) 100%);
+  /* Fondo medio "pastel profundo" para secciones destacadas */
+  --grad-turquesa: linear-gradient(150deg, #A9DCDC 0%, #8FCFCF 45%, #9FD6C4 100%);
 
   /* Tipografía */
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -253,10 +255,10 @@ em { font-style: italic; }
 /* ---------- Secciones ---------- */
 .section { padding-block: var(--space-6); position: relative; }
 .section--soft { background: var(--grad-agua); }
-.section--deep { background: var(--c-petroleo); color: #E9F5F4; }
-.section--deep h2, .section--deep h3 { color: #fff; }
-.section--deep .eyebrow { color: var(--c-celeste); }
-.section--deep .lead { color: #CFE6E5; }
+.section--deep { background: var(--grad-turquesa); color: var(--c-noche); }
+.section--deep h2, .section--deep h3 { color: var(--c-noche); }
+.section--deep .eyebrow { color: #1A4F52; }
+.section--deep .lead { color: #234C51; }
 .section__head { margin-bottom: var(--space-4); max-width: 46rem; }
 .section__head.center { text-align: center; }
 
@@ -311,12 +313,14 @@ em { font-style: italic; }
 .card__link:hover span { transform: translateX(4px); }
 
 /* Acentos diferenciados por propuesta (unidad estética, identidad propia) */
-.accent-agua   { --accent: var(--c-turquesa); --accent-soft: var(--c-bruma);       --accent-ink: var(--c-agua); }
-.accent-jade   { --accent: var(--c-jade);     --accent-soft: var(--c-verde-niebla); --accent-ink: var(--c-verde-hondo); }
-.accent-salvia { --accent: var(--c-salvia);   --accent-soft: #EEF4E8;               --accent-ink: #4E6F3F; }
-.accent-ocre   { --accent: var(--c-ocre);     --accent-soft: #F6EFE0;               --accent-ink: #7A5E28; }
-.accent-coral  { --accent: var(--c-coral);    --accent-soft: #F8EAE1;               --accent-ink: #8A4B2B; }
-.accent-noche  { --accent: var(--c-petroleo); --accent-soft: #E3ECEC;               --accent-ink: var(--c-petroleo); }
+/* Seis acentos pastel. Elementos: fuego = turquesa, agua = celeste, aire = menta, tierra = verde */
+.accent-celeste  { --accent: #85CFD1; --accent-soft: #E3F5F5; --accent-ink: #2B6F72; }
+.accent-agua     { --accent: #85CFD1; --accent-soft: #E3F5F5; --accent-ink: #2B6F72; }
+.accent-turquesa { --accent: #5FB0B3; --accent-soft: #DDF0F0; --accent-ink: #24666A; }
+.accent-jade     { --accent: #7FCBA9; --accent-soft: #E3F4EC; --accent-ink: #2E6B55; }
+.accent-verde    { --accent: #A6CE98; --accent-soft: #ECF5E7; --accent-ink: #44673A; }
+.accent-salvia   { --accent: #9BD3C4; --accent-soft: #E4F4F0; --accent-ink: #2D6A5E; }
+.accent-noche    { --accent: #6FA9AC; --accent-soft: #E2EFEF; --accent-ink: #284C53; }
 
 /* ---------- Ficha de propuesta ---------- */
 .detail { display: grid; gap: var(--space-4); }
@@ -332,7 +336,7 @@ em { font-style: italic; }
 /* ---------- Llamado final (CTA) ---------- */
 .cta {
   position: relative; overflow: hidden; border-radius: calc(var(--radius) * 1.6);
-  background: var(--c-noche); color: #E9F5F4; padding: var(--space-5) var(--space-3);
+  background: var(--grad-turquesa); color: var(--c-noche); padding: var(--space-5) var(--space-3);
   text-align: center;
 }
 .cta::before {
@@ -340,11 +344,11 @@ em { font-style: italic; }
   border-radius: var(--radius-organic); filter: blur(60px); animation: morph 22s ease-in-out infinite alternate;
 }
 .cta > * { position: relative; }
-.cta h2 { color: #fff; }
-.cta p { color: #CFE6E5; max-width: 38rem; margin-inline: auto; }
+.cta h2 { color: var(--c-noche); }
+.cta p { color: #234C51; max-width: 38rem; margin-inline: auto; }
 .cta .btn-row { justify-content: center; margin-top: var(--space-3); }
-.cta .btn--ghost { color: #fff; border-color: rgba(255,255,255,.35); }
-.cta .btn--ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
+.cta .btn--ghost { color: var(--c-noche); border-color: rgba(29,49,59,.25); }
+.cta .btn--ghost:hover { background: rgba(255,255,255,.4); color: var(--c-noche); }
 
 /* ---------- Contacto ---------- */
 .contact-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
@@ -363,18 +367,18 @@ em { font-style: italic; }
 .ornament { display: flex; justify-content: center; margin-block: var(--space-4); color: var(--c-celeste); }
 
 /* ---------- Pie ---------- */
-.site-footer { position: relative; background: var(--c-noche); color: #CFE6E5; padding: var(--space-5) 0 var(--space-3); margin-top: var(--space-6); }
-.site-footer .wave--top { position: absolute; top: -59px; left: 0; color: var(--c-noche); }
-.site-footer a:not(.btn) { color: #E9F5F4; }
+.site-footer { position: relative; background: linear-gradient(180deg, #CDEBEA 0%, #D9F0E6 100%); color: #234C51; padding: var(--space-5) 0 var(--space-3); margin-top: var(--space-6); }
+.site-footer .wave--top { position: absolute; top: -59px; left: 0; color: #CDEBEA; }
+.site-footer a:not(.btn) { color: var(--c-petroleo); }
 .site-footer__grid { display: grid; gap: var(--space-4); }
 @media (min-width: 800px) { .site-footer__grid { grid-template-columns: 1.2fr 1fr 1fr; } }
 .site-footer__brand img { width: 88px; margin-bottom: var(--space-2); }
-.site-footer__name { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: .25rem; }
+.site-footer__name { font-family: var(--font-display); font-size: 1.6rem; color: var(--c-noche); margin-bottom: .25rem; }
 .site-footer__nav, .social { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
 .site-footer__nav a, .social a { text-decoration: none; }
-.site-footer__nav a:hover, .social a:hover { color: var(--c-celeste); }
+.site-footer__nav a:hover, .social a:hover { color: var(--c-agua); text-decoration: underline; }
 .site-footer__contact .btn { margin-bottom: var(--space-2); }
-.site-footer__legal { margin-top: var(--space-4); padding-top: var(--space-2); border-top: 1px solid rgba(255,255,255,.12); font-size: var(--fs-sm); color: #9FBFC0; }
+.site-footer__legal { margin-top: var(--space-4); padding-top: var(--space-2); border-top: 1px solid rgba(40,76,83,.15); font-size: var(--fs-sm); color: #3E6266; }
 
 /* ---------- WhatsApp flotante ---------- */
 .wa-float {
@@ -507,16 +511,16 @@ body.nav-open .wa-float { opacity: 0; pointer-events: none; }
 .feature {
   position: relative; overflow: hidden; display: grid; gap: var(--space-4); align-items: center;
   padding: clamp(2rem, 1.2rem + 4vw, 4rem); border-radius: calc(var(--radius) * 1.6);
-  background: var(--c-noche); color: #E9F5F4;
+  background: var(--grad-turquesa); color: var(--c-noche);
 }
 @media (min-width: 900px) { .feature { grid-template-columns: 1.4fr 1fr; } }
 .feature::before { content: ""; position: absolute; inset: auto -20% -60% 40%; height: 120%; background: var(--grad-mandala); opacity: .18; filter: blur(60px); border-radius: 50%; }
 .feature > * { position: relative; }
-.feature h2 { color: #fff; }
-.feature .eyebrow { color: var(--c-celeste); }
-.feature .lead { color: #CFE6E5; }
-.feature .btn--ghost { color: #fff; border-color: rgba(255,255,255,.35); }
-.feature .btn--ghost:hover { background: rgba(255,255,255,.1); color: #fff; }
+.feature h2 { color: var(--c-noche); }
+.feature .eyebrow { color: #1A4F52; }
+.feature .lead { color: #234C51; }
+.feature .btn--ghost { color: var(--c-noche); border-color: rgba(29,49,59,.25); }
+.feature .btn--ghost:hover { background: rgba(255,255,255,.4); color: var(--c-noche); }
 .feature__elements { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
 .feature__elements li {
   display: flex; align-items: center; gap: .9rem; padding: .85rem 1.1rem; border-radius: 999px;
@@ -549,7 +553,7 @@ body.nav-open .wa-float { opacity: 0; pointer-events: none; }
 .contact-list dd { margin: 0 0 var(--space-2); overflow-wrap: anywhere; }
 .social--dark a { color: var(--c-agua); text-decoration: none; font-weight: 500; }
 .social--dark span { color: var(--text-soft); font-size: var(--fs-sm); }
-.site-footer__small { font-size: var(--fs-sm); color: #9FBFC0; letter-spacing: .04em; }
+.site-footer__small { font-size: var(--fs-sm); color: #3E6266; letter-spacing: .04em; }
 
 /* =========================================================
    Experiencia viva: transiciones, movimiento y componentes
@@ -676,7 +680,7 @@ body.nav-open .wa-float { opacity: 0; pointer-events: none; }
 /* ---------- Tacu ---------- */
 .tacu-band__grid { display: grid; gap: var(--space-4); align-items: center; }
 @media (min-width: 900px) { .tacu-band__grid { grid-template-columns: 1.2fr .8fr; } }
-.tacu-band__tree { color: var(--c-celeste); width: min(70vw, 360px); justify-self: center; }
+.tacu-band__tree { color: #fff; filter: drop-shadow(0 6px 18px rgba(29,49,59,.15)); width: min(70vw, 360px); justify-self: center; }
 .tacu-intro { display: grid; gap: var(--space-4); align-items: center; }
 @media (min-width: 900px) { .tacu-intro { grid-template-columns: 300px 1fr; } }
 .tacu-intro__tree { color: var(--c-salvia); width: min(60vw, 300px); justify-self: center; }
@@ -783,12 +787,12 @@ body.nav-open .wa-float { opacity: 0; pointer-events: none; }
 .steps li::before { content: counter(paso); position: absolute; left: 0; top: .7rem; width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); background: var(--accent-soft, var(--c-bruma)); color: var(--accent-ink, var(--c-agua)); }
 .steps__dot { display: none; }
 
-.pull { margin: var(--space-5) 0; padding: var(--space-4) var(--space-3); border-radius: calc(var(--radius) * 1.4); background: var(--c-noche); color: #fff; position: relative; overflow: hidden; }
+.pull { margin: var(--space-5) 0; padding: var(--space-4) var(--space-3); border-radius: calc(var(--radius) * 1.4); background: var(--grad-turquesa); color: var(--c-noche); position: relative; overflow: hidden; }
 .pull::before { content: ""; position: absolute; inset: -50% -10% auto auto; width: 70%; aspect-ratio: 1; border-radius: 50%; background: var(--grad-mandala); opacity: .22; filter: blur(50px); }
 .pull blockquote { margin: 0; position: relative; }
 .pull blockquote p { font-family: var(--font-display); font-style: italic; font-size: clamp(1.3rem, 1.05rem + 1vw, 1.85rem); line-height: 1.35; margin: 0; }
 .pull figcaption { position: relative; margin-top: var(--space-2); font-size: .92rem; }
-.pull figcaption a { color: var(--c-celeste); text-decoration: none; }
+.pull figcaption a { color: #1A4F52; font-weight: 600; text-decoration: none; }
 .pull figcaption a:hover { text-decoration: underline; }
 
 /* Preguntas frecuentes */
@@ -866,7 +870,7 @@ details[open]::details-content { height: auto; }
 /* ---------- Varios ---------- */
 .inline-illu { width: 120px; color: var(--c-jade); margin: 0 0 var(--space-2); }
 .site-footer__navs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-.site-footer__h { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: #9FBFC0; margin-bottom: .6rem; }
+.site-footer__h { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: #2B6F72; font-weight: 600; margin-bottom: .6rem; }
 @media (min-width: 800px) { .site-footer__grid { grid-template-columns: 1fr 1.4fr 1fr; } }
 .btn { will-change: transform; }
 
@@ -893,3 +897,91 @@ details[open]::details-content { height: auto; }
   .landing-hero__grid { margin-top: var(--space-2); }
   .hero__visual { width: min(70vw, 320px); }
 }
+
+/* =========================================================
+   Íconos animados de los cuatro elementos
+   ========================================================= */
+.el-icon { width: 100%; height: 100%; overflow: visible; }
+.el-fuego__outer { transform-origin: 24px 43px; animation: el-flama 2.6s ease-in-out infinite; }
+.el-fuego__inner { transform-origin: 24px 39px; animation: el-flama-in 1.4s ease-in-out infinite; }
+.el-fuego__spark { animation: el-chispa 2.4s ease-out infinite; }
+@keyframes el-flama { 0%, 100% { transform: scale(1, 1) skewX(0); } 30% { transform: scale(.97, 1.04) skewX(-2deg); } 60% { transform: scale(1.02, .97) skewX(1.5deg); } }
+@keyframes el-flama-in { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.14); } }
+@keyframes el-chispa { 0% { opacity: 0; transform: translate(0, 6px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translate(3px, -6px); } }
+.el-agua__drop { animation: el-gota 3s ease-in-out infinite; }
+@keyframes el-gota { 0%, 100% { transform: translateY(-1.5px); } 50% { transform: translateY(1.5px); } }
+.el-agua__ripple { transform-origin: 24px 42px; animation: el-onda 3s ease-out infinite; opacity: 0; }
+.el-agua__ripple--2 { animation-delay: 1.5s; }
+@keyframes el-onda { 0% { transform: scale(.3); opacity: .9; } 100% { transform: scale(1.5); opacity: 0; } }
+.el-aire__line { stroke-dasharray: 6 4; animation: el-viento 1.8s linear infinite; }
+.el-aire__line--2 { animation-duration: 2.4s; } .el-aire__line--3 { animation-duration: 2.1s; }
+@keyframes el-viento { to { stroke-dashoffset: -20; } }
+.el-aire__feather { transform-origin: 40px 8px; animation: el-pluma 4s ease-in-out infinite; }
+@keyframes el-pluma { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(8deg); } }
+.el-tierra__sprout { transform-origin: 24px 34px; animation: el-brote 4.5s ease-in-out infinite; }
+.el-tierra__leaf--l { transform-origin: 24px 24px; animation: el-hoja 4.5s ease-in-out infinite; }
+.el-tierra__leaf--r { transform-origin: 24px 20px; animation: el-hoja 4.5s ease-in-out infinite reverse; }
+@keyframes el-brote { 0%, 100% { transform: scaleY(.92); } 50% { transform: scaleY(1.04); } }
+@keyframes el-hoja { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }
+
+/* Contenedor del ícono de elemento */
+.el-badge {
+  display: grid; place-items: center; flex: none; width: var(--el-size, 56px); height: var(--el-size, 56px); padding: calc(var(--el-size, 56px) * .18); box-sizing: border-box;
+  border-radius: var(--radius-organic); color: var(--accent-ink); background: #fff;
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 70%, transparent), 0 10px 22px -14px rgba(29,49,59,.45);
+}
+
+/* Inicio: anillo de elementos con íconos */
+.element-ring li { flex-direction: column; gap: .4rem; }
+.element-ring li { display: flex; align-items: center; justify-content: center; }
+.element-ring .el-badge { --el-size: clamp(54px, 9vw, 72px); background: rgba(255,255,255,.75); }
+.element-ring li > span:last-child { font-family: var(--font-display); }
+
+/* Destacada: lista de encuentros con ícono */
+.feature__elements li { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.8); color: var(--c-noche); }
+.feature__elements .el-badge { --el-size: 44px; }
+
+/* Landing: tarjetas de elementos */
+.element .el-badge { --el-size: 52px; margin-bottom: .6rem; }
+.element::after { opacity: .3; }
+
+/* Pilares con elemento */
+.pillar .el-badge { --el-size: 52px; margin-bottom: .8rem; }
+
+/* Hero: los cuatro elementos orbitan el mandala */
+.orbit-el { position: absolute; width: clamp(40px, 5vw, 54px); height: clamp(40px, 5vw, 54px); animation: girar 60s linear infinite reverse; }
+.orbit-el .el-badge { --el-size: clamp(40px, 5vw, 54px); }
+.orbit-el:nth-child(1) { top: -2%; left: calc(50% - 24px); } .orbit-el:nth-child(2) { top: calc(50% - 24px); right: -2%; }
+.orbit-el:nth-child(3) { bottom: -2%; left: calc(50% - 24px); } .orbit-el:nth-child(4) { top: calc(50% - 24px); left: -2%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .el-icon *, .orbit-el, .hero__orbit { animation: none !important; }
+}
+.element-ring li > span { display: flex; flex-direction: column; align-items: center; gap: .45rem; }
+.feature__n { display: block; font-family: var(--font-body); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: #2B5C60; }
+.feature__elements li > span:last-child { line-height: 1.15; }
+
+/* Lista de elementos con ícono (escritos) */
+.el-list { list-style: none; padding: 0; margin: var(--space-3) 0; display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.prose--article .el-list li { padding: 0; }
+.prose--article .el-list li::before { display: none; }
+.el-list li { display: flex; align-items: center; gap: .9rem; padding: .9rem 1rem !important; border-radius: var(--radius); background: var(--accent-soft); }
+.el-list .el-badge { --el-size: 52px; }
+.el-list strong { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; color: var(--c-noche); }
+.el-list span.el-list__t { color: var(--text-soft); font-size: .97rem; line-height: 1.4; }
+.el-strip { display: flex; gap: .8rem; flex-wrap: wrap; margin: 0 0 var(--space-3); }
+.el-strip .el-badge { --el-size: 58px; }
+
+/* Íconos de interfaz */
+.ui-icon { flex: none; width: 1.15em; height: 1.15em; vertical-align: -0.2em; }
+.chips li { display: inline-flex; align-items: center; gap: .45rem; }
+.chips .ui-icon { color: var(--accent-ink, var(--c-agua)); }
+.meta-row { display: flex; gap: .75rem; align-items: flex-start; margin-bottom: var(--space-2); }
+.meta-row .ui-icon { width: 22px; height: 22px; margin-top: .2rem; color: var(--accent-ink, var(--c-agua)); padding: 3px; box-sizing: content-box; border-radius: 50%; background: var(--accent-soft, var(--c-bruma)); }
+.meta-row dd { margin: 0; }
+.btn .ui-icon { width: 1.2em; height: 1.2em; }
+.contact-list dt { display: flex; align-items: center; gap: .4rem; }
+.social a { display: inline-flex; align-items: center; gap: .45rem; }
+.footer-contact { display: grid; gap: .4rem; }
+.footer-contact a, .footer-contact span { display: inline-flex; align-items: center; gap: .45rem; }
+.breathe { animation: respirar 9s ease-in-out infinite; }

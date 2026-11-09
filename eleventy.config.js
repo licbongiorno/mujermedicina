@@ -21,6 +21,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("absoluteUrl", (path, base) => String(base).replace(/\/$/, "") + path);
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v));
+  eleventyConfig.addFilter("buscarId", (list, id) => (list || []).find((x) => x.id === id));
   eleventyConfig.addFilter("rest", (list) => (list || []).slice(1));
   eleventyConfig.addFilter("ig", (handle) => `https://www.instagram.com/${handle}/`);
 

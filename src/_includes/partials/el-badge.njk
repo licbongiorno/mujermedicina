@@ -1,0 +1,2 @@
+{#- Ícono animado de un elemento. Variable: el = { id, nombre, acento } -#}
+<span class="el-badge accent-{{ el.acento }}" aria-hidden="true">{% include "elementos/" + el.id + ".njk" %}</span>

@@ -9,6 +9,8 @@ acento: agua
 
 Hemos reconocido y recordado a través del tiempo que estamos compuestos por los cuatro elementos. No solo estamos compuestos de estos cuatro elementos: también son parte del mundo que nos rodea, y son lo que nos da vida.
 
+<div class="el-strip" aria-hidden="true">{% for el in elementos %}{% include "partials/el-badge.njk" %}{% endfor %}</div>
+
 De allí la necesidad de volver a recordar que **somos el agua, somos el fuego, somos la tierra, somos el viento**. Y así es que a través de cada elemento podemos conectar y convocar de manera consciente, para pedirles su ayuda y su medicina para nuestro cuerpo, nuestra mente, nuestras emociones y nuestro espíritu.
 
 Cuando venimos a la tierra a encarnar en un cuerpo, toda nuestra energía y nuestro sistema están puros. Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz. Y al venir a la tierra, a este plano, todo se vuelve dual: aquí existen la luz y la oscuridad, lo bueno y lo malo, el día y la noche, el sol y la luna.

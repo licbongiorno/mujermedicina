@@ -8,6 +8,7 @@ pagination:
 permalink: "/propuestas/{{ p.slug }}/"
 bodyClass: landing
 ---
+{%- from "partials/icon.njk" import icon %}
 {%- set cat = categorias | categoria(p.categoria) %}
 {%- set lado = "izq" if (pagination.pageNumber % 2) else "der" %}
 <div class="accent-{{ p.acento or 'agua' }}">
@@ -36,9 +37,9 @@ bodyClass: landing
       </div>
       {% if p.formato or p.modalidad or p.lugar %}
       <ul class="chips" aria-label="Datos de la propuesta" data-reveal>
-        {% if p.formato %}<li>{{ p.formato }}</li>{% endif %}
-        {% if p.modalidad %}<li>{{ p.modalidad }}</li>{% endif %}
-        {% if p.lugar %}<li>{{ p.lugar }}</li>{% endif %}
+        {% if p.formato %}<li>{{ icon("formato") }}{{ p.formato }}</li>{% endif %}
+        {% if p.modalidad %}<li>{{ icon("modalidad") }}{{ p.modalidad }}</li>{% endif %}
+        {% if p.lugar %}<li>{{ icon("lugar") }}{{ p.lugar }}</li>{% endif %}
       </ul>
       {% endif %}
     </div>
@@ -61,10 +62,11 @@ bodyClass: landing
           {% if b.tipo == "elementos" %}
             <h2 data-reveal>Un elemento por encuentro</h2>
             <ol class="elements" aria-label="Los cuatro encuentros">
-              {% for e in [["Fuego","coral"],["Agua","agua"],["Aire","jade"],["Tierra","ocre"]] %}
-              <li class="element accent-{{ e[1] }}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}" data-tilt>
+              {% for el in elementos %}
+              <li class="element accent-{{ el.acento }}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}" data-tilt>
+                {% include "partials/el-badge.njk" %}
                 <span class="element__n">Encuentro {{ loop.index }}</span>
-                <span class="element__name">{{ e[0] }}</span>
+                <span class="element__name">{{ el.nombre }}</span>
               </li>
               {% endfor %}
             </ol>
@@ -84,8 +86,9 @@ bodyClass: landing
             <h2 data-reveal>{{ b.titulo }}</h2>
             <div class="pillars pillars--{{ b.items.length }}">
               {% for it in b.items %}
-              <article class="pillar{% if it.acento %} accent-{{ it.acento }}{% endif %}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}" data-tilt>
-                <span class="pillar__n" aria-hidden="true">{{ ("0" + loop.index) if loop.index < 10 else loop.index }}</span>
+              {%- set el = (elementos | buscarId(it.elemento)) if it.elemento else null %}
+              <article class="pillar{% if el %} accent-{{ el.acento }}{% elif it.acento %} accent-{{ it.acento }}{% endif %}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}" data-tilt>
+                {% if el %}{% include "partials/el-badge.njk" %}{% else %}<span class="pillar__n" aria-hidden="true">{{ ("0" + loop.index) if loop.index < 10 else loop.index }}</span>{% endif %}
                 <h3>{{ it.titulo }}</h3>
                 <p>{{ it.texto }}</p>
               </article>
@@ -131,14 +134,12 @@ bodyClass: landing
         <div class="detail__aside" data-reveal>
           <p class="detail__cat"><a href="/propuestas/#{{ cat.id }}">{{ cat.nombre }}</a></p>
           <dl>
-            {% if p.formato %}<dt>Formato</dt><dd>{{ p.formato }}</dd>{% endif %}
-            {% if p.modalidad %}<dt>Modalidad</dt><dd>{{ p.modalidad }}</dd>{% endif %}
-            {% if p.lugar %}<dt>Lugar</dt><dd>{{ p.lugar }}</dd>{% endif %}
-            {% if p.duracion %}<dt>Duración</dt><dd>{{ p.duracion }}</dd>{% endif %}
-            {% if p.frecuencia %}<dt>Frecuencia</dt><dd>{{ p.frecuencia }}</dd>{% endif %}
+            {% for k, label in [["formato","Formato"],["modalidad","Modalidad"],["lugar","Lugar"],["duracion","Duración"],["frecuencia","Frecuencia"]] %}
+              {% if p[k] %}<div class="meta-row">{{ icon(k) }}<div><dt>{{ label }}</dt><dd>{{ p[k] }}</dd></div></div>{% endif %}
+            {% endfor %}
           </dl>
           {% if p.nota %}<p class="detail__note">{{ p.nota }}</p>{% endif %}
-          <a class="btn btn--primary btn--block" href="{{ waMessage | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="btn btn--primary btn--block" href="{{ waMessage | wa(site.whatsapp) }}" target="_blank" rel="noopener">{{ icon("whatsapp") }}Consultar por WhatsApp</a>
         </div>
       </aside>
     </div>

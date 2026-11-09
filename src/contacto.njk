@@ -8,6 +8,7 @@ hero:
   title: Conversemos
   lead: "Elegí sobre qué querés consultar y se abre WhatsApp con el mensaje listo para enviar."
 ---
+{%- from "partials/icon.njk" import icon %}
 {% include "partials/page-hero.njk" %}
 <section class="section">
   <div class="container contact-grid">
@@ -24,13 +25,13 @@ hero:
     <div class="contact-card" data-reveal data-reveal-delay="1">
       <h2 class="contact-card__title">Datos de contacto</h2>
       <dl class="contact-list">
-        <dt>Teléfono</dt><dd><a href="tel:+{{ site.whatsapp }}">{{ site.phoneDisplay }}</a></dd>
-        <dt>Correo</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
-        <dt>Dónde</dt><dd>{{ site.location }}. Propuestas presenciales en Tacu y encuentros virtuales.</dd>
+        <dt>{{ icon("telefono") }}Teléfono</dt><dd><a href="tel:+{{ site.whatsapp }}">{{ site.phoneDisplay }}</a></dd>
+        <dt>{{ icon("mail") }}Correo</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+        <dt>{{ icon("lugar") }}Dónde</dt><dd>{{ site.location }}. Propuestas presenciales en Tacu y encuentros virtuales.</dd>
       </dl>
       <h3 class="contact-card__sub">Instagram</h3>
       <ul class="social social--dark">
-        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">@{{ i.handle }}</a> <span>· {{ i.label }}</span></li>{% endfor %}
+        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">{{ icon("instagram") }}@{{ i.handle }}</a> <span>· {{ i.label }}</span></li>{% endfor %}
       </ul>
       <h3 class="contact-card__sub">Facebook</h3>
       <p>{% if site.facebook.url %}<a href="{{ site.facebook.url }}" target="_blank" rel="noopener">{{ site.facebook.name }}</a>{% else %}{{ site.facebook.name }}{% endif %}</p>

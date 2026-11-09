@@ -120,7 +120,7 @@
     "titulo": "Ceremonias de temazcal",
     "nombreCorto": "Temazcal",
     "categoria": "canto-y-ceremonia",
-    "acento": "coral",
+    "acento": "turquesa",
     "ilustracion": "temazcal",
     "kicker": "Ceremonia · En Tacu, sierras de Córdoba",
     "seoTitle": "Ceremonias de temazcal en las sierras de Córdoba",
@@ -151,22 +151,22 @@
           {
             "titulo": "Fuego",
             "texto": "Calienta a las abuelas piedras.",
-            "acento": "coral"
+            "elemento": "fuego"
           },
           {
             "titulo": "Tierra",
             "texto": "El suelo que nos sostiene durante la ceremonia.",
-            "acento": "ocre"
+            "elemento": "tierra"
           },
           {
             "titulo": "Agua",
             "texto": "Se vierte sobre las piedras y se vuelve vapor.",
-            "acento": "agua"
+            "elemento": "agua"
           },
           {
             "titulo": "Aire",
             "texto": "El aliento, el vapor y los cantos que se elevan.",
-            "acento": "jade"
+            "elemento": "aire"
           }
         ]
       },
@@ -324,7 +324,7 @@
     "titulo": "Sahúmo Medicina",
     "nombreCorto": "Sahúmo Medicina",
     "categoria": "saberes-y-oficios",
-    "acento": "ocre",
+    "acento": "verde",
     "ilustracion": "sahumo",
     "kicker": "Taller",
     "seoTitle": "Taller Sahúmo Medicina",

@@ -2,7 +2,7 @@
 title: Armado de altar
 description: "Cómo armar tu propio altar para conectar con los cuatro elementos: tu espacio sagrado, esa parte de vos que se materializa afuera."
 date: 2021-01-14
-acento: ocre
+acento: verde
 ---
 
 El ejercicio principal es armar tu propio altar.
@@ -13,10 +13,10 @@ Buscá un espacio en tu casa. Puede ser un lugar íntimo y privado o un lugar ab
 
 La invitación es a que, principalmente, nos conectemos con los cuatro elementos:
 
-- **Tierra:** un recipiente con un poquito de tierra, o una planta.
-- **Agua:** un vaso con agua.
-- **Aire:** plumas.
-- **Fuego:** una vela.
+{% set altar = {"tierra": "Un recipiente con un poquito de tierra, o una planta.", "agua": "Un vaso con agua.", "aire": "Plumas.", "fuego": "Una vela."} %}
+<ul class="el-list">
+{% for id in ["tierra", "agua", "aire", "fuego"] %}{% set el = elementos | buscarId(id) %}<li class="accent-{{ el.acento }}">{% include "partials/el-badge.njk" %}<span><strong>{{ el.nombre }}</strong><span class="el-list__t">{{ altar[id] }}</span></span></li>
+{% endfor %}</ul>
 
 La ubicación de los elementos será como tú lo sientas.
 

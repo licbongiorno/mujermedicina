@@ -1,3 +1,4 @@
+{%- from "partials/icon.njk" import icon %}
 <footer class="site-footer">
   <svg class="wave wave--top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 48c160-30 320-44 480-30s320 50 480 52 320-30 480-46V80H0z"/></svg>
   <div class="container site-footer__grid">
@@ -23,9 +24,9 @@
     </nav>
     <div class="site-footer__contact">
       <a class="btn btn--light" href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime por WhatsApp</a>
-      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>{{ site.location }}</p>
+      <p class="footer-contact"><a href="mailto:{{ site.email }}">{{ icon("mail") }}{{ site.email }}</a><span>{{ icon("lugar") }}{{ site.location }}</span></p>
       <ul class="social">
-        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">@{{ i.handle }}</a></li>{% endfor %}
+        {% for i in site.instagram %}<li><a href="{{ i.handle | ig }}" target="_blank" rel="noopener">{{ icon("instagram") }}@{{ i.handle }}</a></li>{% endfor %}
         {% if site.facebook.url %}<li><a href="{{ site.facebook.url }}" target="_blank" rel="noopener">Facebook</a></li>{% endif %}
       </ul>
     </div>

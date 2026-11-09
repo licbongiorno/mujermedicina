@@ -7,9 +7,12 @@ eleventyExcludeFromCollections: true
 ---
 <section class="section">
   <div class="container narrow center">
-    <img src="/assets/img/logo-mandala-192.webp" width="120" height="120" alt="" style="margin:0 auto var(--space-3)">
-    <h1 style="font-size:var(--fs-h2)">Esta página no existe</h1>
-    <p class="lead">Quizás cambió de lugar.</p>
-    <a class="btn btn--primary" href="/">Volver al inicio</a>
+    <img src="/assets/img/logo-mandala-192.webp" width="120" height="120" alt="" style="margin:0 auto var(--space-3)" class="breathe">
+    <h1 style="font-size:var(--fs-h2)">Este camino no lleva a ningún lado</h1>
+    <p class="lead">Puede que la página haya cambiado de lugar. Quizás alguna de estas propuestas es lo que estabas buscando:</p>
+  </div>
+  <div class="container" style="margin-top:var(--space-4)">
+    <div class="cards">{% for p in propuestas %}{% if loop.index <= 3 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
+    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--primary" href="/">Volver al inicio</a> <a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a></p>
   </div>
 </section>

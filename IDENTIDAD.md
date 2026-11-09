@@ -4,43 +4,32 @@ Paleta extraída por análisis de color (cuantización) de las dos imágenes ent
 el **logo** (mandala circular) y la **imagen de referencia** de colorimetría,
 siguiendo su pedido: *blanco, celeste y verde*.
 
-## Lectura de las imágenes
+## Paleta (versión pastel)
 
-- **Logo**: un mandala de línea blanca sobre un degradé de acuarela que recorre
-  coral → ocre → verde jade → celeste. Textura granulada, orgánica, hecha a mano.
-- **Referencia**: una monocromía de agua: turquesas y petróleos, desde un casi
-  negro azulado hasta celestes lavados casi blancos. Profundidad, silencio, lo ancestral.
+Pedido de Lucía: **blanco, celeste y verde, en tonos medios y pastel**, como la imagen de referencia
+de aguas turquesa. Se quitaron los tonos cálidos (coral y ocre); el único elemento con color cálido
+es el propio logo.
 
-La web combina las dos: **el agua profunda de la referencia como estructura** (textos,
-fondos, botones) y **el verde/celeste del mandala como luz** (acentos, detalles).
-Los tonos cálidos del borde del logo (ocre, coral) se usan **solo en pequeñas dosis**,
-como un pulso de tierra, para que la paleta no quede fría ni genérica.
+| Rol | HEX |
+|---|---|
+| Texto principal | `#1D313B` |
+| Títulos | `#284C53` |
+| Botones y enlaces (contraste AA) | `#2B6F72` |
+| Turquesa medio | `#5FB0B3` |
+| Celeste | `#85CFD1` |
+| Celeste claro | `#BAE4E3` |
+| Bruma (fondos suaves) | `#E1F4F4` |
+| Menta | `#7FCBA9` |
+| Verde pastel | `#A6CE98` |
+| Verde del botón de WhatsApp | `#3B7A5C` |
+| Fondo general | `#F8FCFC` |
+| Secciones destacadas y pie | degradé `#A9DCDC → #8FCFCF → #9FD6C4` |
 
-## Paleta
+**Los cuatro elementos** tienen cada uno un ícono animado y un tono:
+fuego (turquesa, la llama titila), agua (celeste, la gota forma ondas),
+aire (menta, el viento fluye) y tierra (verde, el brote se mece).
 
-| Rol | Nombre | HEX | Origen |
-|---|---|---|---|
-| Texto principal, fondos profundos | Noche de agua | `#1D313B` | Referencia (sombras) |
-| Títulos, secciones oscuras | Petróleo | `#284C53` | Referencia |
-| Botones y enlaces | Agua medicina | `#2B6F72` | Referencia `#358487`, oscurecido para contraste AA |
-| Acentos, íconos | Turquesa | `#3CA0A3` | Referencia |
-| Detalles, bordes | Celeste | `#7EC5C8` | Referencia / logo |
-| Fondos suaves | Celeste claro | `#A8D6D7` | Referencia |
-| Fondos suaves | Bruma | `#D8F2F3` | Referencia (luces) |
-| Acento vivo | Jade | `#70C19E` | Logo (centro) |
-| Acento | Salvia | `#88B176` | Logo |
-| Botón WhatsApp, texto verde | Verde hondo | `#3F7D5F` | Derivado del jade, contraste AA |
-| Fondos verdes | Verde niebla | `#E4F1E6` | Derivado |
-| Acento cálido puntual | Ocre | `#C8A465` | Logo (borde izquierdo) |
-| Acento cálido puntual | Coral | `#D48A63` | Logo (borde inferior) |
-| Fondo general | Luz | `#FBFAF6` | Blanco cálido |
-| Superficies | Blanco | `#FFFFFF` | |
-
-**Degradé de firma** (`--grad-mandala`): coral → ocre → salvia → jade → celeste,
-el mismo recorrido del logo. Se usa en líneas finas y halos, nunca en bloques grandes.
-
-Contrastes verificados (WCAG): Noche sobre blanco 13.5:1 · Agua medicina sobre blanco 5.8:1 ·
-Verde hondo sobre blanco 4.9:1 · Petróleo sobre Bruma 8:1.
+Contrastes verificados (WCAG AA): todos los textos superan 4.5:1.
 
 ## Tipografía
 
