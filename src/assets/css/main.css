@@ -692,7 +692,7 @@ body.nav-open .wa-float { opacity: 0; pointer-events: none; }
 .tacu-band__tree { color: #fff; filter: drop-shadow(0 6px 18px rgba(29,49,59,.15)); width: min(70vw, 360px); justify-self: center; }
 .tacu-intro { display: grid; gap: var(--space-4); align-items: center; }
 @media (min-width: 900px) { .tacu-intro { grid-template-columns: 300px 1fr; } }
-.tacu-intro__tree { color: var(--c-salvia); width: min(60vw, 300px); justify-self: center; }
+.tacu-intro__tree { color: var(--c-verde-hondo); width: min(60vw, 300px); justify-self: center; }
 
 /* ---------- Ilustraciones de línea ---------- */
 .illu { width: 100%; height: auto; overflow: visible; }
