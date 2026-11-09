@@ -1,6 +1,8 @@
 // Configuración de Eleventy: fuentes en /src, sitio generado en /_site
 import { HtmlBasePlugin } from "@11ty/eleventy";
 import { build } from "esbuild";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 
 export default function (eleventyConfig) {
   // Permite publicar en una subcarpeta (ej.: usuario.github.io/mujermedicina/).
@@ -37,6 +39,12 @@ export default function (eleventyConfig) {
       mes: d.toLocaleDateString("es-AR", { month: "short" }).replace(".", ""),
       larga: d.toLocaleDateString("es-AR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }),
     };
+  });
+  // Versión de un archivo según su contenido: cada cambio genera una URL nueva,
+  // así el navegador nunca usa estilos o scripts viejos guardados en caché.
+  eleventyConfig.addFilter("version", (url) => {
+    const hash = createHash("md5").update(readFileSync(`src${url}`)).digest("hex").slice(0, 8);
+    return `${url}?v=${hash}`;
   });
   eleventyConfig.addFilter("rest", (list) => (list || []).slice(1));
   eleventyConfig.addFilter("ig", (handle) => `https://www.instagram.com/${handle}/`);

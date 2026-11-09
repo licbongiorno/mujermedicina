@@ -34,7 +34,7 @@
   {#- Fuentes cargadas sin bloquear la página (el texto aparece al instante y luego toma la tipografía) #}
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50..100;1,9..144,300..600,50..100&family=Figtree:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50..100;1,9..144,300..600,50..100&family=Figtree:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | version }}">
   <script>document.documentElement.classList.add("js")</script>
 
   {% include "partials/schema.njk" %}
@@ -47,6 +47,6 @@
   </main>
   {% include "partials/footer.njk" %}
   {% include "partials/whatsapp-float.njk" %}
-  <script src="/assets/js/main.js" defer></script>
+  <script src="{{ '/assets/js/main.js' | version }}" defer></script>
 </body>
 </html>
