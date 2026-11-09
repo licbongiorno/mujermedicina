@@ -5,9 +5,9 @@ export default {
   brand: "Mujer Medicina",
   // PENDIENTE: nombre y apellido de ella, tal como quiere presentarse
   person: "",
-  // Dominio (canonical, sitemap, datos estructurados). Al publicar con GitHub Actions
-  // se completa solo; PENDIENTE: dominio propio definitivo.
-  url: (process.env.SITE_URL || "https://mujermedicina.example").replace(/\/$/, ""),
+  // Dominio (canonical, sitemap, datos estructurados). Publicado en Vercel;
+  // PENDIENTE: cambiar por el dominio propio cuando esté.
+  url: (process.env.SITE_URL || "https://mujermedicina-cgke.vercel.app").replace(/\/$/, ""),
   lang: "es-AR",
   locale: "es_AR",
   // PENDIENTE: descripción general, a partir de sus propios textos

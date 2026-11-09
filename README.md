@@ -49,10 +49,10 @@ Service por propuesta), `sitemap.xml`, `robots.txt`, `llms.txt` (resumen para as
 URLs amigables, imágenes WebP con dimensiones, accesibilidad (saltar al contenido, foco visible,
 contraste AA, menú accesible por teclado).
 
-## Publicación en GitHub Pages
+## Publicación (Vercel)
 
-El sitio se publica solo con GitHub Actions (`.github/workflows/deploy.yml`) cada vez que se actualiza `main`.
-Configuración única en GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+El sitio está conectado a Vercel: cada cambio en la rama `main` de GitHub se publica solo.
+Vercel instala, construye (`npm run build`) y publica la carpeta `_site` según `vercel.json`.
 
 Importante: no subir archivos sueltos con "Add files via upload". La estructura de carpetas
 (`src/assets/css/`, `src/_includes/`, etc.) es necesaria para que el sitio funcione.
