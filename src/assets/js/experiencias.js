@@ -6,16 +6,95 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
-  /* Sonido sintetizado (sin archivos): solo suena después de una acción de la persona */
-  let audio;
-  const ctx = () => (audio ||= new (window.AudioContext || window.webkitAudioContext)());
-  const golpe = (freq = 78) => {
-    try {
-      const ac = ctx(), t = ac.currentTime;
+  /* Tambor de mano sintetizado (sin archivos de audio). Solo suena después de un toque.
+     Imita las capas de un tambor real de cuero:
+     - el golpe de la mano sobre el cuero (ruido muy corto y filtrado),
+     - el cuerpo grave que resuena y baja de tono (la "panza" del tambor),
+     - dos armónicos de la membrana, que se apagan antes,
+     - la reverberación del espacio, como una ronda o un salón de madera.
+     Alterna golpes al centro (graves y profundos) y al borde (más brillantes). */
+  let audio, salida;
+  const ruido = (ac, seg) => {
+    const buf = ac.createBuffer(1, Math.floor(ac.sampleRate * seg), ac.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    return buf;
+  };
+  const prepararSalida = (ac) => {
+    // Reverberación: respuesta de impulso hecha con ruido que se apaga (sala cálida, ~1,6 s)
+    const largo = Math.floor(ac.sampleRate * 1.6);
+    const ir = ac.createBuffer(2, largo, ac.sampleRate);
+    for (let c = 0; c < 2; c++) {
+      const d = ir.getChannelData(c);
+      for (let i = 0; i < largo; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / largo, 3.2);
+    }
+    const reverb = ac.createConvolver(); reverb.buffer = ir;
+    const humedo = ac.createGain(); humedo.gain.value = 0.22;
+    const seco = ac.createGain(); seco.gain.value = 0.9;
+    const comp = ac.createDynamicsCompressor();
+    comp.threshold.value = -14; comp.ratio.value = 3; comp.attack.value = 0.003; comp.release.value = 0.25;
+    const entrada = ac.createGain();
+    entrada.connect(seco).connect(comp);
+    entrada.connect(reverb).connect(humedo).connect(comp);
+    comp.connect(ac.destination);
+    return entrada;
+  };
+  const tamborGolpe = (ac, destino, t, { centro = true, fuerza = 1 } = {}) => {
+    const v = fuerza * (0.92 + Math.random() * 0.16);   // cada golpe es un poco distinto, como con la mano
+    const base = (centro ? 72 : 96) * (0.98 + Math.random() * 0.04);
+
+    // 1. Cuerpo: tono grave que cae rápido al tono de reposo del cuero
+    const cuerpo = ac.createOscillator(), gc = ac.createGain();
+    cuerpo.type = "sine";
+    cuerpo.frequency.setValueAtTime(base * 2.1, t);
+    cuerpo.frequency.exponentialRampToValueAtTime(base * 1.08, t + 0.05);
+    cuerpo.frequency.exponentialRampToValueAtTime(base, t + 0.6);
+    gc.gain.setValueAtTime(0.0001, t);
+    gc.gain.exponentialRampToValueAtTime(0.9 * v, t + 0.006);
+    gc.gain.exponentialRampToValueAtTime(0.0001, t + (centro ? 1.5 : 0.9));
+    cuerpo.connect(gc).connect(destino);
+    cuerpo.start(t); cuerpo.stop(t + 1.6);
+
+    // 2. Armónicos de la membrana (proporciones de un cuero circular: 1,59 y 2,14)
+    [[1.59, 0.32], [2.14, 0.18]].forEach(([k, amp]) => {
       const o = ac.createOscillator(), g = ac.createGain();
-      o.type = "sine"; o.frequency.setValueAtTime(freq * 1.6, t); o.frequency.exponentialRampToValueAtTime(freq, t + 0.12);
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.5, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
-      o.connect(g).connect(ac.destination); o.start(t); o.stop(t + 1);
+      o.type = "sine";
+      o.frequency.setValueAtTime(base * k * 1.5, t);
+      o.frequency.exponentialRampToValueAtTime(base * k, t + 0.08);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(amp * v * (centro ? 0.7 : 1.3), t + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
+      o.connect(g).connect(destino);
+      o.start(t); o.stop(t + 0.4);
+    });
+
+    // 3. El golpe de la mano: ruido muy corto, filtrado como el sonido del cuero
+    const n = ac.createBufferSource(); n.buffer = ruido(ac, 0.12);
+    const bp = ac.createBiquadFilter(); bp.type = "bandpass";
+    bp.frequency.value = centro ? 900 : 2200; bp.Q.value = 0.9;
+    const gn = ac.createGain();
+    gn.gain.setValueAtTime(0.0001, t);
+    gn.gain.exponentialRampToValueAtTime((centro ? 0.35 : 0.55) * v, t + 0.002);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + (centro ? 0.05 : 0.08));
+    n.connect(bp).connect(gn).connect(destino);
+    n.start(t); n.stop(t + 0.12);
+
+    // 4. El aire que empuja el cuero: un "pum" sordo de baja frecuencia
+    const p = ac.createBufferSource(); p.buffer = ruido(ac, 0.2);
+    const lp = ac.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 180;
+    const gp = ac.createGain();
+    gp.gain.setValueAtTime(0.0001, t);
+    gp.gain.exponentialRampToValueAtTime(0.5 * v, t + 0.004);
+    gp.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+    p.connect(lp).connect(gp).connect(destino);
+    p.start(t); p.stop(t + 0.2);
+  };
+  const golpe = (centro = true) => {
+    try {
+      audio ||= new (window.AudioContext || window.webkitAudioContext)();
+      if (audio.state === "suspended") audio.resume();
+      salida ||= prepararSalida(audio);
+      tamborGolpe(audio, salida, audio.currentTime + 0.005, { centro });
     } catch { /* sin audio disponible: la experiencia sigue siendo visual */ }
   };
 
@@ -49,7 +128,7 @@
       });
       btn.addEventListener("click", () => {
         golpes = Math.min(golpes + 1, motas.length);
-        if (conSonido) golpe(golpes % 2 ? 78 : 70);
+        if (conSonido) golpe(golpes % 3 !== 0); // dos al centro, uno al borde, como un pulso de ronda
         onda(ondas, "tambor__onda");
         btn.classList.remove("is-golpe"); void btn.offsetWidth; btn.classList.add("is-golpe");
         // Cada golpe barre una parte del polvo; con cinco golpes la chispa queda limpia
