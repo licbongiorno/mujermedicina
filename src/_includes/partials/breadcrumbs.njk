@@ -1,0 +1,8 @@
+{#- Migas de pan. Variable: breadcrumbs = [{ label, url }] (sin incluir Inicio ni la página actual) -#}
+<nav class="breadcrumbs" aria-label="Estás en">
+  <ol>
+    <li><a href="/">Inicio</a></li>
+    {% for b in breadcrumbs %}<li><a href="{{ b.url }}">{{ b.label }}</a></li>{% endfor %}
+    <li><span aria-current="page">{{ crumbTitle or title }}</span></li>
+  </ol>
+</nav>

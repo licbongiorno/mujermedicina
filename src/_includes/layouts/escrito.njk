@@ -1,17 +1,19 @@
 ---
 layout: layouts/base.njk
 ---
+<div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
 <article>
-  <header class="page-hero">
+  <header class="page-hero" data-hero>
     <img class="page-hero__mandala" src="/assets/img/logo-mandala-376.webp" width="376" height="376" alt="" aria-hidden="true">
     <div class="container narrow">
+      {% include "partials/breadcrumbs.njk" %}
       <p class="eyebrow">Escritos · {{ page.date | fechaLarga }}</p>
-      <h1>{{ title }}</h1>
+      <h1 class="split" data-split>{{ title | palabras | safe }}</h1>
       {% if description %}<p class="lead">{{ description }}</p>{% endif %}
     </div>
   </header>
   <div class="section section--tight">
-    <div class="container narrow prose prose--article">
+    <div class="container narrow prose prose--article" data-article>
       {{ content | safe }}
       <p class="gratitude__sign">— {{ site.person }}, {{ site.spiritName }}</p>
     </div>

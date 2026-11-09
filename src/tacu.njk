@@ -11,7 +11,8 @@ waMessage: "Hola Lucía, me gustaría saber más sobre Tacu y las actividades de
 ---
 {% include "partials/page-hero.njk" %}
 <section class="section section--tight">
-  <div class="container narrow prose">
+  <div class="container tacu-intro">
+    <div class="tacu-intro__tree" data-draw aria-hidden="true">{% include "ilustraciones/algarrobo.njk" %}</div>
     <p class="lead" data-reveal>En las sierras de Córdoba, Lucía abrió un espacio al que llamó Tacu, en honor al algarrobo. Allí comparte distintas propuestas que apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación.</p>
   </div>
 </section>
@@ -19,8 +20,7 @@ waMessage: "Hola Lucía, me gustaría saber más sobre Tacu y las actividades de
   <div class="container">
     <div class="section__head"><h2 data-reveal>Lo que compartimos en Tacu</h2></div>
     <div class="cards">
-      {% for p in propuestas %}{% if p.modalidad and "Tacu" in p.modalidad %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
-      {% for p in propuestas %}{% if p.slug in ["armonizaciones", "talleres-de-canto", "clases-de-ingles"] %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+      {% for p in propuestas %}{% if p.lugar and "Tacu" in p.lugar %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
     </div>
   </div>
 </section>

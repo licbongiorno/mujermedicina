@@ -1,0 +1,7 @@
+{# Armonización: ondas desordenadas que se aquietan #}
+<svg class="illu illu--ondas" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+  {% for y in [60, 84, 108, 132] %}
+  <path class="illu__onda" style="--i:{{ loop.index0 }}" d="M20 {{ y }}c20-{{ 18 - loop.index0 * 4 }} 40-{{ 18 - loop.index0 * 4 }} 60 0s40 {{ 18 - loop.index0 * 4 }} 60 0 40-{{ 18 - loop.index0 * 4 }} 60 0" opacity="{{ 1 - loop.index0 * 0.18 }}"/>
+  {% endfor %}
+  <circle class="draw" pathLength="1" cx="100" cy="96" r="84" opacity=".25"/>
+</svg>

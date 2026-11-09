@@ -1,6 +1,7 @@
 export default {
   layout: "layouts/escrito.njk",
   tags: ["escrito"],
+  breadcrumbs: [{ label: "Escritos", url: "/recursos/" }],
   permalink: (data) => `/recursos/${data.page.fileSlug}/`,
   waMessage: "Hola Lucía, estuve leyendo tus escritos en la web y quisiera hacerte una consulta.",
   eleventyComputed: {

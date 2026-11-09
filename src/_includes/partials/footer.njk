@@ -7,10 +7,19 @@
       <p>{{ site.person }} · {{ site.spiritName | replace("Mujer Medicina ", "") }}</p>
       <p class="site-footer__small">{{ site.roles | join(" · ") }}</p>
     </div>
-    <nav aria-label="Pie de página">
-      <ul class="site-footer__nav">
-        {%- for item in navigation %}<li><a href="{{ item.url }}">{{ item.label }}</a></li>{% endfor %}
-      </ul>
+    <nav aria-label="Pie de página" class="site-footer__navs">
+      <div>
+        <p class="site-footer__h">Sitio</p>
+        <ul class="site-footer__nav">
+          {%- for item in navigation %}<li><a href="{{ item.url }}">{{ item.label }}</a></li>{% endfor %}
+        </ul>
+      </div>
+      <div>
+        <p class="site-footer__h">Propuestas</p>
+        <ul class="site-footer__nav">
+          {%- for p in propuestas %}<li><a href="/propuestas/{{ p.slug }}/">{{ p.nombreCorto or p.titulo }}</a></li>{% endfor %}
+        </ul>
+      </div>
     </nav>
     <div class="site-footer__contact">
       <a class="btn btn--light" href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime por WhatsApp</a>

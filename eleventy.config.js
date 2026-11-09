@@ -21,6 +21,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("absoluteUrl", (path, base) => String(base).replace(/\/$/, "") + path);
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("json", (v) => JSON.stringify(v));
+  eleventyConfig.addFilter("rest", (list) => (list || []).slice(1));
   eleventyConfig.addFilter("ig", (handle) => `https://www.instagram.com/${handle}/`);
 
   // Mensaje de WhatsApp de una propuesta
@@ -29,11 +30,19 @@ export default function (eleventyConfig) {
   // Categorías en el orden en que aparecen en propuestas.json
   eleventyConfig.addFilter("categorias", (list) => [...new Set(list.map((p) => p.categoria).filter(Boolean))]);
 
-  // Propuestas con página propia (las demás se consultan directo por WhatsApp)
-  eleventyConfig.addCollection("propuestasConPagina", (api) => {
-    const all = api.getAll()[0]?.data.propuestas || [];
-    return all.filter((p) => p.pagina);
-  });
+  // Buscar elementos por slug / id
+  eleventyConfig.addFilter("porSlug", (list, slugs) => (slugs || []).map((s) => list.find((p) => p.slug === s)).filter(Boolean));
+  eleventyConfig.addFilter("categoria", (cats, id) => cats.find((c) => c.id === id) || { id, nombre: id });
+  eleventyConfig.addFilter("deCategoria", (list, id) => list.filter((p) => p.categoria === id));
+  eleventyConfig.addFilter("escritosPorSlug", (coll, slugs) => (slugs || []).map((s) => coll.find((e) => e.page.fileSlug === s)).filter(Boolean));
+
+  // Divide un título en palabras para la animación tipográfica (el texto sigue siendo legible)
+  eleventyConfig.addFilter("palabras", (text) =>
+    String(text || "")
+      .split(/(\s+)/)
+      .map((w, i) => (/^\s+$/.test(w) ? w : `<span class="w"><span style="--wi:${i}">${w}</span></span>`))
+      .join("")
+  );
 
   // Escritos (Recursos), del más reciente al más antiguo
   eleventyConfig.addCollection("escritos", (api) =>

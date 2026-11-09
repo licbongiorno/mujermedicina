@@ -19,23 +19,45 @@ npm run build   # genera el sitio en /_site
 | Páginas | `src/*.njk`, `src/propuestas/` |
 | Estilos y paleta | `src/assets/css/main.css` (ver `IDENTIDAD.md`) |
 
-### Formato de una propuesta
+### Agregar una propuesta nueva
+
+Cada propuesta de `src/_data/propuestas.json` genera sola su landing en `/propuestas/<slug>/`,
+su tarjeta, su entrada en el menú, en el universo del inicio, en el pie, en el formulario,
+en el sitemap, en `llms.txt` y sus datos estructurados. No hace falta tocar plantillas.
 
 ```json
 {
   "slug": "nombre-en-la-url",
-  "titulo": "Nombre de la propuesta",
-  "categoria": "Terapias",
-  "resumen": "Una o dos frases.",
-  "descripcion": ["Párrafo 1", "Párrafo 2"],
-  "paraQuien": "A quién está dirigida.",
-  "modalidad": "Presencial / online",
-  "duracion": "",
-  "lugar": "",
-  "acento": "jade",
-  "waMensaje": "Hola, quisiera información sobre ..."
+  "titulo": "Nombre completo",
+  "nombreCorto": "Nombre para menús",
+  "categoria": "canto-y-ceremonia",          // id de src/_data/categorias.json
+  "acento": "jade",                          // agua · jade · salvia · ocre · coral · noche
+  "ilustracion": "cantos",                   // archivo de src/_includes/ilustraciones/
+  "kicker": "Taller · En Tacu",
+  "seoTitle": "Título para Google",
+  "seoDescription": "Descripción para Google (hasta ~160 caracteres)",
+  "resumen": "Una o dos frases para tarjetas.",
+  "lead": "Frase del encabezado.",
+  "formato": "", "modalidad": "", "lugar": "", "duracion": "", "frecuencia": "",
+  "cita": { "texto": "" },
+  "intro": ["Párrafo", "Párrafo"],
+  "bloques": [
+    { "tipo": "texto", "titulo": "", "parrafos": [""], "contexto": false },
+    { "tipo": "lista", "titulo": "", "items": [""] },
+    { "tipo": "pilares", "titulo": "", "items": [{ "titulo": "", "texto": "" }] },
+    { "tipo": "pasos", "titulo": "", "items": [""] },
+    { "tipo": "cita", "texto": "", "fuente": "", "enlace": "" },
+    { "tipo": "elementos" }
+  ],
+  "faq": [{ "q": "Pregunta", "a": "Respuesta" }],
+  "relacionadas": ["otro-slug"],
+  "escritos": ["slug-de-escrito"],
+  "instagram": "usuario",
+  "waMensaje": "Mensaje predeterminado de WhatsApp"
 }
 ```
+
+Los bloques con `"contexto": true` explican la práctica en general (no son afirmaciones sobre Lucía).
 
 ## Contenido pendiente
 

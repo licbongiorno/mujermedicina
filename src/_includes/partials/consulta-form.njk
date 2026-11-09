@@ -1,0 +1,30 @@
+{#- Formulario de consulta: arma el mensaje y lo abre en WhatsApp (sin servidor).
+    Variable opcional: formPropuesta (título preseleccionado) -#}
+<form class="consult" action="https://wa.me/{{ site.whatsapp }}" method="get" target="_blank" data-consult data-wa="{{ site.whatsapp }}" data-reveal>
+  <div class="consult__row">
+    <label class="field">
+      <span class="field__label">Tu nombre</span>
+      <input type="text" name="nombre" autocomplete="given-name" required placeholder="¿Cómo te llamás?">
+    </label>
+    <label class="field">
+      <span class="field__label">Propuesta</span>
+      <select name="propuesta">
+        <option value="">Consulta general</option>
+        {% for c in categorias %}
+        <optgroup label="{{ c.nombre }}">
+          {% for pp in propuestas | deCategoria(c.id) %}<option value="{{ pp.titulo }}"{% if formPropuesta == pp.titulo %} selected{% endif %}>{{ pp.titulo }}</option>{% endfor %}
+        </optgroup>
+        {% endfor %}
+        <option value="Tacu, espacio holístico"{% if formPropuesta == "Tacu, espacio holístico" %} selected{% endif %}>Tacu, espacio holístico</option>
+      </select>
+    </label>
+  </div>
+  <label class="field">
+    <span class="field__label">Tu mensaje <span class="field__opt">(opcional)</span></span>
+    <textarea name="text" rows="3" placeholder="Por ejemplo: quisiera saber las próximas fechas"></textarea>
+  </label>
+  <div class="consult__foot">
+    <button class="btn btn--primary" type="submit" data-magnetic>Enviar por WhatsApp</button>
+    <p class="consult__hint">Se abre WhatsApp con tu mensaje. Nada se guarda en esta web.</p>
+  </div>
+</form>

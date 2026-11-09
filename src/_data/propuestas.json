@@ -1,65 +1,80 @@
 [
   {
     "slug": "transmision-de-cantos-medicina",
-    "pagina": true,
-    "destacada": true,
     "titulo": "Transmisión de Cantos Medicina",
-    "categoria": "Talleres y ciclos",
+    "nombreCorto": "Cantos Medicina",
+    "categoria": "canto-y-ceremonia",
+    "destacada": true,
     "acento": "noche",
-    "modalidad": "Virtual, por Meet",
+    "ilustracion": "cantos",
+    "kicker": "Ciclo virtual · 4 encuentros",
+    "seoTitle": "Transmisión de Cantos Medicina, ciclo virtual",
+    "seoDescription": "Ciclo virtual de 4 encuentros para sacar la voz y conectar con el fuego, el agua, el aire y la tierra a través de cantos medicina, tambor, sonaja y ritual.",
+    "resumen": "Un ciclo de cuatro encuentros virtuales para sacar la voz, descubrirla y, a través de la vibración, conectar con la medicina de los cuatro elementos.",
+    "lead": "Sacar la voz, descubrirla y, a través de la vibración, conectar con la medicina del fuego, el agua, el aire y la tierra.",
     "formato": "Ciclo de 4 encuentros",
+    "modalidad": "Virtual, por Meet",
     "duracion": "Aproximadamente 2 horas por encuentro",
     "frecuencia": "Cada 15 días o una vez por mes, a convenir con el grupo",
-    "resumen": "Un ciclo de cuatro encuentros virtuales para sacar la voz, descubrirla y, a través de la vibración, conectar con la medicina de los cuatro elementos: fuego, agua, aire y tierra.",
-    "cita": "Reconectar con la naturaleza y las memorias ancestrales a través del sonido, la voz, los sentidos, el ritual y la vibración.",
-    "descripcion": [
+    "cita": {
+      "texto": "Reconectar con la naturaleza y las memorias ancestrales a través del sonido, la voz, los sentidos, el ritual y la vibración."
+    },
+    "intro": [
       "Este pulso nace de las ganas de compartir y generar un encuentro con esto que llamamos Canto Medicina.",
       "Se trata de sacar la voz, descubrirla y, a través de la vibración, conectarnos con la medicina de los cuatro elementos principales —fuego, aire, tierra y agua—, maestros dadores de vida, con la información que guardan y su misterio. Abrazando nuestra propia transformación a través del ritual.",
       "En cada encuentro propongo una ceremonia ritual diferente, para profundizar en la medicina que nos trae cada elemento. Con tambores y sonajas, altares, siembras y ofrendas iremos recorriendo cada elemento, cada instrumento, cada canto, reconociendo y recordando lo que nos traen."
     ],
-    "elementos": [
-      { "nombre": "Fuego", "acento": "coral" },
-      { "nombre": "Agua", "acento": "agua" },
-      { "nombre": "Aire", "acento": "jade" },
-      { "nombre": "Tierra", "acento": "ocre" }
-    ],
-    "secciones": [
+    "bloques": [
       {
+        "tipo": "elementos"
+      },
+      {
+        "tipo": "lista",
         "titulo": "¿Qué aprenderás en este ciclo?",
         "items": [
           "Qué es el canto como medicina: para qué sirve, qué nos trae, por qué y cuándo el canto es medicina.",
           "Un elemento por encuentro: qué relación tenemos con cada uno y para qué nos sirve.",
           "Cantos medicina para honrar a cada elemento: de dónde viene cada canto y para qué es.",
-          "El significado de cada elemento —agua, tierra, aire y fuego— y cómo conectar con su medicina a través de los cantos y los rituales.",
+          "El significado de cada elemento y cómo conectar con su medicina a través de los cantos y los rituales.",
           "Ejercicios de vocalización, respiración y relajación para sacar la voz.",
           "Armado de altar: su composición y su significado.",
-          "Rituales para honrar a los cuatro elementos.",
           "La medicina de los instrumentos que nos acompañan: el tambor de mano y la sonaja."
         ]
       },
       {
+        "tipo": "pilares",
         "titulo": "¿Qué nos traen los cantos medicina?",
         "items": [
-          "Nos conectan con la ancestralidad: los cantos medicina guardan una memoria ancestral muy profunda que iremos recorriendo en cada encuentro.",
-          "Nos ayudan a sacar la voz, a destrabar lo que la retiene y a ser más libres en nuestra expresión.",
-          "Reconocer de qué estamos hechos y tomar conciencia de quién soy.",
-          "Impulsar nuestros deseos más profundos en pos de nuestra propia salud y la de nuestro entorno.",
-          "Darnos fuerza y poder para seguir adelante.",
-          "Recuperar memoria ancestral: conectar con verdades universales que trascienden religiones y fronteras, con la conciencia de unidad.",
-          "Conectar con el momento presente y aquietar el parloteo mental.",
-          "De lo simple a lo complejo: recordar que estamos hechos de los cuatro elementos y aprender a honrarlos de manera ritual."
+          {
+            "titulo": "Ancestralidad",
+            "texto": "Los cantos medicina guardan una memoria ancestral muy profunda, que iremos recorriendo en cada encuentro."
+          },
+          {
+            "titulo": "La propia voz",
+            "texto": "Nos ayudan a sacar la voz, a destrabar lo que la retiene y a ser más libres en nuestra expresión."
+          },
+          {
+            "titulo": "Conciencia",
+            "texto": "Reconocer de qué estamos hechos y tomar conciencia de quién soy."
+          },
+          {
+            "titulo": "Unidad",
+            "texto": "Conectar con verdades universales que trascienden religiones y fronteras, con la conciencia de unidad."
+          }
         ]
       },
       {
+        "tipo": "pasos",
         "titulo": "Cómo nos encontramos",
         "items": [
-          "Cuatro encuentros virtuales en vivo, por la plataforma Meet.",
-          "Cada 15 días o una vez por mes, a convenir con el grupo.",
-          "Cada encuentro dura aproximadamente 2 horas.",
-          "Armamos un grupo de WhatsApp para compartir información y material."
+          "Cuatro encuentros en vivo por Meet, de unas 2 horas cada uno.",
+          "Cada 15 días o una vez por mes, según lo que acordemos con el grupo.",
+          "Un grupo de WhatsApp para compartir información y material.",
+          "Tu altar activo para cada ritual."
         ]
       },
       {
+        "tipo": "lista",
         "titulo": "¿Qué te quedará?",
         "items": [
           "Todo el contenido de cada encuentro en material PDF.",
@@ -69,86 +84,443 @@
         ]
       }
     ],
+    "faq": [
+      {
+        "q": "¿Es presencial o virtual?",
+        "a": "Es virtual: los cuatro encuentros son en vivo por la plataforma Meet, así que podés participar desde cualquier lugar."
+      },
+      {
+        "q": "¿Cada cuánto son los encuentros?",
+        "a": "Cada 15 días o una vez por mes. La frecuencia se acuerda con el grupo."
+      },
+      {
+        "q": "¿Qué necesito preparar?",
+        "a": "Tu altar. Te pediré que lo tengas activo durante los cuatro encuentros y para cada ritual. En el escrito «Armado de altar» te cuento cómo armarlo."
+      },
+      {
+        "q": "¿Cómo reservo mi lugar?",
+        "a": "El lugar se reserva con el 50 %. Escribime por WhatsApp y te paso las próximas fechas, los valores y los medios de pago."
+      }
+    ],
     "nota": "Los valores y las próximas fechas se consultan por WhatsApp. El lugar se reserva con el 50 %.",
     "agradecimiento": "A Fernando Lusardi, Carolina Rivas y Santiago Rivas, por enseñarme tantos cantos medicina; al Gran Espíritu, que me regaló la relación con los espíritus y la memoria de lo sagrado; y a todxs ustedes, por resonar con esta propuesta. Que sea pura medicina para el alma.",
+    "relacionadas": [
+      "rondas-de-canto-medicina",
+      "talleres-de-canto",
+      "ceremonias-de-temazcal"
+    ],
+    "escritos": [
+      "somos-los-cuatro-elementos",
+      "armado-de-altar"
+    ],
     "waMensaje": "Hola Lucía, quisiera información sobre el ciclo de Transmisión de Cantos Medicina: próximas fechas y valores."
   },
   {
-    "slug": "temazcal",
+    "slug": "ceremonias-de-temazcal",
     "titulo": "Ceremonias de temazcal",
-    "categoria": "Ceremonias y rondas",
+    "nombreCorto": "Temazcal",
+    "categoria": "canto-y-ceremonia",
     "acento": "coral",
-    "modalidad": "Presencial, en Tacu",
-    "resumen": "Ceremonias de temazcal guiadas por Lucía, que aprendió a guiarlas durante sus ocho años de formación en comunidad.",
-    "waMensaje": "Hola Lucía, quisiera información sobre las próximas ceremonias de temazcal."
+    "ilustracion": "temazcal",
+    "kicker": "Ceremonia · En Tacu, sierras de Córdoba",
+    "seoTitle": "Ceremonias de temazcal en las sierras de Córdoba",
+    "seoDescription": "Ceremonias de temazcal guiadas por Lucía Di Mauro en Tacu, sierras de Córdoba: una ceremonia ancestral donde se encuentran el fuego, la tierra, el agua y el aire.",
+    "resumen": "Ceremonias de temazcal guiadas por Lucía en Tacu, donde se encuentran el fuego, la tierra, el agua y el aire.",
+    "lead": "Una ceremonia ancestral donde se encuentran los cuatro elementos, guiada en Tacu, en las sierras de Córdoba.",
+    "formato": "Ceremonia grupal",
+    "modalidad": "Presencial",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "Durante los ocho años que viví en comunidad, donde me formé y me recibí como mujer medicina, aprendí a guiar temazcales. Hoy comparto estas ceremonias en Tacu, el espacio que abrí en las sierras de Córdoba.",
+      "Muchos de los cantos medicina que comparto los aprendí en ese camino."
+    ],
+    "bloques": [
+      {
+        "tipo": "texto",
+        "titulo": "¿Qué es el temazcal?",
+        "contexto": true,
+        "parrafos": [
+          "Temazcal es una palabra de origen náhuatl que suele traducirse como «casa de vapor». Es una ceremonia ancestral de los pueblos originarios de Mesoamérica que se realiza en un espacio cerrado, con forma de domo.",
+          "Al centro se ingresan piedras calentadas en el fuego —las abuelas— y sobre ellas se vierte agua, que se vuelve vapor, mientras se reza y se canta."
+        ]
+      },
+      {
+        "tipo": "pilares",
+        "titulo": "Los cuatro elementos en la ceremonia",
+        "items": [
+          {
+            "titulo": "Fuego",
+            "texto": "Calienta a las abuelas piedras.",
+            "acento": "coral"
+          },
+          {
+            "titulo": "Tierra",
+            "texto": "El suelo que nos sostiene durante la ceremonia.",
+            "acento": "ocre"
+          },
+          {
+            "titulo": "Agua",
+            "texto": "Se vierte sobre las piedras y se vuelve vapor.",
+            "acento": "agua"
+          },
+          {
+            "titulo": "Aire",
+            "texto": "El aliento, el vapor y los cantos que se elevan.",
+            "acento": "jade"
+          }
+        ]
+      },
+      {
+        "tipo": "cita",
+        "texto": "Somos el agua, somos el fuego, somos la tierra, somos el viento.",
+        "enlace": "/recursos/somos-los-cuatro-elementos/",
+        "fuente": "Del escrito «Somos los cuatro elementos»"
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Dónde se realizan las ceremonias?",
+        "a": "En Tacu, el espacio holístico de Lucía en las sierras de Córdoba."
+      },
+      {
+        "q": "¿Cómo me entero de la próxima ceremonia?",
+        "a": "Escribile por WhatsApp o seguí a @tacu_espacioholistico en Instagram, donde se comparten las novedades del espacio."
+      },
+      {
+        "q": "¿Puedo participar si tengo alguna condición de salud?",
+        "a": "El temazcal es una ceremonia con calor y vapor. Antes de participar, contale a Lucía tu situación para conversarlo y, ante cualquier condición de salud, consultá también con tu médico o médica."
+      }
+    ],
+    "relacionadas": [
+      "rondas-de-canto-medicina",
+      "transmision-de-cantos-medicina",
+      "taller-sahumo-medicina"
+    ],
+    "escritos": [
+      "somos-los-cuatro-elementos"
+    ],
+    "instagram": "tacu_espacioholistico",
+    "waMensaje": "Hola Lucía, quisiera información sobre las próximas ceremonias de temazcal en Tacu."
   },
   {
     "slug": "rondas-de-canto-medicina",
     "titulo": "Rondas de canto medicina",
-    "categoria": "Ceremonias y rondas",
+    "nombreCorto": "Rondas de canto",
+    "categoria": "canto-y-ceremonia",
     "acento": "agua",
-    "modalidad": "Presencial, en Tacu",
-    "resumen": "Rondas para encontrarnos a compartir y cantar juntos cantos medicina.",
+    "ilustracion": "rondas",
+    "kicker": "Encuentro en círculo · En Tacu",
+    "seoTitle": "Rondas de canto medicina en Córdoba",
+    "seoDescription": "Rondas de canto medicina con Lucía Di Mauro en Tacu, sierras de Córdoba: encontrarnos en círculo a cantar juntos con el latido del tambor y la sonaja.",
+    "resumen": "Encontrarnos en círculo a cantar juntos cantos medicina, con el latido del tambor y la sonaja.",
+    "lead": "Encontrarnos en círculo a cantar juntos, al latido del tambor.",
+    "formato": "Encuentro grupal",
+    "modalidad": "Presencial",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "En Tacu nos encontramos en ronda para compartir y cantar juntos cantos medicina, acompañados por el tambor y la sonaja.",
+      "La ronda es un círculo: nadie está adelante ni atrás, y cada voz se suma a las demás."
+    ],
+    "bloques": [
+      {
+        "tipo": "cita",
+        "texto": "Es a través del latido del corazón del tambor que la conciencia se eleva, que se eleva la vibración. Por eso la música sana: porque nos eleva la vibración.",
+        "enlace": "/recursos/somos-los-cuatro-elementos/",
+        "fuente": "Del escrito «Somos los cuatro elementos»"
+      },
+      {
+        "tipo": "pilares",
+        "titulo": "Lo que nos acompaña en la ronda",
+        "items": [
+          {
+            "titulo": "El tambor",
+            "texto": "Su latido marca el pulso de la ronda."
+          },
+          {
+            "titulo": "La sonaja",
+            "texto": "Acompaña el canto con su sonido."
+          },
+          {
+            "titulo": "Los cantos",
+            "texto": "Cantos medicina que guardan memoria ancestral."
+          },
+          {
+            "titulo": "El círculo",
+            "texto": "Cada voz se suma a las demás."
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Qué diferencia hay con la Transmisión de Cantos Medicina?",
+        "a": "La Transmisión es un ciclo virtual de cuatro encuentros, con material, audios y un elemento por encuentro. Las rondas son encuentros presenciales en Tacu para cantar juntos."
+      },
+      {
+        "q": "¿Dónde y cuándo son?",
+        "a": "En Tacu, en las sierras de Córdoba. Las próximas fechas se consultan por WhatsApp o en @tacu_espacioholistico."
+      }
+    ],
+    "relacionadas": [
+      "transmision-de-cantos-medicina",
+      "talleres-de-canto",
+      "ceremonias-de-temazcal"
+    ],
+    "escritos": [
+      "somos-los-cuatro-elementos"
+    ],
+    "instagram": "tacu_espacioholistico",
     "waMensaje": "Hola Lucía, quisiera información sobre las próximas rondas de canto medicina."
   },
   {
     "slug": "talleres-de-canto",
     "titulo": "Talleres de canto",
-    "categoria": "Talleres y ciclos",
+    "nombreCorto": "Talleres de canto",
+    "categoria": "canto-y-ceremonia",
     "acento": "salvia",
-    "resumen": "Talleres para sacar la voz y descubrirla, desde su formación como música y su camino con los cantos medicina.",
+    "ilustracion": "voz",
+    "kicker": "Taller · En Tacu",
+    "seoTitle": "Talleres de canto en Córdoba",
+    "seoDescription": "Talleres de canto con Lucía Di Mauro, música formada desde los 7 años en el conservatorio Félix Garzón y en Collegium, en Tacu, sierras de Córdoba.",
+    "resumen": "Talleres para sacar la voz y descubrirla, desde una vida dedicada a la música y al canto medicina.",
+    "lead": "Sacar la voz, descubrirla y animarse a expresarla.",
+    "formato": "Taller",
+    "modalidad": "Presencial",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "La música me acompaña desde chica. A los 7 años comencé a estudiar en el conservatorio Félix Garzón, en Córdoba capital, y después seguí cuatro años más en Collegium, una escuela de música.",
+      "Más tarde, en el camino de la medicina, aprendí los cantos que hoy comparto. En los talleres de canto se encuentran esas dos fuentes: la formación musical y el canto como medicina."
+    ],
+    "bloques": [
+      {
+        "tipo": "pilares",
+        "titulo": "Dos fuentes",
+        "items": [
+          {
+            "titulo": "Formación musical",
+            "texto": "Conservatorio Félix Garzón desde los 7 años y cuatro años en Collegium, escuela de música."
+          },
+          {
+            "titulo": "Canto medicina",
+            "texto": "Los cantos aprendidos durante sus años de formación en comunidad."
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "¿Dónde se dictan?",
+        "a": "En Tacu, en las sierras de Córdoba. Escribile por WhatsApp para conocer horarios y modalidad."
+      }
+    ],
+    "relacionadas": [
+      "transmision-de-cantos-medicina",
+      "rondas-de-canto-medicina"
+    ],
     "waMensaje": "Hola Lucía, quisiera información sobre los talleres de canto."
   },
   {
-    "slug": "sahumo-medicina",
+    "slug": "taller-sahumo-medicina",
     "titulo": "Sahúmo Medicina",
-    "categoria": "Talleres y ciclos",
+    "nombreCorto": "Sahúmo Medicina",
+    "categoria": "saberes-y-oficios",
     "acento": "ocre",
-    "resumen": "Uno de los talleres que crea Lucía, que podés conocer en su página @mandalasquetzalcoatl.",
+    "ilustracion": "sahumo",
+    "kicker": "Taller",
+    "seoTitle": "Taller Sahúmo Medicina",
+    "seoDescription": "Sahúmo Medicina, taller creado por Lucía Di Mauro, mujer medicina en las sierras de Córdoba, en torno al sahumo: el humo de plantas, resinas y maderas.",
+    "resumen": "Un taller creado por Lucía en torno al sahumo, donde el fuego y el aire se encuentran en el humo.",
+    "lead": "Donde el fuego y el aire se encuentran.",
+    "formato": "Taller",
+    "intro": [
+      "Sahúmo Medicina es uno de los talleres que crea Lucía. Podés conocerlo en su página @mandalasquetzalcoatl, donde también comparte el taller de Mandalas tejidas."
+    ],
+    "bloques": [
+      {
+        "tipo": "texto",
+        "titulo": "El sahumo",
+        "contexto": true,
+        "parrafos": [
+          "Sahumar es quemar plantas, resinas o maderas para que su humo perfume y envuelva un espacio. Es una práctica presente en muchas tradiciones de nuestro continente.",
+          "En el sahumo se encuentran dos elementos: el fuego, que enciende, y el aire, que lleva el humo."
+        ]
+      },
+      {
+        "tipo": "cita",
+        "texto": "Podés poner allí tus amuletos de poder, velas, inciensos, una planta, sahumerios, ofrendas, semillas: todo lo que consideres sagrado.",
+        "enlace": "/recursos/armado-de-altar/",
+        "fuente": "Del escrito «Armado de altar»"
+      }
+    ],
+    "relacionadas": [
+      "taller-mandalas-tejidas",
+      "ceremonias-de-temazcal"
+    ],
+    "escritos": [
+      "armado-de-altar"
+    ],
     "instagram": "mandalasquetzalcoatl",
     "waMensaje": "Hola Lucía, quisiera información sobre el taller Sahúmo Medicina."
   },
   {
-    "slug": "mandalas-tejidas",
+    "slug": "taller-mandalas-tejidas",
     "titulo": "Mandalas tejidas",
-    "categoria": "Talleres y ciclos",
+    "nombreCorto": "Mandalas tejidas",
+    "categoria": "saberes-y-oficios",
     "acento": "jade",
-    "resumen": "Tejer es uno de los dones que le legaron sus abuelas, y ama enseñar y transmitir lo que se le fue concedido.",
+    "ilustracion": "tejido",
+    "kicker": "Taller",
+    "seoTitle": "Taller de mandalas tejidas",
+    "seoDescription": "Taller de mandalas tejidas con Lucía Di Mauro, tejedora: un don que le legaron sus abuelas y que ama enseñar y transmitir.",
+    "resumen": "Tejer es uno de los dones que le legaron sus abuelas. En este taller, Lucía enseña y transmite lo que se le fue concedido.",
+    "lead": "Un don legado por las abuelas, que se transmite hilo a hilo.",
+    "formato": "Taller",
+    "intro": [
+      "Lucía es tejedora. Tejer es uno de los dones que le legaron sus abuelas, y ama enseñar y transmitir lo que se le fue concedido.",
+      "El taller de Mandalas tejidas es una de las propuestas que crea y comparte en su página @mandalasquetzalcoatl."
+    ],
+    "bloques": [
+      {
+        "tipo": "texto",
+        "titulo": "Mandala",
+        "contexto": true,
+        "parrafos": [
+          "Mandala es una palabra sánscrita que significa «círculo». Es una forma que parte de un centro y se expande hacia afuera, como el mandala que es símbolo de esta web."
+        ]
+      }
+    ],
+    "relacionadas": [
+      "taller-sahumo-medicina",
+      "talleres-de-canto"
+    ],
     "instagram": "mandalasquetzalcoatl",
-    "waMensaje": "Hola Lucía, quisiera información sobre el taller de mandalas tejidas."
+    "waMensaje": "Hola Lucía, quisiera información sobre el taller de Mandalas tejidas."
   },
   {
-    "slug": "tameana",
+    "slug": "terapia-vibracional-tameana",
     "titulo": "Tameana",
-    "categoria": "Terapias y armonizaciones",
+    "nombreCorto": "Tameana",
+    "categoria": "terapias-y-armonizacion",
     "acento": "noche",
-    "resumen": "Terapia vibracional pleyadiana que Lucía facilita.",
+    "ilustracion": "estrellas",
+    "kicker": "Terapia vibracional pleyadiana",
+    "seoTitle": "Tameana, terapia vibracional pleyadiana",
+    "seoDescription": "Tameana es una terapia vibracional pleyadiana que facilita Lucía Di Mauro, mujer medicina en las sierras de Córdoba.",
+    "resumen": "Una terapia vibracional pleyadiana que Lucía facilita.",
+    "lead": "Terapia vibracional pleyadiana.",
+    "intro": [
+      "Lucía facilita Tameana, una terapia vibracional pleyadiana. Podés conocer más sobre esta propuesta en @tamea.na."
+    ],
+    "bloques": [
+      {
+        "tipo": "texto",
+        "titulo": "Las Pléyades",
+        "contexto": true,
+        "parrafos": [
+          "Las Pléyades son un cúmulo de estrellas de la constelación de Tauro, conocido también como las Siete Hermanas o las Siete Cabritas, y presente en los relatos de muchos pueblos."
+        ]
+      },
+      {
+        "tipo": "cita",
+        "texto": "Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz.",
+        "enlace": "/recursos/somos-los-cuatro-elementos/",
+        "fuente": "Del escrito «Somos los cuatro elementos»"
+      }
+    ],
+    "relacionadas": [
+      "armonizaciones"
+    ],
     "instagram": "tamea.na",
     "waMensaje": "Hola Lucía, quisiera información sobre la terapia vibracional Tameana."
   },
   {
     "slug": "armonizaciones",
     "titulo": "Armonizaciones",
-    "categoria": "Terapias y armonizaciones",
+    "nombreCorto": "Armonizaciones",
+    "categoria": "terapias-y-armonizacion",
     "acento": "jade",
-    "resumen": "Espacios de armonización que forman parte de las propuestas de Tacu.",
+    "ilustracion": "ondas",
+    "kicker": "En Tacu",
+    "seoTitle": "Armonizaciones en Tacu, sierras de Córdoba",
+    "seoDescription": "Armonizaciones con Lucía Di Mauro en Tacu, espacio holístico en las sierras de Córdoba.",
+    "resumen": "Espacios de armonización en Tacu, parte de las herramientas que Lucía comparte para crecer con Amor.",
+    "lead": "Herramientas para crecer con Amor.",
+    "modalidad": "Presencial",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "Las armonizaciones son parte de las propuestas que Lucía comparte en Tacu, todas orientadas a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación."
+    ],
+    "bloques": [
+      {
+        "tipo": "cita",
+        "texto": "Siempre estamos a tiempo de volver a la pureza de nuestro ser, sea lo que sea que nos haya tocado pasar en la vida.",
+        "enlace": "/recursos/somos-los-cuatro-elementos/",
+        "fuente": "Del escrito «Somos los cuatro elementos»"
+      }
+    ],
+    "relacionadas": [
+      "terapia-vibracional-tameana",
+      "yoga"
+    ],
     "waMensaje": "Hola Lucía, quisiera información sobre las armonizaciones."
   },
   {
     "slug": "yoga",
     "titulo": "Yoga",
-    "categoria": "Otras propuestas en Tacu",
+    "nombreCorto": "Yoga",
+    "categoria": "cuerpo-y-aprendizaje",
     "acento": "salvia",
-    "modalidad": "En Tacu",
-    "resumen": "Clases de yoga en Tacu, el espacio holístico en las sierras de Córdoba.",
+    "ilustracion": "respiracion",
+    "kicker": "Clases · En Tacu",
+    "seoTitle": "Clases de yoga en Tacu, sierras de Córdoba",
+    "seoDescription": "Clases de yoga en Tacu, espacio holístico de Lucía Di Mauro en las sierras de Córdoba.",
+    "resumen": "Clases de yoga en Tacu, en las sierras de Córdoba.",
+    "lead": "Cuerpo, respiración y atención, en las sierras de Córdoba.",
+    "formato": "Clases",
+    "modalidad": "Presencial",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "En Tacu también se comparten clases de yoga, junto a las ceremonias, las rondas y los talleres del espacio."
+    ],
+    "bloques": [
+      {
+        "tipo": "texto",
+        "titulo": "Yoga",
+        "contexto": true,
+        "parrafos": [
+          "Yoga es una palabra sánscrita que suele traducirse como «unión». Es una práctica que reúne posturas, respiración y atención."
+        ]
+      }
+    ],
+    "relacionadas": [
+      "armonizaciones",
+      "clases-de-ingles"
+    ],
+    "instagram": "tacu_espacioholistico",
     "waMensaje": "Hola Lucía, quisiera información sobre las clases de yoga en Tacu."
   },
   {
     "slug": "clases-de-ingles",
     "titulo": "Clases de inglés",
-    "categoria": "Otras propuestas en Tacu",
+    "nombreCorto": "Inglés",
+    "categoria": "cuerpo-y-aprendizaje",
     "acento": "agua",
-    "resumen": "Clases de inglés, otra de las herramientas que comparte en Tacu para seguir aprendiendo y creciendo.",
+    "ilustracion": "palabras",
+    "kicker": "Clases · En Tacu",
+    "seoTitle": "Clases de inglés en Tacu, sierras de Córdoba",
+    "seoDescription": "Clases de inglés con Lucía Di Mauro en Tacu, espacio holístico en las sierras de Córdoba.",
+    "resumen": "Clases de inglés en Tacu, porque el aprendizaje también es parte del camino.",
+    "lead": "Porque el aprendizaje también es parte del camino.",
+    "formato": "Clases",
+    "lugar": "Tacu, sierras de Córdoba",
+    "intro": [
+      "Entre las propuestas de Tacu también hay clases de inglés. Como todo lo que se comparte en el espacio, apuntan a la evolución consciente del ser y al aprendizaje."
+    ],
+    "bloques": [],
+    "relacionadas": [
+      "yoga",
+      "talleres-de-canto"
+    ],
     "waMensaje": "Hola Lucía, quisiera información sobre las clases de inglés."
   }
 ]

@@ -1,0 +1,10 @@
+{# La ronda: personas en círculo alrededor del fuego #}
+<svg class="illu illu--ronda" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+  <circle class="draw" pathLength="1" cx="100" cy="100" r="58"/>
+  <g class="illu__ring">
+    {% for i in range(0, 8) %}{% set a = i * 45 %}
+    <g transform="rotate({{ a }} 100 100)"><circle cx="100" cy="30" r="7"/><path d="M90 50c2-8 18-8 20 0"/></g>
+    {% endfor %}
+  </g>
+  <path class="illu__flame" d="M100 116c-12-6-12-20 0-34 2 10 12 12 8 24-2 6-5 9-8 10z" fill="currentColor" stroke="none" opacity=".8"/>
+</svg>

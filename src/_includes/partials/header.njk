@@ -1,4 +1,3 @@
-{%- set navUrls = [] %}{% for item in navigation %}{% set navUrls = (navUrls.push(item.url), navUrls) %}{% endfor %}
 <header class="site-header" data-header>
   <div class="container site-header__inner">
     <a class="brand" href="/" aria-label="{{ site.brand }}, ir al inicio">
@@ -10,12 +9,38 @@
       <span class="visually-hidden">Abrir menú</span>
     </button>
     <nav class="site-nav" id="menu" aria-label="Principal" data-nav>
-      <ul>
+      <ul class="site-nav__list">
         {%- for item in navigation %}
-        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url) and not (page.url in navUrls)) %}
+        {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
+        {%- if item.menu %}
+        <li class="has-mega" data-mega>
+          <a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a>
+          <button class="mega-toggle" type="button" aria-expanded="false" aria-controls="mega-propuestas" data-mega-toggle>
+            <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 4.5 6 8l4-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Ver propuestas por categoría</span>
+          </button>
+          <div class="mega" id="mega-propuestas" data-mega-panel>
+            <div class="mega__inner">
+              {% for cat in categorias %}
+              <div class="mega__col accent-{{ cat.acento }}">
+                <p class="mega__cat">{{ cat.nombre }}</p>
+                <ul>
+                  {% for p in propuestas | deCategoria(cat.id) %}
+                  <li><a href="/propuestas/{{ p.slug }}/"{% if page.url == '/propuestas/' + p.slug + '/' %} aria-current="page"{% endif %}><span class="mega__dot accent-{{ p.acento }}" aria-hidden="true"></span>{{ p.nombreCorto or p.titulo }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endfor %}
+              <a class="mega__all" href="/propuestas/">Ver todas las propuestas <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </li>
+        {%- else %}
         <li><a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endif %}
         {%- endfor %}
       </ul>
+      <a class="btn btn--primary site-nav__cta" href="{{ (waMessage or site.waMessages.general) | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime</a>
     </nav>
   </div>
 </header>

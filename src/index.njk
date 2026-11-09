@@ -1,37 +1,53 @@
 ---
 layout: layouts/base.njk
 title: "Lucía Di Mauro · Mujer Medicina en Córdoba"
-description: "Lucía Di Mauro, mujer medicina, música y tejedora en las sierras de Córdoba. Transmisión de cantos medicina, ceremonias de temazcal, rondas, talleres y Tameana."
+description: "Lucía Di Mauro, mujer medicina, música y tejedora en las sierras de Córdoba: cantos medicina, ceremonias de temazcal, talleres, Tameana y Tacu."
 bodyClass: home
 ---
 {%- set destacada = propuestas | selectattr("destacada") | first %}
 
-<section class="hero">
+{# ================= HERO ================= #}
+<section class="hero" data-hero>
+  <div class="hero__bg" aria-hidden="true">
+    <span class="blob blob--a" data-parallax="0.1"></span>
+    <span class="blob blob--b" data-parallax="-0.06"></span>
+  </div>
   <div class="container hero__grid">
-    <div>
+    <div class="hero__text">
       <p class="eyebrow" data-reveal>{{ site.person }} · {{ site.spiritName | replace("Mujer Medicina ", "") }}</p>
-      <h1 data-reveal>Mujer <em>Medicina</em></h1>
-      <p class="hero__roles" data-reveal>{% for r in site.roles %}{% if not loop.first %}{{ r }}{% if not loop.last %} · {% endif %}{% endif %}{% endfor %}</p>
+      <h1 class="hero__title split" data-split>{{ "Mujer Medicina" | palabras | safe }}</h1>
+      <p class="roles" data-reveal>
+        <span class="visually-hidden">{{ site.roles | join(", ") }}</span>
+        <span class="roles__track" aria-hidden="true" data-roles>
+          {% for r in site.roles | rest %}<span class="roles__item{% if loop.first %} is-active{% endif %}">{{ r }}</span>{% endfor %}
+        </span>
+      </p>
       <p class="lead" data-reveal data-reveal-delay="1">{{ site.tagline }}</p>
       <div class="btn-row" data-reveal data-reveal-delay="2">
-        <a class="btn btn--primary" href="/propuestas/">Conocer las propuestas</a>
+        <a class="btn btn--primary" href="#universo" data-magnetic>Explorar las propuestas</a>
         <a class="btn btn--ghost" href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime</a>
       </div>
     </div>
     <div class="hero__visual" aria-hidden="true">
-      <div class="hero__halo"></div>
-      <div class="hero__mandala">
-        <img src="/assets/img/logo-mandala-376.webp" srcset="/assets/img/logo-mandala-192.webp 192w, /assets/img/logo-mandala-376.webp 376w" sizes="(min-width: 900px) 420px, 78vw" width="376" height="376" alt="" fetchpriority="high">
+      <div class="hero__halo" data-parallax="0.04"></div>
+      <div class="hero__orbit">
+        <span class="orbit-dot accent-coral"></span><span class="orbit-dot accent-agua"></span>
+        <span class="orbit-dot accent-jade"></span><span class="orbit-dot accent-ocre"></span>
+      </div>
+      <div class="hero__mandala" data-parallax="-0.05">
+        <img src="/assets/img/logo-mandala-376.webp" srcset="/assets/img/logo-mandala-192.webp 192w, /assets/img/logo-mandala-376.webp 376w" sizes="(min-width: 900px) 420px, 70vw" width="376" height="376" alt="" fetchpriority="high">
       </div>
     </div>
   </div>
+  <a class="scroll-cue" href="#bienvenida" aria-label="Bajar a la bienvenida"><span></span></a>
 </section>
 
-<section class="section section--soft">
+{# ================= BIENVENIDA ================= #}
+<section class="section section--soft" id="bienvenida">
   <div class="container intro">
     <div class="intro__text">
       <p class="eyebrow" data-reveal>Bienvenida, bienvenido</p>
-      <h2 data-reveal>Somos el agua, somos el fuego, somos la tierra, somos el viento</h2>
+      <h2 class="split" data-split>{{ "Somos el agua, somos el fuego, somos la tierra, somos el viento" | palabras | safe }}</h2>
       <p data-reveal>Estamos compuestos por los cuatro elementos. No solo de ellos estamos hechos: también son parte del mundo que nos rodea, y son lo que nos da vida. Por eso necesitamos volver a recordar quiénes somos.</p>
       <p data-reveal>Hay algo en nuestras células que recuerda de qué estamos hechos. Siempre estamos a tiempo de volver a la pureza de nuestro ser. El canto, el tambor, la sonaja y el ritual son medicinas que nos ayudan a sacar el polvo que nos nubla.</p>
       <p data-reveal>Estoy aquí para acompañarte en este viaje, en este recorrido hacia tu propia verdad.</p>
@@ -46,64 +62,128 @@ bodyClass: home
   </div>
 </section>
 
+{# ================= UNIVERSO DE PROPUESTAS ================= #}
+<section class="section universe-section" id="universo">
+  <div class="container">
+    <div class="section__head center">
+      <p class="eyebrow" data-reveal>Propuestas</p>
+      <h2 class="split" data-split>{{ "Un universo para recorrer" | palabras | safe }}</h2>
+      <p class="lead" data-reveal>Cada propuesta tiene su propio espacio. Pasá por encima o tocá cada una para conocerla.</p>
+    </div>
+
+    <ul class="legend" aria-label="Categorías" data-reveal>
+      {% for c in categorias %}<li><button type="button" class="legend__btn accent-{{ c.acento }}" data-legend="{{ c.id }}"><span class="mega__dot accent-{{ c.acento }}" aria-hidden="true"></span>{{ c.nombre }}</button></li>{% endfor %}
+    </ul>
+
+    <div class="universe" data-universe>
+      <div class="universe__center" aria-live="polite">
+        <div class="universe__default" data-u-default>
+          <img src="/assets/img/logo-mandala-192.webp" width="96" height="96" alt="" loading="lazy">
+          <p>{{ propuestas.length }} propuestas<br><span>para crecer con Amor</span></p>
+        </div>
+        <div class="universe__detail" data-u-detail hidden>
+          <p class="eyebrow" data-u-kicker></p>
+          <p class="universe__title" data-u-title></p>
+          <p class="universe__text" data-u-text></p>
+          <a class="card__link" data-u-link href="/propuestas/">Conocer <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <svg class="universe__rings" viewBox="0 0 600 600" aria-hidden="true"><circle cx="300" cy="300" r="250"/><circle cx="300" cy="300" r="180"/></svg>
+      <ul class="universe__list">
+        {% for p in propuestas %}
+        {%- set pc = categorias | categoria(p.categoria) %}
+        <li class="u-node accent-{{ p.acento }}" style="--a:{{ (loop.index0 / propuestas.length) * 360 - 90 }}deg" data-cat="{{ p.categoria }}">
+          <a href="/propuestas/{{ p.slug }}/" data-u-node data-kicker="{{ pc.nombre }}" data-title="{{ p.titulo }}" data-text="{{ p.resumen }}">
+            <span class="u-node__icon" aria-hidden="true">{% include "ilustraciones/" + p.ilustracion + ".njk" %}</span>
+            <span class="u-node__label">{{ p.nombreCorto or p.titulo }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--ghost" href="/propuestas/">Ver todas por categoría</a></p>
+  </div>
+</section>
+
+{# ================= DESTACADA ================= #}
 {% if destacada %}
-<section class="section">
+<section class="section section--tight">
   <div class="container">
     <article class="feature accent-{{ destacada.acento }}" data-reveal>
       <div class="feature__body">
-        <p class="eyebrow">{{ destacada.formato }} · {{ destacada.modalidad }}</p>
+        <p class="eyebrow">{{ destacada.kicker }}</p>
         <h2>{{ destacada.titulo }}</h2>
         <p class="lead">{{ destacada.resumen }}</p>
         <div class="btn-row">
-          <a class="btn btn--primary" href="/propuestas/{{ destacada.slug }}/">Ver el ciclo completo</a>
+          <a class="btn btn--light" href="/propuestas/{{ destacada.slug }}/" data-magnetic>Ver el ciclo completo</a>
           <a class="btn btn--ghost" href="{{ destacada | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar fechas</a>
         </div>
       </div>
-      {% if destacada.elementos %}
       <ol class="feature__elements" aria-label="Un elemento por encuentro">
-        {% for e in destacada.elementos %}<li class="accent-{{ e.acento }}"><span class="element__n">{{ loop.index }}</span> {{ e.nombre }}</li>{% endfor %}
+        {% for e in [["Fuego","coral"],["Agua","agua"],["Aire","jade"],["Tierra","ocre"]] %}<li class="accent-{{ e[1] }}"><span class="element__n">{{ loop.index }}</span> {{ e[0] }}</li>{% endfor %}
       </ol>
-      {% endif %}
     </article>
   </div>
 </section>
 {% endif %}
 
+{# ================= CAMINO ================= #}
 <section class="section">
   <div class="container">
     <div class="section__head">
-      <p class="eyebrow" data-reveal>Propuestas</p>
-      <h2 data-reveal>Lo que comparto</h2>
-      <p class="lead" data-reveal>Ceremonias, rondas de canto, talleres y terapias, compartiendo y facilitando herramientas que nos ayuden a crecer con Amor.</p>
+      <p class="eyebrow" data-reveal>Su recorrido</p>
+      <h2 class="split" data-split>{{ "Un camino que se fue tejiendo" | palabras | safe }}</h2>
     </div>
-    <div class="cards">
-      {% for p in propuestas | rejectattr("destacada") %}{% if loop.index <= 6 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
-    </div>
-    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a></p>
+    <ol class="path" data-path>
+      <li data-reveal><span class="path__when">A los 7 años</span><p>Comienza a estudiar música en el conservatorio Félix Garzón, y luego cuatro años más en Collegium.</p></li>
+      <li data-reveal><span class="path__when">A los 16 años</span><p>Se encuentra con una de las plantas maestras que le abriría la puerta a todo su camino espiritual.</p></li>
+      <li data-reveal><span class="path__when">8 años en comunidad</span><p>Se forma y se recibe como mujer medicina. Aprende a guiar temazcales y muchos de los cantos que hoy comparte.</p></li>
+      <li data-reveal><span class="path__when">Danzas del sol y búsqueda de visión</span><p>Participa cuatro años consecutivos en las danzas del sol y sube a la montaña a realizar la búsqueda de visión.</p></li>
+      <li data-reveal><span class="path__when">Hoy</span><p>Vive en las sierras de Córdoba, donde abrió Tacu, y comparte ceremonias, cantos, talleres y terapias.</p></li>
+    </ol>
+    <p data-reveal><a class="card__link" href="/sobre-mi/">Leer su historia completa <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
-<section class="section section--deep">
-  <div class="container narrow center">
-    <p class="eyebrow" data-reveal>Tacu · Espacio holístico</p>
-    <h2 data-reveal>Un algarrobo en las sierras de Córdoba</h2>
-    <p class="lead" data-reveal>Tacu significa algarrobo: árbol sagrado autóctono, medicina y alimento ancestral. Así se llama el espacio donde comparto ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga y talleres.</p>
-    <a class="btn btn--light" href="/tacu/" data-reveal>Conocer Tacu</a>
+{# ================= TACU ================= #}
+<section class="section section--deep tacu-band">
+  <div class="container tacu-band__grid">
+    <div>
+      <p class="eyebrow" data-reveal>Tacu · Espacio holístico</p>
+      <h2 class="split" data-split>{{ "Un algarrobo en las sierras de Córdoba" | palabras | safe }}</h2>
+      <p class="lead" data-reveal>Tacu significa algarrobo: árbol sagrado autóctono, medicina y alimento ancestral. Así se llama el espacio donde comparto ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga y talleres.</p>
+      <a class="btn btn--light" href="/tacu/" data-reveal data-magnetic>Conocer Tacu</a>
+    </div>
+    <div class="tacu-band__tree" data-draw data-parallax="-0.05">{% include "ilustraciones/algarrobo.njk" %}</div>
   </div>
 </section>
 
-{% set ultimo = collections.escritos | first %}
-{% if ultimo %}
+{# ================= ESCRITOS ================= #}
 <section class="section">
-  <div class="container narrow">
-    <p class="eyebrow" data-reveal>Escritos</p>
-    <h2 data-reveal>{{ ultimo.data.title }}</h2>
-    <p class="lead" data-reveal>{{ ultimo.data.description }}</p>
-    <a class="card__link" href="{{ ultimo.url }}" data-reveal>Leer el escrito <span aria-hidden="true">→</span></a>
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>Escritos</p>
+      <h2 data-reveal>Palabras para recordar</h2>
+    </div>
+    <div class="cards cards--2">
+      {% for e in collections.escritos %}
+      <article class="card accent-{{ e.data.acento or 'agua' }}" data-reveal data-spot>
+        <p class="eyebrow">{{ e.date | fechaLarga }}</p>
+        <h3 class="pcard__title"><a class="pcard__link" href="{{ e.url }}">{{ e.data.title }}</a></h3>
+        <p>{{ e.data.description }}</p>
+        <span class="card__link" aria-hidden="true">Leer <span>→</span></span>
+      </article>
+      {% endfor %}
+    </div>
   </div>
 </section>
-{% endif %}
 
-{% set ctaTitle = "Si estás aquí, es porque estás preparada, o preparado" %}
-{% set ctaText = "Escribime y conversamos sobre lo que estás buscando y la propuesta que resuene con vos." %}
-{% include "partials/cta.njk" %}
+{# ================= CONSULTA ================= #}
+<section class="section section--soft">
+  <div class="container narrow">
+    <p class="eyebrow" data-reveal>Si estás aquí, es porque estás preparada, o preparado</p>
+    <h2 data-reveal>Escribime</h2>
+    <p class="lead" data-reveal>Contame qué estás buscando y qué propuesta resuena con vos.</p>
+    {% include "partials/consulta-form.njk" %}
+  </div>
+</section>

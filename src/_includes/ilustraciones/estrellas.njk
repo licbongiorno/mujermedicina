@@ -1,0 +1,11 @@
+{# Las Pléyades: siete estrellas que titilan #}
+<svg class="illu illu--stars" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true">
+  <circle class="illu__orbit" cx="100" cy="100" r="76" stroke-dasharray="1 6" opacity=".45"/>
+  {% set st = [[70,62,7],[104,48,9],[134,70,6],[118,98,8],[86,104,6],[60,124,5],[142,128,7]] %}
+  {% for s in st %}
+  <g class="illu__star" style="--i:{{ loop.index0 }}" transform="translate({{ s[0] }} {{ s[1] }})">
+    <path d="M0 -{{ s[2] * 1.6 }}C1 -2 2 -1 {{ s[2] * 1.6 }} 0C2 1 1 2 0 {{ s[2] * 1.6 }}C-1 2 -2 1 -{{ s[2] * 1.6 }} 0C-2 -1 -1 -2 0 -{{ s[2] * 1.6 }}z" fill="currentColor" stroke="none"/>
+  </g>
+  {% endfor %}
+  <path class="draw" pathLength="1" d="M70 62L104 48 134 70 118 98 86 104 70 62M86 104L60 124M118 98l24 30" opacity=".3"/>
+</svg>

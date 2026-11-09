@@ -1,0 +1,26 @@
+[
+  {
+    "id": "canto-y-ceremonia",
+    "nombre": "Canto y ceremonia",
+    "descripcion": "La voz, el tambor, la sonaja y el fuego: espacios rituales para recordar de qué estamos hechos.",
+    "acento": "coral"
+  },
+  {
+    "id": "saberes-y-oficios",
+    "nombre": "Saberes y oficios",
+    "descripcion": "Talleres para aprender haciendo: el tejido y el sahumo.",
+    "acento": "ocre"
+  },
+  {
+    "id": "terapias-y-armonizacion",
+    "nombre": "Terapias y armonización",
+    "descripcion": "Propuestas desde la vibración, para volver a la pureza del propio ser.",
+    "acento": "jade"
+  },
+  {
+    "id": "cuerpo-y-aprendizaje",
+    "nombre": "Cuerpo y aprendizaje",
+    "descripcion": "Clases en Tacu para habitar el cuerpo y seguir aprendiendo.",
+    "acento": "agua"
+  }
+]

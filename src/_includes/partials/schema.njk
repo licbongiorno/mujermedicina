@@ -41,4 +41,15 @@
   }
 ] %}
 {%- if schemaExtra %}{% set graph = (graph.push(schemaExtra), graph) %}{% endif %}
+{%- if page.url != "/" and not noindex %}
+  {%- set crumbs = [{ "@type": "ListItem", "position": 1, "name": "Inicio", "item": site.url + "/" }] %}
+  {%- for b in breadcrumbs %}{% set crumbs = (crumbs.push({ "@type": "ListItem", "position": loop.index + 1, "name": b.label, "item": b.url | absoluteUrl(site.url) }), crumbs) %}{% endfor %}
+  {%- set crumbs = (crumbs.push({ "@type": "ListItem", "position": crumbs.length + 1, "name": crumbTitle or title }), crumbs) %}
+  {%- set graph = (graph.push({ "@type": "BreadcrumbList", "itemListElement": crumbs }), graph) %}
+{%- endif %}
+{%- if faqItems and faqItems.length %}
+  {%- set qa = [] %}
+  {%- for f in faqItems %}{% set qa = (qa.push({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } }), qa) %}{% endfor %}
+  {%- set graph = (graph.push({ "@type": "FAQPage", "mainEntity": qa }), graph) %}
+{%- endif %}
 <script type="application/ld+json">{{ { "@context": "https://schema.org", "@graph": graph } | json | safe }}</script>

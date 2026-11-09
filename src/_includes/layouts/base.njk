@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {%- set pageTitle = (title + " · " + site.person + ", " + site.brand) if (title and not (site.brand in title)) else (title or site.brand) %}
+  {%- set suffix = (" · " + site.person + ", " + site.brand) if (title and title.length <= 26) else (" · " + site.person) %}
+  {%- set pageTitle = (title + suffix) if (title and not (site.brand in title)) else (title or site.brand) %}
   {%- set pageDesc = description or site.description %}
   {%- set canonical = page.url | absoluteUrl(site.url) %}
   <title>{{ pageTitle }}</title>

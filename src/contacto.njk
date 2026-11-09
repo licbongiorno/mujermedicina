@@ -12,7 +12,9 @@ hero:
 <section class="section">
   <div class="container contact-grid">
     <div class="contact-card contact-card--wide" data-reveal>
-      <h2 class="contact-card__title">WhatsApp</h2>
+      <h2 class="contact-card__title">Escribime</h2>
+      {% include "partials/consulta-form.njk" %}
+      <h3 class="contact-card__sub">O elegí un tema</h3>
       <ul class="wa-topics">
         <li><a href="{{ site.waMessages.general | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consulta general <span aria-hidden="true">→</span></a></li>
         {% for p in propuestas %}<li><a href="{{ p | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">{{ p.titulo }} <span aria-hidden="true">→</span></a></li>{% endfor %}

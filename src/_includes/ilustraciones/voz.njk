@@ -1,0 +1,9 @@
+{# La voz que sale: ondas sonoras que se ordenan #}
+<svg class="illu illu--voz" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+  <g class="illu__bars">
+    {% set hs = [14, 30, 52, 78, 96, 78, 52, 30, 14, 30, 52, 30, 14] %}
+    {% for h in hs %}<line x1="{{ 28 + loop.index0 * 12 }}" y1="{{ 100 - h / 2 }}" x2="{{ 28 + loop.index0 * 12 }}" y2="{{ 100 + h / 2 }}" style="--i:{{ loop.index0 }}"/>{% endfor %}
+  </g>
+  <path class="draw" pathLength="1" d="M20 160c30-14 50 14 80 0s50 14 80 0" opacity=".5"/>
+  <path class="draw" pathLength="1" d="M20 40c30 14 50-14 80 0s50-14 80 0" opacity=".5"/>
+</svg>

@@ -1,17 +1,9 @@
-<article class="card accent-{{ p.acento or 'agua' }}" data-reveal>
-  <div class="card__icon" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="3"/><path d="M12 2c2 3 2 5 0 7-2-2-2-4 0-7Zm0 20c-2-3-2-5 0-7 2 2 2 4 0 7ZM2 12c3-2 5-2 7 0-2 2-4 2-7 0Zm20 0c-3 2-5 2-7 0 2-2 4-2 7 0Z"/></svg>
-  </div>
-  {% if p.categoria %}<p class="eyebrow">{{ p.categoria }}</p>{% endif %}
-  <h3>{{ p.titulo }}</h3>
-  {% if p.modalidad or p.formato %}<p class="card__meta">{{ [p.formato, p.modalidad] | select | join(" · ") }}</p>{% endif %}
+{%- set pc = categorias | categoria(p.categoria) %}
+<article class="card pcard accent-{{ p.acento or 'agua' }}" data-reveal data-spot data-cat="{{ p.categoria }}">
+  <div class="pcard__illu" aria-hidden="true">{% include "ilustraciones/" + p.ilustracion + ".njk" %}</div>
+  <p class="eyebrow">{{ pc.nombre }}</p>
+  <h3 class="pcard__title"><a class="pcard__link" href="/propuestas/{{ p.slug }}/">{{ p.titulo }}</a></h3>
+  {% if p.kicker %}<p class="card__meta">{{ p.kicker }}</p>{% endif %}
   <p>{{ p.resumen }}</p>
-  <div class="card__actions">
-    {% if p.pagina %}
-      <a class="card__link" href="/propuestas/{{ p.slug }}/">Conocer más <span aria-hidden="true">→</span></a>
-    {% else %}
-      <a class="card__link" href="{{ p | waPropuesta | wa(site.whatsapp) }}" target="_blank" rel="noopener">Consultar por WhatsApp <span aria-hidden="true">→</span></a>
-      {% if p.instagram %}<a class="card__ig" href="{{ p.instagram | ig }}" target="_blank" rel="noopener">@{{ p.instagram }}</a>{% endif %}
-    {% endif %}
-  </div>
+  <span class="card__link" aria-hidden="true">Conocer <span>→</span></span>
 </article>

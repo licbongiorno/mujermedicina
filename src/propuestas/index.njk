@@ -1,8 +1,9 @@
 ---
 layout: layouts/base.njk
 title: Propuestas
-description: Cantos medicina, ceremonias de temazcal, talleres, terapia vibracional Tameana, armonizaciones, yoga y más propuestas de Lucía Di Mauro en Córdoba y en forma virtual.
+description: "Propuestas de Lucía Di Mauro: cantos medicina, temazcal, rondas, talleres de canto, Sahúmo, Mandalas tejidas, Tameana, armonizaciones, yoga e inglés."
 permalink: /propuestas/
+breadcrumbs: []
 hero:
   eyebrow: Propuestas
   title: Herramientas para crecer con Amor
@@ -10,12 +11,23 @@ hero:
 waMessage: "Hola Lucía, me gustaría recibir información sobre tus propuestas."
 ---
 {% include "partials/page-hero.njk" %}
-<section class="section">
+<section class="section section--tight">
   <div class="container">
-    {% for cat in propuestas | categorias %}
-      <div class="section__head"><h2 data-reveal>{{ cat }}</h2></div>
-      <div class="cards">{% for p in propuestas %}{% if p.categoria == cat %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
-      {% if not loop.last %}<div class="spacer"></div>{% endif %}
+    <div class="filter" role="group" aria-label="Filtrar por categoría" data-filter>
+      <button type="button" class="filter__btn" aria-pressed="true" data-filter-value="todas">Todas <span>{{ propuestas.length }}</span></button>
+      {% for c in categorias %}
+      <button type="button" class="filter__btn accent-{{ c.acento }}" aria-pressed="false" data-filter-value="{{ c.id }}">{{ c.nombre }} <span>{{ (propuestas | deCategoria(c.id)).length }}</span></button>
+      {% endfor %}
+    </div>
+
+    {% for c in categorias %}
+    <section class="cat-block" id="{{ c.id }}" data-cat-block="{{ c.id }}">
+      <div class="section__head">
+        <h2 data-reveal>{{ c.nombre }}</h2>
+        <p class="lead" data-reveal>{{ c.descripcion }}</p>
+      </div>
+      <div class="cards">{% for p in propuestas | deCategoria(c.id) %}{% include "partials/propuesta-card.njk" %}{% endfor %}</div>
+    </section>
     {% endfor %}
   </div>
 </section>

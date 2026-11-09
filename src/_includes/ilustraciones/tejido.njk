@@ -1,0 +1,8 @@
+{# Mandala tejida: hilos que giran sobre la cruz de palitos #}
+<svg class="illu illu--tejido" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+  <g class="illu__weave">
+    {% for r in [18, 30, 42, 54, 66] %}<rect class="draw" pathLength="1" x="{{ 100 - r }}" y="{{ 100 - r }}" width="{{ r * 2 }}" height="{{ r * 2 }}" transform="rotate(45 100 100)" opacity="{{ 1 - loop.index0 * 0.14 }}" style="--d:{{ loop.index0 * 0.18 }}s"/>{% endfor %}
+  </g>
+  <path d="M100 4v192M4 100h192" stroke-width="2.2" opacity=".85"/>
+  <path class="illu__fleco" d="M100 196c-4 0-6-4-6-8M100 196c4 0 6-4 6-8" opacity=".6"/>
+</svg>
