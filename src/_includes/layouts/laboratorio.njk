@@ -1,0 +1,76 @@
+---
+layout: layouts/base.njk
+bodyClass: lab-page
+---
+{%- set vec = collections.laboratorios | vecinos(page.url) %}
+<div class="read-progress" aria-hidden="true"><span data-read-progress></span></div>
+<div class="accent-{{ acento or 'agua' }}">
+  <header class="lab-hero" data-hero>
+    <div class="lab-hero__bg" aria-hidden="true"><span class="blob blob--a" data-parallax="0.08"></span></div>
+    <div class="container">
+      {% include "partials/breadcrumbs.njk" %}
+      <div class="lab-hero__grid">
+        <div>
+          <p class="eyebrow" data-reveal>Laboratorio {{ ("0" + orden) if orden < 10 else orden }} · {{ tipo }}</p>
+          <h1 class="split" data-split>{{ (nombre or title) | palabras | safe }}</h1>
+          <p class="lead" data-reveal data-reveal-delay="1">{{ description }}</p>
+          <ul class="chips" aria-label="Sobre este laboratorio" data-reveal data-reveal-delay="2">
+            <li>{% include "partials/lab-icon.njk" %}{{ tipo }}</li>
+            {% if minutos %}<li><svg class="ui-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Unos {{ minutos }} minutos</li>{% endif %}
+            {% if interaccion %}<li><svg class="ui-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v5l4.5.8a2 2 0 0 1 1.6 2.3l-.9 5A3 3 0 0 1 15.3 21H11a3 3 0 0 1-2.4-1.2L5 15l1.3-1.2a1.6 1.6 0 0 1 2.2 0L9 14.3"/></svg>{{ interaccion }}</li>{% endif %}
+          </ul>
+        </div>
+        <div class="lab-hero__visual" aria-hidden="true" data-draw>
+          <div class="illu-frame">{% include "ilustraciones/" + ilustracion + ".njk" %}</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container lab-layout">
+    <nav class="lab-index" aria-label="Partes del laboratorio" data-lab-index>
+      <p class="lab-index__t">Recorrido</p>
+      <ol>
+        {% for s in [["introduccion","Introducción"],["objetivo","Objetivo"],["explorar","Explorar"],["comprender","Comprender"],["cierre","Cierre"]] %}
+        <li><a href="#{{ s[0] }}">{{ s[1] }}</a></li>
+        {% endfor %}
+      </ol>
+    </nav>
+    <div class="lab-main" data-article>
+      {{ content | safe }}
+
+      <aside class="lab-origen" aria-label="Sobre el origen de este contenido">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+        <div>
+          <p><strong>Cómo se armó este laboratorio.</strong> {% if origen %}{{ origen }}{% else %}Es una actividad de exploración creada para esta web a partir de los textos de Lucía. Lo marcado como <em>Palabras de Lucía</em> es textual; lo marcado como <em>Contexto general</em> explica la práctica en general y no es una enseñanza suya.{% endif %}</p>
+          {% if fuentes and fuentes.length %}<p class="lab-origen__src">Basado en: {% for f in fuentes %}<a href="{{ f.url }}">{{ f.titulo }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+        </div>
+      </aside>
+      {% include "partials/compartir.njk" %}
+    </div>
+  </div>
+
+  {%- set rel = propuestas | porSlug(propuestasLab) %}
+  {% if rel.length %}
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow" data-reveal>Para vivirlo en persona</p>
+        <h2 data-reveal>Las propuestas de este laboratorio</h2>
+      </div>
+      <div class="cards">{% for p in rel %}{% include "partials/propuesta-card.njk" %}{% endfor %}</div>
+    </div>
+  </section>
+  {% endif %}
+
+  <nav class="lab-nav section section--soft section--tight" aria-label="Otros laboratorios">
+    <div class="container lab-nav__grid">
+      {% if vec.prev %}<a class="lab-nav__link lab-nav__link--prev" href="{{ vec.prev.url }}"><span class="lab-nav__dir">← Anterior</span><span class="lab-nav__t">{{ vec.prev.data.nombre or vec.prev.data.title }}</span></a>{% else %}<span></span>{% endif %}
+      <a class="lab-nav__all" href="/laboratorios/">Todos los laboratorios</a>
+      {% if vec.next %}<a class="lab-nav__link lab-nav__link--next" href="{{ vec.next.url }}"><span class="lab-nav__dir">Siguiente →</span><span class="lab-nav__t">{{ vec.next.data.nombre or vec.next.data.title }}</span></a>{% else %}<span></span>{% endif %}
+    </div>
+  </nav>
+</div>
+{% set ctaTitle = ctaTitle or "¿Querés vivirlo en persona?" %}
+{% set ctaText = "Los laboratorios son una puerta de entrada. La experiencia completa sucede en los encuentros: escribime y te cuento." %}
+{% include "partials/cta.njk" %}

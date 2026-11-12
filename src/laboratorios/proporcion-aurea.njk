@@ -1,0 +1,129 @@
+---
+title: "Proporción áurea y Fibonacci"
+nombre: Proporción áurea
+description: "Construí la espiral de Fibonacci cuadrado a cuadrado, compará proporciones y mirá cómo el ángulo áureo reparte semillas como en un girasol. Matemática, naturaleza y creatividad."
+orden: 7
+tipo: Geometría
+interaccion: Construir y comparar
+minutos: 10
+acento: salvia
+ilustracion: aurea
+propuestasLab: ["taller-mandalas-tejidas"]
+origen: "Es una actividad de exploración creada para esta web. No forma parte de las enseñanzas de Lucía: la proporción áurea es el criterio de diseño con el que se compuso este sitio, y aquí se explica cómo funciona."
+fuentes:
+  - { titulo: "Laboratorio de mandalas", url: "/laboratorios/mandalas/" }
+ratios:
+  - { id: "1", nombre: "1 : 1", valor: 1, nota: "El cuadrado. Al quitarle un cuadrado no queda nada." }
+  - { id: "r2", nombre: "1 : √2", valor: 1.41421, nota: "La hoja A4. Al doblarla por la mitad conserva su forma." }
+  - { id: "32", nombre: "2 : 3", valor: 1.5, nota: "Una proporción clásica de la fotografía." }
+  - { id: "phi", nombre: "1 : φ", valor: 1.61803, nota: "El rectángulo áureo. Al quitarle un cuadrado, lo que queda tiene la misma forma." }
+  - { id: "169", nombre: "9 : 16", valor: 1.77778, nota: "La pantalla de un video apaisado." }
+---
+{% labsec "introduccion", "01", "Introducción" %}
+<div class="prose">
+  <p data-reveal>Esta web está compuesta con una estructura casi invisible: columnas que se relacionan en 1 a 1,618, tamaños de letra que crecen de a un paso de esa misma proporción y espacios que siguen la sucesión 8, 13, 21, 34, 55, 89. Este laboratorio muestra de dónde salen esos números.</p>
+</div>
+<div class="tres-miradas" data-reveal>
+  <div class="tres-miradas__item tres-miradas__item--mat"><p class="tres-miradas__t">Matemática verificable</p><p>Propiedades que se pueden demostrar o medir.</p></div>
+  <div class="tres-miradas__item tres-miradas__item--arte"><p class="tres-miradas__t">Interpretación artística</p><p>Decisiones de diseño: usar φ porque resulta equilibrado a la vista.</p></div>
+  <div class="tres-miradas__item tres-miradas__item--sim"><p class="tres-miradas__t">Significado simbólico</p><p>Lo que distintas culturas proyectaron sobre la forma. No es una prueba de nada.</p></div>
+</div>
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Construir con tus propias manos la espiral de Fibonacci, comparar la proporción áurea con otras proporciones conocidas y ver por qué el ángulo áureo reparte tan bien las semillas de una flor.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<h3 class="lab-h3" data-reveal>1 · Cuadrado a cuadrado</h3>
+<p class="lab-instr" data-reveal>Cada cuadrado nuevo tiene el lado de la suma de los dos anteriores: 1, 1, 2, 3, 5, 8, 13… Sumá cuadrados y mirá cómo el cociente entre los dos últimos se acerca a φ.</p>
+<div class="fibo" data-lab="fibo">
+  <div class="fibo__lienzo"><svg class="fibo__svg" viewBox="0 0 100 100" aria-hidden="true" data-fibo-svg><g data-fibo-g></g></svg></div>
+  <div class="fibo__panel">
+    <p class="fibo__serie" aria-live="polite" data-fibo-serie>1, 1</p>
+    <dl class="fibo__dato">
+      <div><dt>Último ÷ anterior</dt><dd data-fibo-cociente>1</dd></div>
+      <div><dt>Diferencia con φ</dt><dd data-fibo-dif>0,618</dd></div>
+    </dl>
+    <div class="altar-lab__final">
+      <button type="button" class="exp__btn exp__btn--play" data-fibo-mas>Sumar un cuadrado</button>
+      <button type="button" class="exp__btn" data-fibo-menos>Quitar</button>
+      <button type="button" class="exp__btn" data-fibo-espiral aria-pressed="true">Espiral: sí</button>
+    </div>
+  </div>
+</div>
+
+<h3 class="lab-h3" data-reveal>2 · Comparar proporciones</h3>
+<p class="lab-instr" data-reveal>Elegí una proporción. A cada rectángulo se le quita el cuadrado más grande posible: solo en el áureo, lo que queda tiene la misma forma que el original.</p>
+<div class="ratios" data-lab="ratios">
+  <div class="ratios__opts" role="group" aria-label="Proporciones">
+    {% for r in ratios %}<button type="button" class="filter__btn" aria-pressed="{{ 'true' if r.id == 'phi' else 'false' }}" data-ratio="{{ r.valor }}" data-nota="{{ r.nota }}">{{ r.nombre }}</button>{% endfor %}
+  </div>
+  <div class="ratios__lienzo"><svg class="ratios__svg" viewBox="0 0 178 110" aria-hidden="true" data-ratio-svg></svg></div>
+  <p class="exp__caption" aria-live="polite" data-ratio-t>1 : 1,618</p>
+  <p class="ratios__nota" data-ratio-nota>El rectángulo áureo. Al quitarle un cuadrado, lo que queda tiene la misma forma.</p>
+</div>
+
+<h3 class="lab-h3" data-reveal>3 · Semillas de girasol</h3>
+<p class="lab-instr" data-reveal>Cada semilla nueva gira un ángulo fijo respecto de la anterior. Mové el ángulo: casi cualquier valor deja rayos o huecos; con 137,5° —el ángulo áureo— las semillas llenan el disco de forma pareja.</p>
+<div class="girasol" data-lab="girasol">
+  <div class="girasol__lienzo"><svg class="girasol__svg" viewBox="-100 -100 200 200" role="img" aria-label="Disco de semillas" data-girasol-svg><g data-girasol-g></g></svg></div>
+  <form class="girasol__panel" data-girasol-form>
+    <label class="field" for="g-angulo"><span class="field__label">Ángulo <output data-g-out="angulo">137,5°</output></span>
+      <input type="range" id="g-angulo" name="angulo" min="130" max="145" step="0.1" value="137.5"></label>
+    <label class="field" for="g-semillas"><span class="field__label">Semillas <output data-g-out="semillas">377</output></span>
+      <input type="range" id="g-semillas" name="semillas" min="21" max="610" step="1" value="377"></label>
+    <div class="altar-lab__final">
+      <button type="button" class="exp__btn exp__btn--play" data-g-aureo>Volver a 137,5°</button>
+      <button type="button" class="exp__btn" data-g-crecer>Ver crecer</button>
+    </div>
+    <p class="exp__caption" aria-live="polite" data-g-estado>Ángulo áureo</p>
+  </form>
+</div>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+<div class="miradas">
+  <section class="mirada mirada--mat" data-reveal>
+    <p class="tres-miradas__t">Matemática verificable</p>
+    <ul>
+      <li>φ = (1 + √5) ÷ 2 = 1,6180339887… Es un número irracional: sus decimales no terminan ni se repiten.</li>
+      <li>Es el único número positivo que cumple φ² = φ + 1. Por eso, al quitarle un cuadrado a un rectángulo áureo, queda otro rectángulo áureo.</li>
+      <li>En la sucesión de Fibonacci (1, 1, 2, 3, 5, 8, 13, 21…), el cociente entre un número y el anterior se acerca cada vez más a φ.</li>
+      <li>El ángulo áureo mide 360° ÷ φ² ≈ 137,508°. Como φ es «el más irracional» de los números, ese giro casi nunca alinea dos semillas.</li>
+    </ul>
+  </section>
+  <section class="mirada mirada--nat" data-reveal>
+    <p class="tres-miradas__t">Observación en la naturaleza</p>
+    <ul>
+      <li>En muchas plantas —girasoles, piñas, algunas suculentas— las espirales visibles suelen contarse en números consecutivos de Fibonacci, como 34 y 55.</li>
+      <li>No es una ley universal: hay plantas con otros patrones y muchas excepciones. Se explica por cómo crecen los brotes en el ápice, no por una intención estética.</li>
+      <li>La espiral de una caracola, en cambio, es logarítmica pero en general no es áurea.</li>
+    </ul>
+  </section>
+  <section class="mirada mirada--arte" data-reveal>
+    <p class="tres-miradas__t">Interpretación artística</p>
+    <ul>
+      <li>En esta web, φ ordena: columnas de texto e imagen en 1,618 : 1, títulos que crecen en potencias de φ, espacios de 8, 13, 21, 34, 55 y 89 píxeles, animaciones que duran 0,34 · 0,55 · 0,89 segundos.</li>
+      <li>Es un criterio, no una regla: cuando una medida más simple se lee mejor, se usa la simple.</li>
+    </ul>
+  </section>
+  <section class="mirada mirada--sim" data-reveal>
+    <p class="tres-miradas__t">Significado simbólico, y sus límites</p>
+    <ul>
+      <li>Desde hace siglos se la llamó «divina proporción» y se la asoció con la armonía y la belleza. Es una lectura cultural, valiosa como imagen.</li>
+      <li>Muchas afirmaciones populares —que el cuerpo humano, el Partenón o ciertas pinturas siguen φ con exactitud— no se sostienen al medir.</li>
+      <li>No hay evidencia de que mirar o usar la proporción áurea tenga efectos sobre la salud o el bienestar.</li>
+    </ul>
+  </section>
+</div>
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Un número que se repite al quitar un cuadrado, una sucesión que lo persigue y un giro que reparte semillas sin dejar huecos. Matemática que se puede comprobar, y que la naturaleza muestra a menudo, aunque no siempre.</p>
+  <p data-reveal>Para seguir jugando, el <a href="/laboratorios/mandalas/">generador de mandalas</a> tiene un modo Fibonacci: las puntas crecen 5, 8, 13, 21… y cada vuelta es φ veces más ancha que la anterior.</p>
+</div>
+{% endlabsec %}

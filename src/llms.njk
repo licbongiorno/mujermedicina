@@ -14,6 +14,10 @@ eleventyExcludeFromCollections: true
 ## Escritos
 {% for e in collections.escritos %}- [{{ e.data.title | safe }}]({{ e.url | absoluteUrl(site.url) }}): {{ e.data.description | safe }}
 {% endfor %}
+## Laboratorios interactivos
+Actividades de exploración creadas para la web a partir de los textos de Lucía (no son enseñanzas suyas).
+{% for l in collections.laboratorios %}- [{{ l.data.nombre | safe }}]({{ l.url | absoluteUrl(site.url) }}) ({{ l.data.tipo }}): {{ l.data.description | safe }}
+{% endfor %}
 ## Más
 - Contenido completo: {{ "/llms-full.txt" | absoluteUrl(site.url) }}
 

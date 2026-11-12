@@ -116,6 +116,20 @@ bodyClass: landing
           {% endif %}
         {% endfor %}
 
+        {%- set labsRel = collections.laboratorios | labsDePropuesta(p.slug) %}
+        {% if labsRel.length %}
+        <section class="lab-teaser" aria-labelledby="labs-{{ p.slug }}">
+          <h2 id="labs-{{ p.slug }}" data-reveal>Para explorar antes de venir</h2>
+          {% for l in labsRel %}
+          <a class="lab-teaser__item" href="{{ l.url }}" data-reveal>
+            <span class="lab-teaser__illu" aria-hidden="true">{% include "ilustraciones/" + l.data.ilustracion + ".njk" %}</span>
+            <span><small>Laboratorio · {{ l.data.tipo }}</small><strong>{{ l.data.nombre }}</strong><small>{{ l.data.description }}</small></span>
+            <span class="lab-teaser__flecha" aria-hidden="true">→</span>
+          </a>
+          {% endfor %}
+        </section>
+        {% endif %}
+
         {% set agendaSlug = p.slug %}{% include "partials/agenda.njk" %}
         {% set testimoniosSlug = p.slug %}{% include "partials/testimonios.njk" %}
 

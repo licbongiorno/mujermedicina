@@ -1,0 +1,11 @@
+{# Postal: un círculo de voces alrededor del fuego, repartidas en partes iguales #}
+<svg class="postal__img" viewBox="0 0 320 240" aria-hidden="true">
+  <rect width="320" height="240" fill="#1F3F45"/>
+  {% for i in range(0, 21) %}<circle cx="{{ (i * 89) % 317 }}" cy="{{ (i * 37 + 9) % 90 }}" r="1" fill="#FCF6DF" opacity=".7"/>{% endfor %}
+  <ellipse cx="160" cy="168" rx="104" ry="40" fill="none" stroke="#5FB0B3" stroke-width="1.2" stroke-dasharray="3 5"/>
+  {% for i in range(0, 8) %}
+  <circle cx="{{ (160 + 104 * [1, 0.7071, 0, -0.7071, -1, -0.7071, 0, 0.7071][i]) | round(1) }}" cy="{{ (168 + 40 * [0, 0.7071, 1, 0.7071, 0, -0.7071, -1, -0.7071][i]) | round(1) }}" r="9" fill="#DDF0F0" stroke="#85CFD1" stroke-width="1.5"/>
+  {% endfor %}
+  <path d="M160 176c-12 0-18-8-18-17 0-8 5-12 8-17 1 4 4 5 5 7 1-7 4-11 9-15 0 9 12 13 12 25 0 9-6 17-16 17z" fill="#F2A29B" stroke="#FCE9E6" stroke-width="1.4"/>
+  <path d="M156 132c-6-8 6-12 0-20s6-12 0-18" fill="none" stroke="#9AAAAC" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+</svg>

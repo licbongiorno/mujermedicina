@@ -1,0 +1,10 @@
+{# Postal: vainas de algarrobo, largas y curvas, colgando de una rama #}
+<svg class="postal__img" viewBox="0 0 320 240" aria-hidden="true">
+  <rect width="320" height="240" fill="#FBF8F0"/>
+  <path d="M-10 52c80 8 170 2 340-22" fill="none" stroke="#3B7A5C" stroke-width="5" stroke-linecap="round"/>
+  {% for v in [[58, 56, 14, 150], [96, 57, -10, 170], [140, 55, 18, 140], [184, 50, -14, 176], [230, 43, 10, 150], [270, 37, -8, 130]] %}
+  <path d="M{{ v[0] }} {{ v[1] }}c{{ v[2] }} {{ v[3] * 0.33 }} {{ -v[2] }} {{ v[3] * 0.66 }} {{ v[2] * 0.8 }} {{ v[3] }}" fill="none" stroke="#C9A06E" stroke-width="10" stroke-linecap="round"/>
+  <path d="M{{ v[0] }} {{ v[1] }}c{{ v[2] }} {{ v[3] * 0.33 }} {{ -v[2] }} {{ v[3] * 0.66 }} {{ v[2] * 0.8 }} {{ v[3] }}" fill="none" stroke="#8C6B4E" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 12" opacity=".8"/>
+  {% endfor %}
+  {% for h in [[78, 46], [120, 50], [164, 46], [208, 40], [252, 34]] %}<path d="M{{ h[0] }} {{ h[1] }}c-8-10-4-20 6-24 4 10 0 18-6 24z" fill="#AFD49A" stroke="#3F6A2E" stroke-width="1.2"/>{% endfor %}
+</svg>

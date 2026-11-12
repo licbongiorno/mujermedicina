@@ -9,11 +9,16 @@ eleventyExcludeFromCollections: true
   <div class="container narrow center">
     <img src="/assets/img/logo-mandala-192.webp" width="120" height="120" alt="" style="margin:0 auto var(--space-3)" class="breathe">
     <h1 style="font-size:var(--fs-h2)">Este camino no lleva a ningún lado</h1>
-    <p class="lead">Puede que la página haya cambiado de lugar. Quizás alguna de estas propuestas es lo que estabas buscando:</p>
+    <p class="lead">Puede que la página haya cambiado de lugar. Buscala, o quizás alguna de estas propuestas es lo que estabas buscando:</p>
+    <form class="buscador-404" action="/buscar/" method="get" role="search">
+      <label class="visually-hidden" for="q-404">Buscar en el sitio</label>
+      <input type="search" id="q-404" name="q" placeholder="temazcal, altar, canto…">
+      <button class="btn btn--primary" type="submit">Buscar</button>
+    </form>
   </div>
   <div class="container" style="margin-top:var(--space-4)">
     <h2 class="visually-hidden">Algunas propuestas</h2>
     <div class="cards">{% for p in propuestas %}{% if loop.index <= 3 %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}</div>
-    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--primary" href="/">Volver al inicio</a> <a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a></p>
+    <p class="center" style="margin-top:var(--space-4)"><a class="btn btn--primary" href="/">Volver al inicio</a> <a class="btn btn--ghost" href="/propuestas/">Ver todas las propuestas</a> <a class="btn btn--ghost" href="/laboratorios/">Laboratorios</a></p>
   </div>
 </section>

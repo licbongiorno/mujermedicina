@@ -1,8 +1,9 @@
 [
-  { "label": "Inicio", "url": "/" },
+  { "label": "Inicio", "url": "/", "soloPie": true },
   { "label": "Sobre mí", "url": "/sobre-mi/" },
   { "label": "Propuestas", "url": "/propuestas/", "menu": true },
   { "label": "Tacu", "url": "/tacu/" },
+  { "label": "Laboratorios", "url": "/laboratorios/" },
   { "label": "Escritos", "url": "/recursos/" },
   { "label": "Contacto", "url": "/contacto/" }
 ]

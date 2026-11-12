@@ -1,0 +1,89 @@
+---
+title: "Cantos Medicina: el ciclo de cuatro encuentros"
+nombre: Cuatro encuentros
+description: "Visualizá el ciclo de Transmisión de Cantos Medicina: un elemento por encuentro, cómo se distribuye en el tiempo y lo que te queda al terminar."
+orden: 5
+tipo: Visualización
+interaccion: Tocar y elegir
+minutos: 5
+acento: noche
+ilustracion: cantos
+propuestasLab: ["transmision-de-cantos-medicina", "rondas-de-canto-medicina"]
+fuentes:
+  - { titulo: "Transmisión de Cantos Medicina", url: "/propuestas/transmision-de-cantos-medicina/" }
+  - { titulo: "Somos los cuatro elementos", url: "/recursos/somos-los-cuatro-elementos/" }
+---
+{%- set cantos = propuestas | porSlug(["transmision-de-cantos-medicina"]) | first %}
+{% labsec "introduccion", "01", "Introducción" %}
+{% voz "Transmisión de Cantos Medicina", "/propuestas/transmision-de-cantos-medicina/" %}Este pulso nace de las ganas de compartir y generar un encuentro con esto que llamamos Canto Medicina.{% endvoz %}
+<div class="prose">
+  <p data-reveal>La Transmisión de Cantos Medicina es un ciclo virtual de cuatro encuentros. Cada uno está dedicado a un elemento y propone una ceremonia ritual diferente.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Ver el ciclo completo de un vistazo: cómo se arma el círculo de los cuatro encuentros, cómo se reparte en el tiempo según la frecuencia que acuerde el grupo y qué material te queda al final.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<h3 class="lab-h3" data-reveal>Un círculo de cuatro cuartos</h3>
+{% include "experiencias/ciclo.njk" %}
+
+<h3 class="lab-h3" data-reveal>El ciclo en el calendario</h3>
+<p class="lab-instr" data-reveal>Los encuentros son cada 15 días o una vez por mes, según lo que se acuerde con el grupo. Elegí una frecuencia para ver cómo se reparte.</p>
+<div class="calendario" data-lab="calendario">
+  <div class="calendario__opts" role="group" aria-label="Frecuencia de los encuentros">
+    <button type="button" class="filter__btn" aria-pressed="true" data-frec="15">Cada 15 días</button>
+    <button type="button" class="filter__btn" aria-pressed="false" data-frec="30">Una vez por mes</button>
+  </div>
+  <div class="calendario__linea" data-cal-linea>
+    {% for el in elementos %}
+    <div class="calendario__hito accent-{{ el.acento }}" style="--i:{{ loop.index0 }}" data-cal-hito>
+      {% include "partials/el-badge.njk" %}
+      <span class="calendario__n">Encuentro {{ loop.index }}</span>
+      <span class="calendario__cuando" data-cal-cuando>{{ "Inicio" if loop.first else ("Semana " + (loop.index0 * 2 + 1)) }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  <dl class="calendario__resumen" aria-live="polite">
+    <div><dt>Duración del ciclo</dt><dd data-cal-total>Unas 6 semanas</dd></div>
+    <div><dt>Tiempo en vivo</dt><dd>4 encuentros de unas 2 horas: alrededor de 8 horas</dd></div>
+    <div><dt>Modalidad</dt><dd>{{ cantos.modalidad }}</dd></div>
+  </dl>
+</div>
+
+<h3 class="lab-h3" data-reveal>Lo que te queda</h3>
+<p class="lab-instr" data-reveal>Tocá cada recurso para sumarlo a tu carpeta.</p>
+<div class="carpeta" data-lab="carpeta">
+  <ul class="carpeta__lista">
+    {% set iconos = ["pdf", "audio", "letras", "certificado"] %}
+    {% for it in cantos.bloques[4].items %}
+    <li><button type="button" class="carpeta__item" aria-pressed="false" data-carpeta-item>
+      <svg viewBox="0 0 40 40" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        {% if iconos[loop.index0] == "pdf" %}<path d="M10 4h14l8 8v24H10z"/><path d="M24 4v8h8M15 20h12M15 25h12M15 30h8"/>
+        {% elif iconos[loop.index0] == "audio" %}<path d="M8 22v-2a12 12 0 0 1 24 0v2"/><rect x="6" y="22" width="7" height="11" rx="3"/><rect x="27" y="22" width="7" height="11" rx="3"/>
+        {% elif iconos[loop.index0] == "letras" %}<path d="M14 30V10l16-4v20"/><circle cx="11" cy="30" r="4"/><circle cx="27" cy="26" r="4"/>
+        {% else %}<circle cx="20" cy="16" r="9"/><path d="M15 23l-3 12 8-4 8 4-3-12"/><path d="M16 16l3 3 5-6"/>{% endif %}
+      </svg>
+      <span>{{ it }}</span>
+    </button></li>
+    {% endfor %}
+  </ul>
+  <p class="exp__caption" data-carpeta-estado aria-live="polite">Tu carpeta está vacía</p>
+</div>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+<div class="prose"><p data-reveal>Estos son los temas que recorre el ciclo, tal como los presenta la propuesta:</p></div>
+<ul class="list list--stagger">{% for it in cantos.bloques[1].items %}<li data-reveal style="--d:{{ loop.index0 }}">{{ it }}</li>{% endfor %}</ul>
+{% voz "Transmisión de Cantos Medicina", "/propuestas/transmision-de-cantos-medicina/" %}Con tambores y sonajas, altares, siembras y ofrendas iremos recorriendo cada elemento, cada instrumento, cada canto, reconociendo y recordando lo que nos traen.{% endvoz %}
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Cuatro cuartos que cierran un círculo. Para participar, el lugar se reserva con el 50 %; las próximas fechas, los valores y los medios de pago se consultan por WhatsApp.</p>
+  <p data-reveal>Antes del primer encuentro vas a necesitar tu altar: podés practicar en el <a href="/laboratorios/altar/">laboratorio de armado de altar</a>.</p>
+</div>
+{% endlabsec %}

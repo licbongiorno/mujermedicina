@@ -4,13 +4,16 @@
       <img class="brand__mark" src="/assets/img/logo-mandala-96.webp" width="44" height="44" alt="">
       <span class="brand__name">{{ site.brand }}</span>
     </a>
+    <button class="search-toggle" type="button" data-buscador-abrir aria-label="Buscar en el sitio" hidden>
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" data-nav-toggle>
       <span class="nav-toggle__line"></span><span class="nav-toggle__line"></span>
       <span class="visually-hidden">Abrir menú</span>
     </button>
     <nav class="site-nav" id="menu" aria-label="Principal" data-nav>
       <ul class="site-nav__list">
-        {%- for item in navigation %}
+        {%- for item in navigation %}{% if not item.soloPie %}
         {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
         {%- if item.menu %}
         <li class="has-mega" data-mega>
@@ -38,7 +41,7 @@
         {%- else %}
         <li><a href="{{ item.url }}"{% if active %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
         {%- endif %}
-        {%- endfor %}
+        {%- endif %}{% endfor %}
       </ul>
       <a class="btn btn--primary site-nav__cta" href="{{ (waMessage or site.waMessages.general) | wa(site.whatsapp) }}" target="_blank" rel="noopener">Escribime</a>
     </nav>

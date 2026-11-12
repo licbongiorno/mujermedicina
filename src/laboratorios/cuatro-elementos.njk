@@ -1,0 +1,173 @@
+---
+title: "Los cuatro elementos, laboratorio interactivo"
+nombre: Los cuatro elementos
+description: "Explorá el fuego, el agua, el aire y la tierra: cómo se mueve cada uno, qué lugar ocupan en el altar y en el temazcal, y dónde se encuentran entre sí."
+orden: 1
+tipo: Exploración
+interaccion: Tocar y combinar
+minutos: 6
+acento: turquesa
+ilustracion: elementos
+propuestasLab: ["transmision-de-cantos-medicina", "ceremonias-de-temazcal", "taller-sahumo-medicina"]
+fuentes:
+  - { titulo: "Somos los cuatro elementos", url: "/recursos/somos-los-cuatro-elementos/" }
+  - { titulo: "Armado de altar", url: "/recursos/armado-de-altar/" }
+  - { titulo: "Ceremonias de temazcal", url: "/propuestas/ceremonias-de-temazcal/" }
+  - { titulo: "Sahúmo Medicina", url: "/propuestas/taller-sahumo-medicina/" }
+quiz:
+  - { q: "En el temazcal, ¿qué elemento calienta a las abuelas piedras?", a: "fuego", fuente: "Ceremonias de temazcal", url: "/propuestas/ceremonias-de-temazcal/", ok: "El fuego calienta a las abuelas piedras antes de que entren al domo." }
+  - { q: "¿Qué se vierte sobre las piedras y se vuelve vapor?", a: "agua", fuente: "Ceremonias de temazcal", url: "/propuestas/ceremonias-de-temazcal/", ok: "El agua se vierte sobre las piedras y se vuelve vapor, mientras se reza y se canta." }
+  - { q: "En el sahumo, ¿qué elemento lleva el humo?", a: "aire", fuente: "Sahúmo Medicina", url: "/propuestas/taller-sahumo-medicina/", ok: "En el sahumo se encuentran el fuego, que enciende, y el aire, que lleva el humo." }
+  - { q: "En el altar, un recipiente con un poquito de tierra, o una planta, representa…", a: "tierra", fuente: "Armado de altar", url: "/recursos/armado-de-altar/", ok: "La tierra puede estar en el altar en un recipiente o en una planta." }
+  - { q: "Y las plumas, en el altar, representan…", a: "aire", fuente: "Armado de altar", url: "/recursos/armado-de-altar/", ok: "Las plumas son el aire en el altar." }
+---
+{%- set orden4 = ["fuego", "aire", "tierra", "agua"] %}
+{%- set pos = { "fuego": [200, 64], "aire": [336, 200], "tierra": [200, 336], "agua": [64, 200] } %}
+{%- set porId = elementos | indexar %}
+
+{% labsec "introduccion", "01", "Introducción" %}
+<div class="prose">
+  <p data-reveal>En sus escritos, Lucía recuerda que el fuego, el agua, el aire y la tierra no solo forman el mundo que nos rodea: también son aquello de lo que estamos hechos.</p>
+</div>
+{% voz "Somos los cuatro elementos", "/recursos/somos-los-cuatro-elementos/" %}De allí la necesidad de volver a recordar que somos el agua, somos el fuego, somos la tierra, somos el viento.{% endvoz %}
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Conocer a cada elemento por su movimiento y por el lugar que ocupa en las prácticas que comparte Lucía —el altar, el temazcal, el sahumo, el ciclo de cantos— y descubrir dónde se encuentran unos con otros.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<p class="lab-instr" data-reveal>Tocá un elemento para conocerlo. Tocá un segundo para ver dónde se encuentran. Sumá los cuatro para cerrar el círculo.</p>
+<div class="el-lab" data-lab="elementos">
+  <div class="el-lab__stage">
+    <svg class="el-lab__svg" viewBox="0 0 400 400" aria-hidden="true">
+      <defs>
+        {% for el in elementos %}
+        <radialGradient id="elg-{{ el.id }}"><stop offset="0" stop-color="{{ el.color }}" stop-opacity=".9"/><stop offset="1" stop-color="{{ el.color }}" stop-opacity="0"/></radialGradient>
+        {% endfor %}
+      </defs>
+      <circle class="el-lab__orbita" cx="200" cy="200" r="136"/>
+      <circle class="el-lab__orbita el-lab__orbita--in" cx="200" cy="200" r="92"/>
+      {% for el in elementos %}<circle class="el-lab__aura" data-el-aura="{{ el.id }}" cx="{{ pos[el.id][0] }}" cy="{{ pos[el.id][1] }}" r="70" fill="url(#elg-{{ el.id }})"/>{% endfor %}
+      <g class="el-lab__links">
+        {% for par in orden4 | pares %}{% set a = par[0] %}{% set b = par[1] %}
+        {%- set pa = pos[a] %}{% set pb = pos[b] %}
+        <path class="el-link" data-par="{{ ([a, b] | sort) | join('+') }}" d="M{{ pa[0] }} {{ pa[1] }} Q200 200 {{ pb[0] }} {{ pb[1] }}" pathLength="1" stroke="{{ porId[a].color }}"/>
+        <path class="el-link el-link--flujo" data-par="{{ ([a, b] | sort) | join('+') }}" d="M{{ pa[0] }} {{ pa[1] }} Q200 200 {{ pb[0] }} {{ pb[1] }}" stroke="{{ porId[b].tinta }}"/>
+        {% endfor %}
+      </g>
+      <g class="el-glifos" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <g class="el-glifo" data-glifo="vapor" stroke="#5FB0B3" stroke-width="3">
+          <path d="M184 222c-8-10 8-14 0-24s8-14 0-24"/><path d="M200 226c-8-10 8-14 0-24s8-14 0-26"/><path d="M216 222c-8-10 8-14 0-24s8-14 0-24"/>
+        </g>
+        <g class="el-glifo" data-glifo="humo" stroke="#8A9A9C" stroke-width="3">
+          <path d="M200 232c-10-8 6-16-2-26s10-14 2-24 8-12 4-20"/><path d="M188 232h24" stroke="#9C3B33"/>
+        </g>
+        <g class="el-glifo" data-glifo="eleva" stroke="#23607F" stroke-width="2.6">
+          <path d="M200 236v-56M186 196l14-16 14 16"/><circle cx="182" cy="228" r="4" fill="#9CCBEB"/><circle cx="218" cy="222" r="3" fill="#9CCBEB"/>
+        </g>
+        <g class="el-glifo" data-glifo="altar" stroke="#3F6A2E" stroke-width="2.2">
+          <circle cx="200" cy="200" r="30"/><circle cx="200" cy="200" r="16" stroke-dasharray="2 4"/><path d="M200 170v60M170 200h60"/>
+        </g>
+        <g class="el-glifo el-glifo--todos" data-glifo="todos" stroke-width="6">
+          {% for el in elementos %}<path d="M{{ [200, 236, 200, 164][loop.index0] }} {{ [164, 200, 236, 200][loop.index0] }}A36 36 0 0 1 {{ [236, 200, 164, 200][loop.index0] }} {{ [200, 236, 200, 164][loop.index0] }}" stroke="{{ porId[orden4[loop.index0]].color }}"/>{% endfor %}
+          <circle cx="200" cy="200" r="8" fill="#FCF6DF" stroke="#E7C65A" stroke-width="2"/>
+        </g>
+      </g>
+    </svg>
+    {% for id in orden4 %}{% set el = porId[id] %}
+    <button type="button" class="el-lab__nodo accent-{{ el.acento }}" style="left:{{ pos[id][0] / 4 }}%;top:{{ pos[id][1] / 4 }}%" data-el="{{ id }}" aria-pressed="false">
+      {% include "partials/el-badge.njk" %}<span class="el-lab__nombre">{{ el.nombre }}</span>
+    </button>
+    {% endfor %}
+  </div>
+
+  <div class="el-lab__panel" data-el-panel aria-live="polite">
+    <div class="el-lab__card" data-el-card>
+      <p class="el-lab__escena">Elegí un elemento</p>
+      <p>Cada uno tiene su color y su forma de moverse. Al tocarlo, verás qué dicen de él los textos de esta web.</p>
+    </div>
+  </div>
+
+  {# Contenidos de cada estado (se copian al panel) #}
+  {% for el in elementos %}
+  <template data-el-t="{{ el.id }}">
+    <div class="el-lab__card accent-{{ el.acento }}">
+      <p class="el-lab__escena">{{ el.nombre }} · {{ el.movimiento }}</p>
+      <p class="el-lab__gesto">{{ el.gesto }}</p>
+      <dl class="el-lab__dl">
+        <div><dt>En el altar</dt><dd>{{ el.altar }} <a href="/recursos/armado-de-altar/">Armado de altar</a></dd></div>
+        <div><dt>En el temazcal</dt><dd>{{ el.temazcal }} <a href="/propuestas/ceremonias-de-temazcal/">Temazcal</a></dd></div>
+        {% if el.sahumo %}<div><dt>En el sahumo</dt><dd>{{ el.sahumo }} <a href="/propuestas/taller-sahumo-medicina/">Sahúmo Medicina</a></dd></div>{% endif %}
+        <div><dt>En los cantos</dt><dd>Uno de los cuatro encuentros del ciclo de <a href="/propuestas/transmision-de-cantos-medicina/">Transmisión de Cantos Medicina</a> está dedicado al {{ el.nombre | lower }}.</dd></div>
+      </dl>
+    </div>
+  </template>
+  {% endfor %}
+  {%- set pares = {
+    "agua+fuego": { "glifo": "vapor", "escena": "Vapor", "texto": "En el temazcal, el fuego calienta a las abuelas piedras y el agua, vertida sobre ellas, se vuelve vapor.", "fuente": "Ceremonias de temazcal", "url": "/propuestas/ceremonias-de-temazcal/" },
+    "aire+fuego": { "glifo": "humo", "escena": "Humo", "texto": "En el sahumo se encuentran dos elementos: el fuego, que enciende, y el aire, que lleva el humo.", "fuente": "Sahúmo Medicina", "url": "/propuestas/taller-sahumo-medicina/" },
+    "agua+aire": { "glifo": "eleva", "escena": "El vapor se eleva", "texto": "En el temazcal, el agua se vuelve vapor y se eleva junto con el aliento y los cantos.", "fuente": "Ceremonias de temazcal", "url": "/propuestas/ceremonias-de-temazcal/" }
+  } %}
+  {% for par in orden4 | pares %}{% set a = par[0] %}{% set b = par[1] %}
+  {%- set key = ([a, b] | sort) | join("+") %}{% set A = porId[a] %}{% set B = porId[b] %}
+  <template data-el-t="{{ key }}" data-glifo="{{ pares[key].glifo if pares[key] else 'altar' }}">
+    <div class="el-lab__card">
+      {% if pares[key] %}
+      <p class="el-lab__escena">{{ pares[key].escena }}</p>
+      <p>{{ pares[key].texto }} <a href="{{ pares[key].url }}">{{ pares[key].fuente }}</a></p>
+      {% else %}
+      {%- set otro = B if A.id == "tierra" else A %}
+      <p class="el-lab__escena">En el altar</p>
+      <p>En tu altar pueden estar juntos: {{ A.altar | lower | replace(".", "") }} y {{ B.altar | lower }} <a href="/recursos/armado-de-altar/">Armado de altar</a></p>
+      <p>Y en el temazcal, la tierra es el suelo que nos sostiene mientras el {{ otro.nombre | lower }} hace lo suyo: {{ otro.temazcal | lower }}</p>
+      {% endif %}
+    </div>
+  </template>
+  {% endfor %}
+  <template data-el-t="tres">
+    <div class="el-lab__card"><p class="el-lab__escena">Falta uno</p><p>Tres elementos ya se encontraron. Sumá el que falta para cerrar el círculo.</p></div>
+  </template>
+  <template data-el-t="todos" data-glifo="todos">
+    <div class="el-lab__card el-lab__card--todos">
+      <p class="el-lab__escena">Somos los cuatro</p>
+      <p>En el altar y en el temazcal se encuentran los cuatro elementos. Y, como dice Lucía, también en nosotros: «somos el agua, somos el fuego, somos la tierra, somos el viento».</p>
+      <p><a href="/laboratorios/altar/">Armá tu altar en el laboratorio siguiente →</a></p>
+    </div>
+  </template>
+  <p class="exp__hint"><button type="button" class="exp__link" data-el-reset>Empezar de nuevo</button></p>
+</div>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+<div class="prose">
+  <p data-reveal>Cada elemento tiene en esta web un color y un movimiento propio, y los mismos aparecen en todas las páginas: la llama del fuego titila, la gota del agua se abre en ondas, el viento del aire fluye y el brote de la tierra se mece.</p>
+  <p data-reveal>En las prácticas, los elementos casi nunca están solos. En el temazcal se encuentran los cuatro; en el sahumo, el fuego y el aire; en el altar, cada uno tiene su objeto y su lugar, «como tú lo sientas».</p>
+</div>
+{% voz "Somos los cuatro elementos", "/recursos/somos-los-cuatro-elementos/" %}Y así es que a través de cada elemento podemos conectar y convocar de manera consciente, para pedirles su ayuda y su medicina para nuestro cuerpo, nuestra mente, nuestras emociones y nuestro espíritu.{% endvoz %}
+
+<h3 class="lab-h3" data-reveal>Para repasar</h3>
+<p class="lab-instr" data-reveal>Cinco preguntas breves. Cada respuesta te muestra de qué texto sale.</p>
+<div class="quiz" data-lab="quiz">
+  <p class="quiz__prog" data-quiz-prog>Pregunta 1 de {{ quiz.length }}</p>
+  <p class="quiz__q" data-quiz-q aria-live="polite">{{ quiz[0].q }}</p>
+  <div class="quiz__ops" role="group" aria-label="Elegí un elemento">
+    {% for el in elementos %}<button type="button" class="quiz__op accent-{{ el.acento }}" data-quiz-op="{{ el.id }}">{% include "partials/el-badge.njk" %}{{ el.nombre }}</button>{% endfor %}
+  </div>
+  <p class="quiz__fb" data-quiz-fb aria-live="polite"></p>
+  <div class="quiz__foot">
+    <button type="button" class="exp__btn exp__btn--play" data-quiz-next hidden>Siguiente</button>
+    <button type="button" class="exp__btn" data-quiz-reset hidden>Volver a empezar</button>
+  </div>
+  <template data-quiz>{{ quiz | json | safe }}</template>
+</div>
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Fuego que enciende, agua que se transforma, aire que lleva, tierra que sostiene. Cuatro maneras de moverse que, juntas, completan un círculo.</p>
+  <p data-reveal>Si querés seguir, el próximo laboratorio te invita a darle a cada elemento un lugar en tu propio altar.</p>
+</div>
+{% endlabsec %}

@@ -1,0 +1,24 @@
+---
+permalink: /buscar.json
+eleventyExcludeFromCollections: true
+---
+{%- set items = [] %}
+{%- for p in propuestas %}
+  {%- set c = categorias | categoria(p.categoria) %}
+  {%- set txt = [p.resumen, p.lead, p.kicker, c.nombre, p.lugar, p.modalidad, p.formato, (p.intro | join(" "))] | join(" ") %}
+  {%- set items = (items.push({ "t": p.titulo, "u": "/propuestas/" + p.slug + "/", "k": "Propuesta", "d": p.resumen, "x": txt + " " + (p.nombreCorto or "") }), items) %}
+{%- endfor %}
+{%- for l in collections.laboratorios %}
+  {%- set items = (items.push({ "t": l.data.nombre, "u": l.url, "k": "Laboratorio", "d": l.data.description, "x": (l.data.tipo + " " + (l.templateContent | textoPlano | recortar(900))) }), items) %}
+{%- endfor %}
+{%- for e in collections.escritos %}
+  {%- set items = (items.push({ "t": e.data.title, "u": e.url, "k": "Escrito", "d": e.data.description, "x": (e.templateContent | textoPlano | recortar(1600)) }), items) %}
+{%- endfor %}
+{%- for e in experiencias %}
+  {%- set items = (items.push({ "t": e.titulo, "u": e.url, "k": "Experiencia", "d": e.tipo + " en «" + e.pagina + "»", "x": e.pagina }), items) %}
+{%- endfor %}
+{%- set items = (items.push({ "t": "Sobre mí", "u": "/sobre-mi/", "k": "Página", "d": "El camino de Lucía Di Mauro: música, temazcal, cantos medicina y tejido.", "x": "Lucía Di Mauro biografía historia camino pipa sagrada conservatorio Félix Garzón Collegium danzas del sol búsqueda de visión tejedora Benjamín" }), items) %}
+{%- set items = (items.push({ "t": "Tacu, espacio holístico", "u": "/tacu/", "k": "Página", "d": "El espacio de Lucía en las sierras de Córdoba.", "x": "Tacu algarrobo sierras Córdoba espacio holístico tienda" }), items) %}
+{%- set items = (items.push({ "t": "Contacto", "u": "/contacto/", "k": "Página", "d": "WhatsApp, correo e Instagram. Preguntas frecuentes sobre pagos y reservas.", "x": "WhatsApp teléfono correo email Instagram Facebook pago Mercado Pago transferencia Western Union reservar valores precios" }), items) %}
+{%- set items = (items.push({ "t": "Laboratorios", "u": "/laboratorios/", "k": "Página", "d": "Experiencias interactivas para explorar.", "x": "laboratorios juegos interactivo explorar actividades" }), items) %}
+{{ items | json | safe }}

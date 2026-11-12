@@ -171,6 +171,30 @@ bodyClass: home
 </section>
 {% endif %}
 
+{# ================= LABORATORIOS ================= #}
+<section class="section section--soft" aria-labelledby="labs-home-t">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>Laboratorios</p>
+      <h2 id="labs-home-t" class="split" data-split>{{ "Explorar con las manos" | palabras | safe }}</h2>
+      <p class="lead" data-reveal>Armá un altar, creá una mandala, encendé las Pléyades. Actividades para conocer las propuestas antes de vivirlas.</p>
+    </div>
+    <ul class="labs-home">
+      {% for l in collections.laboratorios %}{% if loop.index <= 3 %}
+      <li class="lab-card accent-{{ l.data.acento }}" data-reveal data-reveal-delay="{{ loop.index0 }}" data-spot>
+        <div class="lab-card__illu" aria-hidden="true" data-draw>{% include "ilustraciones/" + l.data.ilustracion + ".njk" %}</div>
+        <p class="lab-card__n" aria-hidden="true">0{{ l.data.orden }}</p>
+        <p class="eyebrow">{{ l.data.tipo }}</p>
+        <h3 class="lab-card__t"><a class="pcard__link" href="{{ l.url }}">{{ l.data.nombre }}</a></h3>
+        <p>{{ l.data.description }}</p>
+        <span class="card__link" aria-hidden="true">Entrar <span>→</span></span>
+      </li>
+      {% endif %}{% endfor %}
+    </ul>
+    <p class="center" style="margin-top:var(--space-4)" data-reveal><a class="btn btn--ghost" href="/laboratorios/">Ver los {{ collections.laboratorios.length }} laboratorios</a></p>
+  </div>
+</section>
+
 {# ================= ESCRITOS ================= #}
 <section class="section">
   <div class="container">

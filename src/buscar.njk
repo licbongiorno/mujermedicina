@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+title: Buscar
+description: "Buscá propuestas, escritos y laboratorios de Mujer Medicina."
+permalink: /buscar/
+noindex: true
+eleventyExcludeFromCollections: true
+hero:
+  eyebrow: Buscador
+  title: ¿Qué estás buscando?
+---
+{% include "partials/page-hero.njk" %}
+<section class="section section--tight">
+  <div class="container narrow">
+    <form class="buscador buscador--pagina" action="/buscar/" method="get" role="search" data-buscador>
+      <label class="visually-hidden" for="q-pagina">Buscar en el sitio</label>
+      <div class="buscador__campo">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q-pagina" name="q" placeholder="temazcal, altar, canto, estrellas…" autocomplete="off" data-buscador-input>
+      </div>
+      <p class="buscador__estado" aria-live="polite" data-buscador-estado></p>
+      <ul class="buscador__res" data-buscador-res></ul>
+    </form>
+    <noscript><p>El buscador necesita JavaScript. Podés recorrer las <a href="/propuestas/">propuestas</a>, los <a href="/recursos/">escritos</a> y los <a href="/laboratorios/">laboratorios</a>.</p></noscript>
+  </div>
+</section>

@@ -1,6 +1,52 @@
 [
-  { "id": "fuego", "nombre": "Fuego", "acento": "el-fuego" },
-  { "id": "agua", "nombre": "Agua", "acento": "el-agua" },
-  { "id": "aire", "nombre": "Aire", "acento": "el-aire" },
-  { "id": "tierra", "nombre": "Tierra", "acento": "el-tierra" }
+  {
+    "id": "fuego",
+    "nombre": "Fuego",
+    "acento": "el-fuego",
+    "en": "Fire",
+    "color": "#F2A29B",
+    "tinta": "#9C3B33",
+    "movimiento": "Titila",
+    "gesto": "La llama titila y se eleva.",
+    "altar": "Una vela.",
+    "temazcal": "Calienta a las abuelas piedras.",
+    "sahumo": "Enciende."
+  },
+  {
+    "id": "agua",
+    "nombre": "Agua",
+    "acento": "el-agua",
+    "en": "Water",
+    "color": "#9CCBEB",
+    "tinta": "#23607F",
+    "movimiento": "Ondula",
+    "gesto": "La gota cae y se abre en ondas.",
+    "altar": "Un vaso con agua.",
+    "temazcal": "Se vierte sobre las piedras y se vuelve vapor."
+  },
+  {
+    "id": "aire",
+    "nombre": "Aire",
+    "acento": "el-aire",
+    "en": "Air",
+    "color": "#F3DC8E",
+    "tinta": "#7A5B12",
+    "movimiento": "Fluye",
+    "gesto": "El viento fluye y lleva lo que toca.",
+    "altar": "Plumas.",
+    "temazcal": "El aliento, el vapor y los cantos que se elevan.",
+    "sahumo": "Lleva el humo."
+  },
+  {
+    "id": "tierra",
+    "nombre": "Tierra",
+    "acento": "el-tierra",
+    "en": "Earth",
+    "color": "#AFD49A",
+    "tinta": "#3F6A2E",
+    "movimiento": "Brota",
+    "gesto": "El brote crece y se mece.",
+    "altar": "Un recipiente con un poquito de tierra, o una planta.",
+    "temazcal": "El suelo que nos sostiene durante la ceremonia."
+  }
 ]

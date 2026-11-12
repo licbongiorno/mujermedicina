@@ -73,6 +73,41 @@ export default function (eleventyConfig) {
   eleventyConfig.addCollection("escritos", (api) =>
     api.getFilteredByTag("escrito").sort((a, b) => b.date - a.date)
   );
+  // Laboratorios de exploración, en el orden definido por "orden"
+  eleventyConfig.addCollection("laboratorios", (api) =>
+    api.getFilteredByTag("laboratorio").sort((a, b) => (a.data.orden || 99) - (b.data.orden || 99))
+  );
+  // Lista → objeto por id: { fuego: {...}, agua: {...} }
+  eleventyConfig.addFilter("indexar", (list, key = "id") => Object.fromEntries((list || []).map((x) => [x[key], x])));
+  // Pares sin repetir de una lista: [[a,b], [a,c], …]
+  eleventyConfig.addFilter("pares", (list) => (list || []).flatMap((a, i) => list.slice(i + 1).map((b) => [a, b])));
+  // Vecinos (anterior / siguiente) de una página dentro de una colección
+  eleventyConfig.addFilter("vecinos", (coll, url) => {
+    const i = (coll || []).findIndex((x) => x.url === url);
+    return { prev: i > 0 ? coll[i - 1] : null, next: i >= 0 && i < coll.length - 1 ? coll[i + 1] : null };
+  });
+  eleventyConfig.addFilter("labsPorSlug", (coll, slugs) => (slugs || []).map((s) => (coll || []).find((e) => e.page.fileSlug === s)).filter(Boolean));
+  // Laboratorios que mencionan una propuesta en su lista "propuestas"
+  eleventyConfig.addFilter("labsDePropuesta", (coll, slug) => (coll || []).filter((l) => (l.data.propuestasLab || []).includes(slug)));
+  // Texto plano sin etiquetas (índice del buscador)
+  eleventyConfig.addFilter("textoPlano", (html) =>
+    String(html || "").replace(/<(script|style|svg|template)[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/gi, " ").replace(/\s+/g, " ").trim()
+  );
+  eleventyConfig.addFilter("recortar", (t, n = 400) => { t = String(t || ""); return t.length > n ? t.slice(0, n).replace(/\s\S*$/, "") + "…" : t; });
+
+  // Secciones numeradas de un laboratorio: {% labsec "objetivo", "02", "Objetivo" %}…{% endlabsec %}
+  eleventyConfig.addPairedShortcode("labsec", (content, id, n, titulo) =>
+    `<section class="lab-sec" id="${id}" aria-labelledby="${id}-t" data-lab-sec><h2 class="lab-sec__t" id="${id}-t" data-reveal><span class="lab-sec__n" aria-hidden="true">${n}</span>${titulo}</h2>${content}</section>`
+  );
+  // Palabras textuales de Lucía, con su fuente
+  eleventyConfig.addPairedShortcode("voz", (content, fuente, enlace) =>
+    `<blockquote class="lab-voz" data-reveal><p>${content.trim()}</p><footer><span class="lab-voz__tag">Palabras de Lucía</span>${enlace ? `<a href="${enlace}">${fuente}</a>` : fuente || ""}</footer></blockquote>`
+  );
+  // Contexto general sobre una práctica (no es una afirmación de Lucía)
+  eleventyConfig.addPairedShortcode("contexto", (content) =>
+    `<div class="lab-contexto" data-reveal><p class="lab-contexto__tag">Contexto general</p>${content}</div>`
+  );
+
   eleventyConfig.addFilter("fechaLarga", (d) =>
     new Date(d).toLocaleDateString("es-AR", { month: "long", year: "numeric", timeZone: "UTC" })
   );
@@ -86,7 +121,7 @@ export default function (eleventyConfig) {
   // Al terminar, minifica CSS y JS del sitio generado
   eleventyConfig.on("eleventy.after", async ({ dir }) => {
     await build({
-      entryPoints: [`${dir.output}/assets/css/main.css`, `${dir.output}/assets/js/main.js`, `${dir.output}/assets/js/experiencias.js`],
+      entryPoints: ["css/main.css", "css/laboratorios.css", "js/main.js", "js/experiencias.js", "js/laboratorios.js", "js/buscador.js"].map((f) => `${dir.output}/assets/${f}`),
       outdir: `${dir.output}/assets`,
       outbase: `${dir.output}/assets`,
       allowOverwrite: true,

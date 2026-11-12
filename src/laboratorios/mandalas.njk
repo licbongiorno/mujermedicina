@@ -1,0 +1,113 @@
+---
+title: "Generador de mandalas, laboratorio interactivo"
+nombre: Mandalas
+description: "Creá tu propia mandala: elegí cuántas puntas, cuántas vueltas, la forma de los pétalos y los colores. Mirala tejerse, descargala o imprimila para colorear."
+orden: 3
+tipo: Generador
+interaccion: Elegir y crear
+minutos: 10
+acento: jade
+ilustracion: mandala
+propuestasLab: ["taller-mandalas-tejidas"]
+fuentes:
+  - { titulo: "Mandalas tejidas", url: "/propuestas/taller-mandalas-tejidas/" }
+formas:
+  - { id: petalo, nombre: "Pétalo" }
+  - { id: gota, nombre: "Gota" }
+  - { id: hoja, nombre: "Hoja" }
+  - { id: rombo, nombre: "Rombo" }
+  - { id: arco, nombre: "Arco" }
+  - { id: punto, nombre: "Punto" }
+paletas:
+  - { id: agua, nombre: "Agua", colores: ["#2B6F72", "#5FB0B3", "#85CFD1", "#BAE4E3", "#E1F4F4"] }
+  - { id: mandala, nombre: "Mandala", colores: ["#3B7A5C", "#7FCBA9", "#A6CE98", "#5FB0B3", "#85CFD1"] }
+  - { id: elementos, nombre: "Cuatro elementos", colores: ["#9C3B33", "#F2A29B", "#9CCBEB", "#F3DC8E", "#AFD49A"] }
+  - { id: noche, nombre: "Noche", colores: ["#FCF6DF", "#F3DC8E", "#85CFD1", "#BAE4E3", "#7FCBA9"], fondo: "#1F3F45" }
+  - { id: tierra, nombre: "Tierra", colores: ["#7A5B12", "#C7A574", "#E8C9A9", "#AFD49A", "#3F6A2E"] }
+---
+{% labsec "introduccion", "01", "Introducción" %}
+<div class="prose">
+  <p data-reveal>Lucía es tejedora: tejer es uno de los dones que le legaron sus abuelas, y en su taller de Mandalas tejidas enseña y transmite ese oficio.</p>
+</div>
+{% contexto %}<p>Mandala es una palabra sánscrita que significa «círculo». Es una forma que parte de un centro y se expande hacia afuera.</p>{% endcontexto %}
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Jugar con las reglas que hacen a una mandala: un centro, una cantidad de puntas que se repiten con simetría y vueltas que se agregan de adentro hacia afuera. Cada combinación da una mandala distinta.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<p class="lab-instr" data-reveal>Cambiá los controles y la mandala se vuelve a tejer. «Sorprendeme» crea una combinación nueva.</p>
+<div class="mandala-lab" data-lab="mandala">
+  <div class="mandala-lab__lienzo">
+    <svg class="mandala-lab__svg" viewBox="-300 -300 600 600" role="img" aria-labelledby="mandala-lab-t" data-mandala-svg xmlns="http://www.w3.org/2000/svg">
+      <title id="mandala-lab-t">Tu mandala</title>
+      <circle r="296" data-mandala-fondo fill="#FFFFFF"/>
+      <g data-mandala-capas></g>
+    </svg>
+  </div>
+  <form class="mandala-lab__panel" data-mandala-form>
+    <p class="exp__caption" aria-live="polite" data-mandala-msg>Tu mandala</p>
+    <div class="mandala-lab__ctrl">
+      <label class="field" for="m-puntas"><span class="field__label">Puntas <output data-out="puntas">8</output></span>
+        <input type="range" id="m-puntas" name="puntas" min="4" max="24" step="1" value="8"></label>
+      <label class="field" for="m-vueltas"><span class="field__label">Vueltas <output data-out="vueltas">5</output></span>
+        <input type="range" id="m-vueltas" name="vueltas" min="2" max="8" step="1" value="5"></label>
+      <label class="field" for="m-grosor"><span class="field__label">Trazo <output data-out="grosor">2</output></span>
+        <input type="range" id="m-grosor" name="grosor" min="1" max="5" step="0.5" value="2"></label>
+    </div>
+    <fieldset class="altar-lab__grupo">
+      <legend>Forma principal</legend>
+      <div class="mandala-lab__chips">
+        {% for f in formas %}<label class="chip-radio"><input type="radio" name="forma" value="{{ f.id }}"{% if loop.first %} checked{% endif %}><span>{{ f.nombre }}</span></label>{% endfor %}
+      </div>
+    </fieldset>
+    <fieldset class="altar-lab__grupo">
+      <legend>Colores</legend>
+      <div class="mandala-lab__chips">
+        {% for p in paletas %}<label class="chip-radio chip-radio--paleta"><input type="radio" name="paleta" value="{{ p.id }}"{% if loop.index == 2 %} checked{% endif %}><span><i aria-hidden="true" style="background:linear-gradient(90deg,{{ p.colores | join(',') }})"></i>{{ p.nombre }}</span></label>{% endfor %}
+      </div>
+    </fieldset>
+    <fieldset class="altar-lab__grupo">
+      <legend>Geometría</legend>
+      <div class="mandala-lab__chips">
+        <label class="chip-radio chip-radio--check"><input type="checkbox" name="fibo"><span>Estructura Fibonacci</span></label>
+        <label class="chip-radio chip-radio--check"><input type="checkbox" name="girasol"><span>Centro de girasol</span></label>
+        <label class="chip-radio chip-radio--check"><input type="checkbox" name="colorear"><span>Solo líneas, para colorear</span></label>
+      </div>
+    </fieldset>
+    <div class="altar-lab__final">
+      <button type="button" class="exp__btn exp__btn--play" data-mandala-azar>Sorprendeme</button>
+      <button type="button" class="exp__btn" data-mandala-tejer>Volver a tejer</button>
+    </div>
+    <div class="altar-lab__final">
+      <button type="button" class="exp__btn" data-mandala-png>Descargar PNG</button>
+      <button type="button" class="exp__btn" data-mandala-svgdl>Descargar SVG</button>
+      <button type="button" class="exp__btn" data-mandala-imprimir>Imprimir</button>
+      <button type="button" class="exp__link" data-mandala-link><span data-mandala-link-t>Copiar enlace a esta mandala</span></button>
+    </div>
+  </form>
+  <template data-paletas>{{ paletas | json | safe }}</template>
+</div>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+<div class="prose">
+  <p data-reveal><strong>El centro.</strong> Toda mandala parte de un punto. En este generador es un círculo dorado, siempre en el mismo lugar.</p>
+  <p data-reveal><strong>Las puntas.</strong> Una misma forma se repite alrededor del centro, girando siempre el mismo ángulo: con 8 puntas, cada copia gira 45 grados. Esa repetición es la simetría radial.</p>
+  <p data-reveal><strong>Las vueltas.</strong> Cada vuelta es un anillo nuevo, más grande que el anterior. Al animarse, la mandala se dibuja de adentro hacia afuera, como un tejido que crece vuelta a vuelta.</p>
+</div>
+<div class="prose">
+  <p data-reveal><strong>Estructura Fibonacci.</strong> Las puntas de cada vuelta siguen la sucesión 5, 8, 13, 21, 34… y cada vuelta es φ (1,618) veces más ancha que la anterior: la mandala se abre como crecen muchas formas vivas, más rápido hacia afuera. <strong>Centro de girasol.</strong> 89 semillas repartidas con el ángulo áureo de 137,5°. Ambas son propiedades matemáticas; que resulten armónicas a la vista es una apreciación estética. Más en el <a href="/laboratorios/proporcion-aurea/">laboratorio de proporción áurea</a>.</p>
+</div>
+<p class="lab-instr" data-reveal>La mandala tejida que enseña Lucía se hace a mano, con hilos sobre una cruz de palitos. Esta es solo una forma de jugar con la geometría.</p>
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Con la opción «Solo líneas» podés imprimir tu mandala y colorearla a mano: otra forma de ir del centro hacia afuera, despacio.</p>
+  <p data-reveal>Si te dan ganas de tejer una de verdad, el taller de <a href="/propuestas/taller-mandalas-tejidas/">Mandalas tejidas</a> es el lugar.</p>
+</div>
+{% endlabsec %}

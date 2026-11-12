@@ -1,0 +1,90 @@
+---
+title: "Temazcal paso a paso, recorrido narrativo"
+nombre: Temazcal, paso a paso
+description: "Un recorrido ilustrado por las etapas de una ceremonia de temazcal: el domo, el fuego, las abuelas piedras, el agua, el vapor y los cantos."
+orden: 4
+tipo: Recorrido
+interaccion: Desplazarse
+minutos: 5
+acento: turquesa
+ilustracion: temazcal
+propuestasLab: ["ceremonias-de-temazcal"]
+fuentes:
+  - { titulo: "Ceremonias de temazcal", url: "/propuestas/ceremonias-de-temazcal/" }
+  - { titulo: "Somos los cuatro elementos", url: "/recursos/somos-los-cuatro-elementos/" }
+etapas:
+  - { paso: 0, escena: "Casa de vapor", texto: "Temazcal es una palabra de origen náhuatl que suele traducirse como «casa de vapor». La ceremonia se realiza en un espacio cerrado, con forma de domo." }
+  - { paso: 0, escena: "El fuego calienta", texto: "Primero, el fuego calienta las piedras. A esas piedras se las llama las abuelas." }
+  - { paso: 1, escena: "Entran las abuelas", texto: "Las piedras calientes se ingresan al centro del domo." }
+  - { paso: 2, escena: "Se vierte agua", texto: "Sobre las abuelas se vierte agua, que al tocarlas se vuelve vapor." }
+  - { paso: 3, escena: "Vapor y cantos", texto: "Mientras el vapor llena el espacio, se reza y se canta." }
+---
+{% labsec "introduccion", "01", "Introducción" %}
+<div class="prose">
+  <p data-reveal>Lucía aprendió a guiar temazcales durante los ocho años que vivió en comunidad, donde se formó y se recibió como mujer medicina. Hoy comparte estas ceremonias en Tacu, en las sierras de Córdoba.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Entender en qué consiste la ceremonia y en qué orden suceden sus momentos principales, para llegar con una idea clara de lo que vas a vivir.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<p class="lab-instr" data-reveal>Bajá despacio: la escena avanza con cada párrafo.</p>
+<div class="scrolly" data-lab="scrolly">
+  <figure class="scrolly__stage exp exp-temazcal" data-paso="0" data-scrolly-stage aria-hidden="true">
+    <svg class="exp__svg" viewBox="0 0 240 180">
+      <path d="M10 150h220" stroke="#C9B79A" stroke-width="2"/>
+      <path class="tz__domo" d="M60 150c0-44 26-68 60-68s60 24 60 68" fill="#FCE9E6" stroke="#9C3B33" stroke-width="1.6"/>
+      <path d="M108 150c0-10 5-16 12-16s12 6 12 16" fill="#fff" stroke="#9C3B33" stroke-width="1.4"/>
+      <g class="tz__fuego"><path d="M196 150c-9 0-14-6-14-13 0-6 4-9 6-13 1 3 3 4 4 5 1-5 3-8 7-11 0 7 9 10 9 19 0 7-5 13-12 13z" fill="#F2A29B" stroke="#9C3B33" stroke-width="1.2"/></g>
+      <g class="tz__piedras" fill="#8A6F5A">
+        <ellipse cx="0" cy="0" rx="7" ry="5" style="--x0:190px;--y0:156px;--x1:112px;--y1:140px"/>
+        <ellipse cx="0" cy="0" rx="6" ry="4" style="--x0:202px;--y0:158px;--x1:124px;--y1:142px"/>
+        <ellipse cx="0" cy="0" rx="5" ry="4" style="--x0:196px;--y0:160px;--x1:118px;--y1:134px"/>
+      </g>
+      <g class="tz__agua" fill="#9CCBEB" stroke="#23607F" stroke-width="1">
+        <path d="M118 96c3 5 5 7 5 10a5 5 0 0 1-10 0c0-3 2-5 5-10z"/>
+        <path d="M128 104c2 4 4 5 4 7.5a4 4 0 0 1-8 0c0-2.5 2-3.5 4-7.5z"/>
+      </g>
+      <g class="tz__vapor" fill="none" stroke="#85CFD1" stroke-width="1.6" stroke-linecap="round">
+        <path d="M106 128c-5-7 5-10 0-17s5-10 0-16"/><path d="M120 126c-5-7 5-10 0-17s5-10 0-17"/><path d="M134 128c-5-7 5-10 0-17s5-10 0-16"/>
+      </g>
+      <g class="tz__cantos" fill="#2B6F72" font-family="Fraunces, Georgia, serif" font-size="14">
+        <text x="78" y="70">♪</text><text x="150" y="64">♫</text><text x="118" y="52">♪</text>
+      </g>
+    </svg>
+    <p class="exp__caption" data-scrolly-caption>{{ etapas[0].escena }}</p>
+    <ol class="scrolly__dots">{% for e in etapas %}<li data-scrolly-dot{% if loop.first %} class="is-on"{% endif %}></li>{% endfor %}</ol>
+  </figure>
+  <ol class="scrolly__pasos">
+    {% for e in etapas %}
+    <li class="scrolly__paso" data-scrolly-paso="{{ e.paso }}" data-escena="{{ e.escena }}">
+      <p class="scrolly__n">{{ loop.index }} / {{ etapas.length }} · <strong>{{ e.escena }}</strong></p>
+      <p>{{ e.texto }}</p>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+<p class="lab-nota" data-reveal>Los textos de este recorrido explican la ceremonia en general (contexto); no describen cómo la guía Lucía en particular.</p>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+<div class="prose"><p data-reveal>En la ceremonia se encuentran los cuatro elementos. Así lo describe la página de la propuesta:</p></div>
+<ul class="el-list" aria-label="Los cuatro elementos en el temazcal">
+  {% for el in elementos %}<li class="accent-{{ el.acento }}" data-reveal>{% include "partials/el-badge.njk" %}<span><strong>{{ el.nombre }}</strong> {{ el.temazcal }}</span></li>{% endfor %}
+</ul>
+{% voz "Somos los cuatro elementos", "/recursos/somos-los-cuatro-elementos/" %}Somos el agua, somos el fuego, somos la tierra, somos el viento.{% endvoz %}
+<div class="lab-aviso" data-reveal>
+  <p><strong>Antes de participar.</strong> El temazcal es una ceremonia con calor y vapor. Contale a Lucía tu situación para conversarlo y, ante cualquier condición de salud, consultá también con tu médico o médica.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Fuego, abuelas, agua, vapor y cantos: el recorrido termina con el domo lleno de vapor y de voces. La ceremonia real se vive con el cuerpo, en su propio tiempo.</p>
+  <p data-reveal>Las próximas ceremonias en Tacu se anuncian en <a href="https://www.instagram.com/tacu_espacioholistico/" target="_blank" rel="noopener">@tacu_espacioholistico</a> y se consultan por WhatsApp.</p>
+</div>
+{% endlabsec %}

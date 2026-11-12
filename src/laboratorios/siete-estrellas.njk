@@ -1,0 +1,81 @@
+---
+title: "Las Siete Hermanas, laboratorio de estrellas"
+nombre: Las siete estrellas
+description: "Encendé una por una las siete estrellas de las Pléyades, conocé sus nombres y descubrí cómo encontrarlas en el cielo, en el universo de Tameana."
+orden: 6
+tipo: Constelación
+interaccion: Tocar y unir
+minutos: 4
+acento: noche
+ilustracion: estrellas
+propuestasLab: ["terapia-vibracional-tameana"]
+fuentes:
+  - { titulo: "Tameana", url: "/propuestas/terapia-vibracional-tameana/" }
+  - { titulo: "Somos los cuatro elementos", url: "/recursos/somos-los-cuatro-elementos/" }
+estrellas:
+  - { nombre: "Alcíone", x: 196, y: 196, r: 9 }
+  - { nombre: "Atlas, su padre", x: 98, y: 206, r: 7, padre: true }
+  - { nombre: "Pléyone, su madre", x: 100, y: 176, r: 4.5, padre: true }
+  - { nombre: "Electra", x: 300, y: 166, r: 7 }
+  - { nombre: "Maya", x: 262, y: 110, r: 6.5 }
+  - { nombre: "Mérope", x: 238, y: 238, r: 6.5 }
+  - { nombre: "Taígete", x: 298, y: 74, r: 5.5 }
+  - { nombre: "Celeno", x: 330, y: 128, r: 4.5 }
+  - { nombre: "Astérope", x: 270, y: 44, r: 4 }
+lineas: [[0, 5], [0, 4], [4, 3], [3, 7], [4, 6], [6, 8], [0, 1], [1, 2]]
+---
+{% labsec "introduccion", "01", "Introducción" %}
+<div class="prose">
+  <p data-reveal>Lucía facilita Tameana, una terapia vibracional pleyadiana. Su nombre remite a las Pléyades, un grupo de estrellas presente en los relatos de muchos pueblos.</p>
+</div>
+{% voz "Somos los cuatro elementos", "/recursos/somos-los-cuatro-elementos/" %}Somos polvo de estrellas que se va uniendo y formando un cuerpo lleno de luz, somos luz.{% endvoz %}
+{% endlabsec %}
+
+{% labsec "objetivo", "02", "Objetivo" %}
+<div class="prose">
+  <p data-reveal>Conocer las Pléyades: cuántas estrellas se ven, cómo se llaman según la tradición griega, cómo se las conoce en nuestra tierra y cómo encontrarlas en el cielo nocturno.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "explorar", "03", "Explorar" %}
+<p class="lab-instr" data-reveal>Tocá cada estrella para encenderla y conocer su nombre. Al encender las siete hermanas, la constelación queda completa.</p>
+<div class="cielo" data-lab="cielo">
+  <div class="cielo__stage">
+    <svg class="cielo__svg" viewBox="0 0 400 260" aria-hidden="true">
+      <defs><radialGradient id="cielo-halo"><stop offset="0" stop-color="#FCF6DF" stop-opacity=".9"/><stop offset="1" stop-color="#FCF6DF" stop-opacity="0"/></radialGradient></defs>
+      <rect width="400" height="260" rx="24" fill="#1A3A40"/>
+      {% for i in range(0, 46) %}<circle cx="{{ (i * 89) % 397 }}" cy="{{ (i * 53 + 17) % 257 }}" r="{{ 0.4 + (i % 4) * 0.25 }}" fill="#BAE4E3" opacity="{{ 0.25 + (i % 5) * 0.1 }}" class="cielo__fondo" style="--k:{{ i % 7 }}"/>{% endfor %}
+      {% for l in lineas %}{% set a = estrellas[l[0]] %}{% set b = estrellas[l[1]] %}
+      <line class="cielo__linea" x1="{{ a.x }}" y1="{{ a.y }}" x2="{{ b.x }}" y2="{{ b.y }}" pathLength="1" data-une="{{ l[0] }}-{{ l[1] }}"/>
+      {% endfor %}
+      {% for s in estrellas %}<circle class="cielo__halo" cx="{{ s.x }}" cy="{{ s.y }}" r="{{ s.r * 4 }}" fill="url(#cielo-halo)" data-halo="{{ loop.index0 }}"/>{% endfor %}
+    </svg>
+    {% for s in estrellas %}
+    <button type="button" class="cielo__estrella{% if s.padre %} cielo__estrella--padre{% endif %}" style="left:{{ s.x / 4 }}%;top:{{ s.y / 2.6 }}%;--r:{{ s.r }}" data-estrella="{{ loop.index0 }}" data-nombre="{{ s.nombre }}" aria-pressed="false" aria-label="{{ 'Estrella: ' + s.nombre }}">
+      <svg viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-9C.8-2 2-.8 9 0 2 .8.8 2 0 9-.8 2-2 .8-9 0-2-.8-.8-2 0-9z"/></svg>
+      <span class="cielo__nombre" aria-hidden="true">{{ s.nombre }}</span>
+    </button>
+    {% endfor %}
+  </div>
+  <p class="exp__caption" aria-live="polite" data-cielo-estado>Siete hermanas dormidas</p>
+  <p class="exp__hint"><button type="button" class="exp__link" data-cielo-reset hidden>Apagarlas</button></p>
+</div>
+{% endlabsec %}
+
+{% labsec "comprender", "04", "Comprender" %}
+{% contexto %}
+<p>Las Pléyades son un cúmulo de estrellas de la constelación de Tauro. Se las conoce también como las Siete Hermanas o las Siete Cabritas.</p>
+<p>En la mitología griega eran las siete hijas de Atlas y Pléyone: Alcíone, Maya, Electra, Mérope, Taígete, Celeno y Astérope. Por eso en el mapa también aparecen sus padres, junto a ellas.</p>
+<p>A simple vista se distinguen unas seis o siete, como un pequeño racimo de luz. Desde Argentina se ven mejor en las noches de verano, bajas hacia el norte.</p>
+{% endcontexto %}
+<div class="prose">
+  <p data-reveal>El mapa de este laboratorio es una ilustración: respeta la forma general del grupo, pero no es una carta astronómica exacta.</p>
+</div>
+{% endlabsec %}
+
+{% labsec "cierre", "05", "Cierre" %}
+<div class="prose">
+  <p data-reveal>Siete puntos que, al unirse, dibujan una figura reconocible desde hace miles de años. Para conocer Tameana, la terapia vibracional pleyadiana que facilita Lucía, podés escribirle o visitar <a href="https://www.instagram.com/tamea.na/" target="_blank" rel="noopener">@tamea.na</a>.</p>
+  <p data-reveal>Una propuesta para esta noche: si el cielo está despejado, salí a buscarlas.</p>
+</div>
+{% endlabsec %}

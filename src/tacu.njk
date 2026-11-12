@@ -3,27 +3,109 @@ layout: layouts/base.njk
 title: Tacu, espacio holístico
 description: "Tacu es el espacio holístico de Lucía Di Mauro en las sierras de Córdoba: ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga, talleres de canto y clases de inglés."
 permalink: /tacu/
+bodyClass: tacu-page
 hero:
   eyebrow: Espacio holístico · Sierras de Córdoba
   title: Tacu
   lead: "Tacu significa algarrobo: árbol sagrado autóctono, medicina y alimento ancestral."
 waMessage: "Hola Lucía, me gustaría saber más sobre Tacu y las actividades del espacio."
+eleventyComputed:
+  schemaExtra:
+    "@type": "Place"
+    "@id": "{{ site.url }}/tacu/#tacu"
+    name: "Tacu, espacio holístico"
+    description: "Espacio holístico de Lucía Di Mauro en las sierras de Córdoba. Tacu significa algarrobo."
+    url: "{{ site.url }}/tacu/"
+    address: { "@type": "PostalAddress", addressRegion: "Córdoba", addressCountry: "AR" }
+    sameAs: ["https://www.instagram.com/tacu_espacioholistico/"]
+faqItems:
+  - q: "¿Qué significa Tacu?"
+    a: "Tacu significa algarrobo: un árbol sagrado autóctono, medicina y alimento ancestral. Lucía llamó así al espacio en su honor."
+  - q: "¿Dónde está Tacu?"
+    a: "En las sierras de Córdoba, Argentina. Escribile a Lucía por WhatsApp y te pasa cómo llegar."
+  - q: "¿Qué actividades hay en Tacu?"
+    a: "Ceremonias de temazcal, rondas de canto medicina, armonizaciones, yoga, talleres de canto y clases de inglés."
+  - q: "¿Cómo me entero de las próximas actividades?"
+    a: "Por WhatsApp o en Instagram, en @tacu_espacioholistico, donde se comparten las novedades del espacio. La tienda holística está en @tacu_tiendaholistica."
 ---
+{%- set enTacu = [] %}{% for p in propuestas %}{% if p.lugar and "Tacu" in p.lugar %}{% set enTacu = (enTacu.push(p), enTacu) %}{% endif %}{% endfor %}
 {% include "partials/page-hero.njk" %}
+
+{# ---------- Un nombre que es un árbol: tres escenas ---------- #}
 <section class="section section--tight">
   <div class="container tacu-intro">
     <div class="tacu-intro__tree" data-draw aria-hidden="true">{% include "ilustraciones/algarrobo.njk" %}</div>
-    <p class="lead" data-reveal>En las sierras de Córdoba, Lucía abrió un espacio al que llamó Tacu, en honor al algarrobo. Allí comparte distintas propuestas que apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación.</p>
-  </div>
-</section>
-<section class="section section--tight">
-  <div class="container">
-    <div class="section__head"><h2 data-reveal>Lo que compartimos en Tacu</h2></div>
-    <div class="cards">
-      {% for p in propuestas %}{% if p.lugar and "Tacu" in p.lugar %}{% include "partials/propuesta-card.njk" %}{% endif %}{% endfor %}
+    <div>
+      <p class="lead" data-reveal>En las sierras de Córdoba, Lucía abrió un espacio al que llamó Tacu, en honor al algarrobo. Allí comparte distintas propuestas que apuntan a lo mismo: la evolución consciente del ser, el aprendizaje y la sanación.</p>
+      <ol class="tacu-escenas">
+        <li data-reveal><span class="tacu-escenas__n">1</span><strong>Árbol sagrado autóctono</strong></li>
+        <li data-reveal data-reveal-delay="1"><span class="tacu-escenas__n">2</span><strong>Medicina y alimento</strong></li>
+        <li data-reveal data-reveal-delay="2"><span class="tacu-escenas__n">3</span><strong>Un espacio para crecer</strong></li>
+      </ol>
     </div>
   </div>
 </section>
+
+{# ---------- El árbol y sus ramas: cada rama, una propuesta ---------- #}
+{%- set nodos = [[132, 286], [214, 158], [380, 92], [546, 158], [628, 286], [470, 250]] %}
+<section class="section section--soft" aria-labelledby="ramas-t">
+  <div class="container">
+    <div class="section__head center">
+      <p class="eyebrow" data-reveal>Lo que compartimos en Tacu</p>
+      <h2 id="ramas-t" class="split" data-split>{{ "Un árbol, muchas ramas" | palabras | safe }}</h2>
+      <p class="lead" data-reveal>Cada rama del algarrobo lleva a una de las propuestas del espacio.</p>
+    </div>
+    <div class="arbol" data-reveal>
+      <svg class="arbol__svg" viewBox="0 0 760 560" aria-hidden="true">
+        <g class="arbol__sierra">
+          <path d="M0 470 90 420l70 26 110-74 90 52 70-36 120 70 80-40 130 62v120H0z" fill="#E7F4EC"/>
+          <path data-crece pathLength="1" d="M0 470 90 420l70 26 110-74 90 52 70-36 120 70 80-40 130 62" stroke="#A6CE98" stroke-width="2" style="--d:0s"/>
+          <path d="M0 500 130 456l80 22 130-52 110 48 90-28 120 46 100-18v126H0z" fill="#DCEFE9"/>
+          <path data-crece pathLength="1" d="M0 500 130 456l80 22 130-52 110 48 90-28 120 46 100-18" stroke="#7FCBA9" stroke-width="2" style="--d:.21s"/>
+          <circle cx="640" cy="96" r="34" fill="#FCF6DF" stroke="#E7C65A" stroke-width="2" opacity=".9"/>
+        </g>
+        <path class="arbol__copa" d="M120 300c-40-60 10-130 80-120 10-70 100-110 160-70 60-50 170-20 180 50 80-10 130 80 90 140 20 50-40 90-90 70-40 30-110 30-150 0-60 30-150 20-170-30-60 10-110-20-100-40z" style="--d:.21s"/>
+        <path class="arbol__tronco" data-crece pathLength="1" d="M380 520c-2-60 4-120 0-190" stroke-width="16" style="--d:.34s"/>
+        {% for n in nodos %}{% if loop.index0 < enTacu.length %}
+        <path class="arbol__rama" data-crece pathLength="1" d="M380 {{ 360 - loop.index0 * 6 }}C{{ 380 + (n[0] - 380) * 0.2 }} {{ (360 + n[1]) / 2 - 20 }} {{ n[0] - (n[0] - 380) * 0.25 }} {{ n[1] + 50 }} {{ n[0] }} {{ n[1] }}" style="--d:{{ 0.55 + loop.index0 * 0.13 }}s"/>
+        {% endif %}{% endfor %}
+        <g class="arbol__raices">
+          <path class="arbol__raiz" data-crece pathLength="1" d="M380 520c-20 12-50 14-80 10M380 520c22 12 52 14 84 8M380 520c-4 14-2 24 4 34" style="--d:.89s"/>
+        </g>
+      </svg>
+      <ul class="arbol__nodos">
+        {% for p in enTacu %}{% set n = nodos[loop.index0] %}
+        <li><a class="arbol__nodo accent-{{ p.acento }}" href="/propuestas/{{ p.slug }}/" style="left:{{ (n[0] / 760 * 100) | round(2) }}%;top:{{ (n[1] / 560 * 100) | round(2) }}%;--i:{{ loop.index0 }}">
+          <span class="arbol__fruto" aria-hidden="true">{% include "ilustraciones/" + p.ilustracion + ".njk" %}</span>
+          <span>{{ p.nombreCorto or p.titulo }}</span>
+        </a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{# ---------- Galería: fotos reales cuando existan; mientras tanto, ilustraciones ---------- #}
+<section class="section section--tight" aria-labelledby="galeria-t">
+  <div class="container">
+    {% if galeria.tacu.length %}
+    <div class="section__head"><p class="eyebrow" data-reveal>Galería</p><h2 id="galeria-t" data-reveal>Tacu en imágenes</h2></div>
+    <ul class="postales">
+      {% for f in galeria.tacu %}
+      <li><figure class="postal" data-reveal><img class="postal__img" src="{{ f.src }}" width="{{ f.ancho }}" height="{{ f.alto }}" alt="{{ f.alt }}" loading="lazy" decoding="async">{% if f.titulo %}<figcaption><strong>{{ f.titulo }}</strong></figcaption>{% endif %}</figure></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="section__head"><p class="eyebrow" data-reveal>El paisaje, en trazos</p><h2 id="galeria-t" data-reveal>Sierras, algarrobo y fuego</h2></div>
+    <ul class="postales">
+      <li><figure class="postal" data-reveal>{% include "ilustraciones/postal-sierras.njk" %}<figcaption><strong>Las sierras</strong>Ilustración</figcaption></figure></li>
+      <li><figure class="postal" data-reveal data-reveal-delay="1">{% include "ilustraciones/postal-vainas.njk" %}<figcaption><strong>Vainas de algarrobo</strong>Ilustración</figcaption></figure></li>
+      <li><figure class="postal" data-reveal data-reveal-delay="2">{% include "ilustraciones/postal-ronda.njk" %}<figcaption><strong>La ronda</strong>Ilustración</figcaption></figure></li>
+    </ul>
+    {% endif %}
+  </div>
+</section>
+
 <section class="section section--soft">
   <div class="container narrow center">
     <h2 data-reveal>Seguí a Tacu</h2>
@@ -34,6 +116,18 @@ waMessage: "Hola Lucía, me gustaría saber más sobre Tacu y las actividades de
     </div>
   </div>
 </section>
+
+<section class="section section--tight">
+  <div class="container narrow faq">
+    <h2 data-reveal>Preguntas frecuentes</h2>
+    {% for f in faqItems %}
+    <details class="faq__item" data-reveal>
+      <summary>{{ f.q }}<span class="faq__icon" aria-hidden="true"></span></summary>
+      <div class="faq__a"><p>{{ f.a }}</p></div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
 {% set ctaTitle = "¿Querés venir a Tacu?" %}
-{% set ctaText = "Escribime para conocer las próximas actividades del espacio." %}
+{% set ctaText = "Escribime para conocer las próximas actividades del espacio y cómo llegar." %}
 {% include "partials/cta.njk" %}

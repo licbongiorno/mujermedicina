@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+title: "Laboratorios: experiencias interactivas"
+description: "Laboratorios de exploración de Mujer Medicina: los cuatro elementos, armado de altar, generador de mandalas, temazcal, cantos medicina y las Pléyades."
+permalink: /laboratorios/
+bodyClass: labs-index
+labAssets: true
+hero:
+  eyebrow: Laboratorios
+  title: Explorar con las manos
+  lead: "Actividades para tocar, combinar y crear, hechas a partir de los textos y las propuestas de Lucía. Una puerta de entrada a lo que después se vive en los encuentros."
+waMessage: "Hola Lucía, estuve explorando los laboratorios de tu web y quisiera hacerte una consulta."
+---
+{% include "partials/page-hero.njk" %}
+<section class="section section--tight">
+  <div class="container">
+    <ol class="labs-grid">
+      {% for l in collections.laboratorios %}
+      <li class="lab-card accent-{{ l.data.acento }}" data-reveal data-reveal-delay="{{ loop.index0 % 3 }}" data-spot>
+        <div class="lab-card__illu" aria-hidden="true" data-draw>{% include "ilustraciones/" + l.data.ilustracion + ".njk" %}</div>
+        <p class="lab-card__n" aria-hidden="true">{{ ("0" + l.data.orden) }}</p>
+        <p class="eyebrow">{{ l.data.tipo }} · {{ l.data.minutos }} min</p>
+        <h2 class="lab-card__t"><a class="pcard__link" href="{{ l.url }}">{{ l.data.nombre }}</a></h2>
+        <p>{{ l.data.description }}</p>
+        <span class="card__link" aria-hidden="true">Entrar <span>→</span></span>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section section--soft" aria-labelledby="catalogo-t">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>En todo el sitio</p>
+      <h2 id="catalogo-t" data-reveal>Experiencias dentro de las páginas</h2>
+      <p class="lead" data-reveal>Escenas animadas y ejercicios breves que acompañan los escritos y cada propuesta.</p>
+    </div>
+    {%- set tipos = [] %}{% for e in experiencias %}{% if not (e.tipo in tipos) %}{% set tipos = (tipos.push(e.tipo), tipos) %}{% endif %}{% endfor %}
+    <div class="filter" role="group" aria-label="Filtrar experiencias por tipo" data-exp-filter>
+      <button type="button" class="filter__btn" aria-pressed="true" data-filtro="todas">Todas <span>{{ experiencias.length }}</span></button>
+      {% for t in tipos %}<button type="button" class="filter__btn" aria-pressed="false" data-filtro="{{ t }}">{{ t }}s <span>{{ (experiencias | selectattr("tipo", "equalto", t)).length }}</span></button>{% endfor %}
+    </div>
+    <ul class="exp-catalogo" data-exp-lista>
+      {% for e in experiencias %}
+      <li data-tipo="{{ e.tipo }}"><a href="{{ e.url }}"><span class="exp-catalogo__tipo">{{ e.tipo }}{% if e.sonido %} · con sonido{% endif %}</span><strong>{{ e.titulo }}</strong><span class="exp-catalogo__pag">{{ e.pagina }}</span></a></li>
+      {% endfor %}
+    </ul>
+    <p class="exp-catalogo__vacio" data-exp-vacio hidden>No hay experiencias de este tipo.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="container narrow">
+    <div class="lab-origen lab-origen--suelto" data-reveal>
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>
+      <div><p><strong>Sobre estos laboratorios.</strong> Son actividades de exploración creadas para esta web. No reemplazan los encuentros ni son enseñanzas de Lucía: en cada uno se distingue lo que son sus palabras textuales de lo que es contexto general.</p></div>
+    </div>
+  </div>
+</section>
+{% set ctaTitle = "¿Querés vivirlo en persona?" %}
+{% set ctaText = "Si alguno de estos laboratorios te despertó curiosidad, escribime y te cuento cómo participar." %}
+{% include "partials/cta.njk" %}

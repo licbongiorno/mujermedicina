@@ -1,0 +1,17 @@
+[
+  { "titulo": "Polvo de estrellas", "tipo": "Escena", "pagina": "Somos los cuatro elementos", "url": "/recursos/somos-los-cuatro-elementos/#exp-estrellas" },
+  { "titulo": "Luz y oscuridad", "tipo": "Escena", "pagina": "Somos los cuatro elementos", "url": "/recursos/somos-los-cuatro-elementos/#exp-dualidad" },
+  { "titulo": "La chispa sigue ahí", "tipo": "Escena", "pagina": "Somos los cuatro elementos", "url": "/recursos/somos-los-cuatro-elementos/#exp-chispa" },
+  { "titulo": "El tambor", "tipo": "Ejercicio", "pagina": "Somos los cuatro elementos", "url": "/recursos/somos-los-cuatro-elementos/#exp-tambor", "sonido": true },
+  { "titulo": "Tu altar", "tipo": "Ejercicio", "pagina": "Armado de altar", "url": "/recursos/armado-de-altar/#exp-altar" },
+  { "titulo": "Un elemento por encuentro", "tipo": "Ejercicio", "pagina": "Transmisión de Cantos Medicina", "url": "/propuestas/transmision-de-cantos-medicina/#exp-ciclo" },
+  { "titulo": "La ceremonia, paso a paso", "tipo": "Recorrido", "pagina": "Ceremonias de temazcal", "url": "/propuestas/ceremonias-de-temazcal/#exp-temazcal" },
+  { "titulo": "Cada voz se suma", "tipo": "Ejercicio", "pagina": "Rondas de canto medicina", "url": "/propuestas/rondas-de-canto-medicina/#exp-ronda" },
+  { "titulo": "Dos fuentes", "tipo": "Escena", "pagina": "Talleres de canto", "url": "/propuestas/talleres-de-canto/#exp-confluencia" },
+  { "titulo": "Fuego y aire", "tipo": "Ejercicio", "pagina": "Sahúmo Medicina", "url": "/propuestas/taller-sahumo-medicina/#exp-humo" },
+  { "titulo": "Un mandala que se teje", "tipo": "Escena", "pagina": "Mandalas tejidas", "url": "/propuestas/taller-mandalas-tejidas/#exp-tejido" },
+  { "titulo": "Las Siete Hermanas", "tipo": "Ejercicio", "pagina": "Tameana", "url": "/propuestas/terapia-vibracional-tameana/#exp-pleyades" },
+  { "titulo": "Hacia la calma", "tipo": "Ejercicio", "pagina": "Armonizaciones", "url": "/propuestas/armonizaciones/#exp-armonia" },
+  { "titulo": "Una pausa para respirar", "tipo": "Recorrido", "pagina": "Yoga", "url": "/propuestas/yoga/#exp-respiracion" },
+  { "titulo": "Los cuatro elementos, en inglés", "tipo": "Ejercicio", "pagina": "Clases de inglés", "url": "/propuestas/clases-de-ingles/#exp-palabras" }
+]

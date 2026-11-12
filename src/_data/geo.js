@@ -16,10 +16,14 @@ const estrellas = Array.from({ length: 28 }, (_, i) => {
   return { x0: r2(rnd() * 200), y0: r2(rnd() * 200), x1: fin.x, y1: fin.y, r: r2(1 + rnd() * 1.8), d: r2(rnd() * 0.6) };
 });
 
-// Polvo que el tambor barre
+// Polvo que el tambor barre: repartido con el ángulo áureo (137,5°), como las semillas
+// de un girasol. Cada mota gira 360°/φ² respecto de la anterior y se aleja según √n:
+// así se distribuyen parejas, sin líneas ni huecos, de una forma que se siente natural.
+const PHI = (1 + Math.sqrt(5)) / 2;
+const ANGULO_AUREO = 360 / (PHI * PHI);
 const rnd2 = rand(19);
-const polvo = Array.from({ length: 22 }, () => {
-  const p = polar(100, 100, 22 + rnd2() * 46, rnd2() * 360);
+const polvo = Array.from({ length: 21 }, (_, i) => {
+  const p = polar(100, 100, 22 + 10 * Math.sqrt(i + 1), i * ANGULO_AUREO);
   return { x: p.x, y: p.y, r: r2(0.8 + rnd2() * 1.6) };
 });
 
@@ -41,4 +45,4 @@ const pleyades = [
 ];
 const pleyadesLineas = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [4, 5], [3, 6]];
 
-export default { estrellas, polvo, ronda, ciclo, pleyades, pleyadesLineas };
+export default { PHI: r2(PHI * 1000) / 1000, ANGULO_AUREO: r2(ANGULO_AUREO), estrellas, polvo, ronda, ciclo, pleyades, pleyadesLineas };

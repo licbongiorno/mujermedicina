@@ -1,0 +1,4 @@
+{
+  "_ayuda": "Fotos reales de Tacu. Mientras la lista esté vacía, la página muestra ilustraciones. Para sumar una foto: copiarla a src/assets/img/tacu/ (WebP, 1200 px de ancho) y agregar { \"src\": \"/assets/img/tacu/nombre.webp\", \"ancho\": 1200, \"alto\": 900, \"alt\": \"Descripción de lo que se ve\", \"titulo\": \"Título breve\" }.",
+  "tacu": []
+}

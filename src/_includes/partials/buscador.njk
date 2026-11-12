@@ -1,0 +1,24 @@
+{#- Buscador en diálogo. Se abre con el botón de la cabecera, Ctrl/⌘ + K o «/» -#}
+<dialog class="buscador-dlg" aria-labelledby="buscador-t" data-buscador-dlg>
+  <form class="buscador" action="/buscar/" method="get" role="search" data-buscador>
+    <h2 class="visually-hidden" id="buscador-t">Buscar en el sitio</h2>
+    <div class="buscador__campo">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <label class="visually-hidden" for="q-dlg">Buscar</label>
+      <input type="search" id="q-dlg" name="q" placeholder="temazcal, altar, canto, estrellas…" autocomplete="off" data-buscador-input>
+      <button type="button" class="buscador__cerrar" data-buscador-cerrar aria-label="Cerrar el buscador"><kbd>Esc</kbd></button>
+    </div>
+    <p class="buscador__estado" aria-live="polite" data-buscador-estado></p>
+    <ul class="buscador__res" data-buscador-res></ul>
+    <div class="buscador__sug" data-buscador-sug>
+      <p class="buscador__sug-t">Para empezar</p>
+      <ul>
+        <li><a href="/propuestas/transmision-de-cantos-medicina/">Transmisión de Cantos Medicina</a></li>
+        <li><a href="/propuestas/ceremonias-de-temazcal/">Ceremonias de temazcal</a></li>
+        <li><a href="/laboratorios/mandalas/">Generador de mandalas</a></li>
+        <li><a href="/laboratorios/altar/">Armá tu altar</a></li>
+        <li><a href="/recursos/somos-los-cuatro-elementos/">Somos los cuatro elementos</a></li>
+      </ul>
+    </div>
+  </form>
+</dialog>

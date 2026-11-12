@@ -11,6 +11,27 @@
     s.defer = true;
     document.head.appendChild(s);
   }
+  /* Buscador: el código se descarga la primera vez que se abre (botón, Ctrl/⌘ + K o «/») */
+  const cargarBuscador = (abrir) => {
+    if (window.__abrirBuscador) return abrir && window.__abrirBuscador();
+    let s = document.querySelector("script[data-buscador-js]");
+    if (!s) {
+      s = document.createElement("script");
+      s.src = document.body.dataset.searchSrc; s.dataset.buscadorJs = "";
+      s.onerror = () => { if (abrir) location.href = "/buscar/"; };
+      document.head.appendChild(s);
+    }
+    if (abrir) s.addEventListener("load", () => window.__abrirBuscador?.(), { once: true });
+  };
+  const abrirBuscador = () => cargarBuscador(true);
+  document.querySelectorAll("[data-buscador-abrir]").forEach((b) => { b.hidden = false; b.addEventListener("click", abrirBuscador); });
+  document.addEventListener("keydown", (e) => {
+    const escribiendo = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
+    if (((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") || (e.key === "/" && !escribiendo)) { e.preventDefault(); abrirBuscador(); }
+  });
+  // La página /buscar/ usa el mismo código, sin abrir el diálogo
+  if (document.querySelector("main [data-buscador]")) cargarBuscador(false);
+
   const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];

@@ -1,5 +1,5 @@
 {# «Esa chispa divina que sos, tu esencia, no se muere: sigue estando ahí» #}
-<figure class="exp exp-scene exp-chispa" data-exp="escena" aria-label="Ilustración: una chispa que sigue brillando aunque la rodean anillos">
+<figure id="exp-chispa" class="exp exp-scene exp-chispa" data-exp="escena" aria-label="Ilustración: una chispa que sigue brillando aunque la rodean anillos">
   <svg class="exp__svg" viewBox="0 0 200 200" aria-hidden="true">
     {% for r in [30, 46, 62, 78] %}<circle class="chispa__anillo" cx="100" cy="100" r="{{ r }}" style="--i:{{ loop.index0 }}"/>{% endfor %}
     <g class="chispa__luz">
