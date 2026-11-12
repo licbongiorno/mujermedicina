@@ -14,7 +14,9 @@ npm run build   # genera el sitio en /_site
 | Qué | Archivo |
 |---|---|
 | Nombre, dominio, **WhatsApp**, correo, redes, mensajes predeterminados | `src/_data/site.js` |
-| Menú | `src/_data/navigation.json` |
+| Menú (`soloPie: true` = solo en el pie) | `src/_data/navigation.json` |
+| Fotos de Tacu | `src/_data/galeria.json` |
+| Experiencias del catálogo | `src/_data/experiencias.json` |
 | **Propuestas / servicios** (generan tarjeta + página propia) | `src/_data/propuestas.json` |
 | Páginas | `src/*.njk`, `src/propuestas/` |
 | Estilos y paleta | `src/assets/css/main.css` (ver `IDENTIDAD.md`) |
@@ -90,7 +92,28 @@ Usar solo testimonios reales y con permiso de la persona.
 [{ "texto": "…", "nombre": "Nombre", "lugar": "Córdoba", "propuesta": "transmision-de-cantos-medicina" }]
 ```
 
+### Laboratorios
+
+Ver `EXPERIENCIAS.md` → «Laboratorios». Cada archivo de `src/laboratorios/` es una página.
+
+### Buscador
+
+El índice `/buscar.json` se genera solo al compilar (propuestas, laboratorios, escritos,
+experiencias y páginas). Se abre con el ícono de la lupa, con Ctrl/⌘ + K o con «/»;
+`/buscar/?q=…` funciona como página.
+
+### Galería de Tacu
+
+`src/_data/galeria.json` → `tacu`. Mientras esté vacía, la página muestra ilustraciones.
+
+### Sistema de diseño
+
+Paleta, tipografía, escala Fibonacci y proporción áurea: ver `IDENTIDAD.md`.
+
 ## Contenido pendiente
+
+Lista completa de lo que necesita material de Lucía: `PENDIENTES.md`.
+
 
 Los recuadros punteados marcan dónde va el contenido real (no se inventan textos).
 Al publicar, poner `showPending: false` en `src/_data/site.js`.

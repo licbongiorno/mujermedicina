@@ -13,6 +13,7 @@
     </button>
     <nav class="site-nav" id="menu" aria-label="Principal" data-nav>
       <ul class="site-nav__list">
+        <li class="solo-movil"><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Inicio</a></li>
         {%- for item in navigation %}{% if not item.soloPie %}
         {%- set active = (page.url == item.url) or (item.url != "/" and page.url.startsWith(item.url)) %}
         {%- if item.menu %}

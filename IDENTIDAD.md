@@ -58,3 +58,32 @@ Tomada de sus cuadernillos («Transmisión de Cantos Medicina» y «Conectando c
 - **Alentadora.** Cierra invitando a animarse: «Si yo pude, vos también», «Que sea pura medicina para el alma».
 
 En la web se respetan sus palabras; solo se corrigió la ortografía y se ordenaron los textos para la lectura en pantalla.
+
+## Estructura invisible: proporción áurea y Fibonacci
+
+La geometría organiza la web sin mostrarse. Es un criterio de diseño, no una regla: cuando una
+medida más simple se lee mejor, se usa la simple. Prioridad: legibilidad → usabilidad →
+accesibilidad → equilibrio → coherencia → proporción.
+
+Variables en `src/assets/css/main.css` (`:root`):
+
+| Qué | Cómo | Variables |
+|---|---|---|
+| Escala de medidas | Sucesión de Fibonacci en píxeles: 2, 3, 5, 8, 13, 21, 34, 55, 89, 144 | `--f2` … `--f144` |
+| Espacios | Cada nivel va de un número de Fibonacci al siguiente entre teléfono y escritorio (21→34, 34→55, 55→89, 89→144) | `--space-1` … `--space-6` |
+| Tipografía | Potencias de φ sobre el tamaño base: en escritorio pasos enteros (φ, φ², φ³), en teléfono medios pasos para no agrandar de más | `--fs-lead`, `--fs-h3`, `--fs-h2`, `--fs-h1` |
+| Columnas | Texto e imagen en 1,618 : 1 (inicio, propuestas, Tacu, laboratorios, módulos de Fibonacci y girasol) | `grid-template-columns: 1.618fr 1fr` |
+| Radios | 21 px | `--radius` |
+| Tiempo | Duraciones en décimas de Fibonacci: 0,21 · 0,34 · 0,55 · 0,89 · 1,44 · 2,33 s; órbitas de 55 s | `--dur-1` … `--dur-6`, `--dur-ciclo` |
+| Distribución | Ángulo áureo (137,508°): el polvo que barre el tambor y el centro de girasol de las mandalas se reparten como semillas | `--golden-angle`, `src/_data/geo.js` |
+
+Curvas de movimiento con nombre propio: `--ease-brote` (crecer con un pequeño impulso),
+`--ease-onda` (ir y volver, como el agua), `--ease-humo` (elevarse y disiparse).
+
+Los elementos tienen color pastel y tinta con contraste: `--el-fuego` / `--el-fuego-tinta`, etc.
+
+### Lo que no se afirma
+
+En el laboratorio de proporción áurea se separan tres miradas: matemática verificable,
+interpretación artística y significado simbólico. No se atribuyen a φ efectos sobre la salud
+ni se repiten mitos no comprobados (Partenón, cuerpo humano, pinturas «exactas»).

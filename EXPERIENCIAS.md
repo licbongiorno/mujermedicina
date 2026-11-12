@@ -47,3 +47,31 @@ por `data-exp="nombre"` y se dispara al entrar en pantalla.
 - Onda de agua desde el punto donde se toca un botón (vibración, resonancia).
 - Barra de progreso de lectura en landings y escritos.
 - Recorrido del inicio: al llegar a «Hoy», un brote germina al final de la línea.
+
+---
+
+## Laboratorios (`/laboratorios/`)
+
+Páginas completas de exploración. Todas siguen el mismo recorrido, con índice lateral que marca
+el avance: **Introducción → Objetivo → Explorar → Comprender → Cierre**, más navegación
+anterior/siguiente, propuestas relacionadas y una nota de origen que distingue
+*Palabras de Lucía* (textuales) de *Contexto general*.
+
+| # | Laboratorio | Interacción | Basado en |
+|---|---|---|---|
+| 1 | Los cuatro elementos | Tocar uno = identidad y movimiento; dos = dónde se encuentran (vapor, humo, altar); cuatro = círculo completo. Cuestionario de 5 preguntas con fuente. | Somos los cuatro elementos, Armado de altar, Temazcal, Sahúmo |
+| 2 | Armado de altar | 4 telas, los 4 elementos y 9 objetos de la lista del escrito. Arrastrar, flechas, girar, tamaño, quitar. Se guarda en el navegador, se descarga en PNG y se imprime. | Armado de altar |
+| 3 | Mandalas | Generador: puntas, vueltas, trazo, forma, paleta; modo Fibonacci, centro de girasol, versión para colorear. Descarga PNG/SVG, impresión y enlace que reconstruye la mandala. | Mandalas tejidas |
+| 4 | Temazcal, paso a paso | Recorrido con scroll: cada párrafo mueve la escena (domo, fuego, abuelas, agua, vapor y cantos). | Ceremonias de temazcal |
+| 5 | Cuatro encuentros | Ciclo de cuatro cuartos, calendario según la frecuencia (15 días / mensual) y carpeta de lo que queda. | Transmisión de Cantos Medicina |
+| 6 | Las siete estrellas | Cielo nocturno: encender las Pléyades, ver sus nombres, unirlas. | Tameana |
+| 7 | Proporción áurea | Rectángulos de Fibonacci con espiral y convergencia a φ; comparador de proporciones; girasol con ángulo variable. | Criterio de diseño del sitio |
+
+Para sumar uno: crear `src/laboratorios/<slug>.njk` con `orden`, `nombre`, `tipo`, `minutos`,
+`acento`, `ilustracion`, `propuestasLab` y `fuentes`, y usar `{% labsec %}`, `{% voz %}` y
+`{% contexto %}`. Aparece solo en el índice, el buscador, el sitemap, `llms.txt` y en las
+propuestas que nombre. La lógica va en `src/assets/js/laboratorios.js` (`data-lab="…"`) y los
+estilos en `src/assets/css/laboratorios.css`; ambos se descargan solo en esas páginas.
+
+El índice `/laboratorios/` incluye además un catálogo filtrable de las 15 experiencias que viven
+dentro de escritos y propuestas (`src/_data/experiencias.json`).

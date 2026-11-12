@@ -32,7 +32,7 @@
         if (!enT && !enD && !enX) return null; // todos los términos deben aparecer
         p += (enT ? 13 : 0) + (it.nt.startsWith(t) ? 8 : 0) + (enD ? 5 : 0) + (enX ? 2 : 0);
       }
-      if (it.k === "Propuesta") p += 8; else if (it.k === "Laboratorio") p += 3;
+      if (it.k === "Propuesta") p += 13; else if (it.k === "Laboratorio") p += 3;
       return { it, p };
     }).filter(Boolean).sort((a, b) => b.p - a.p).slice(0, 13);
     return { terminos, res };
