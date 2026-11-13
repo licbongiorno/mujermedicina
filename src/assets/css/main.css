@@ -1281,7 +1281,7 @@ details[open]::details-content { height: auto; }
 
 /* ---- Microinteracción global: onda de agua al tocar un botón ---- */
 .btn, .exp__btn { position: relative; overflow: hidden; }
-.ripple { position: absolute; border-radius: 50%; pointer-events: none; background: currentColor; opacity: .25; transform: scale(0); animation: ripple .7s ease-out forwards; }
+.ripple { position: absolute; border-radius: 50%; pointer-events: none; background: currentColor; opacity: .25; transform: scale(.1); animation: ripple .55s var(--ease) forwards; }
 @keyframes ripple { to { transform: scale(2.6); opacity: 0; } }
 
 /* ---- Recorrido del inicio: al llegar a «Hoy», un brote germina ---- */
@@ -1312,9 +1312,8 @@ details[open]::details-content { height: auto; }
 .search-toggle { margin-left: auto; }
 @media (min-width: 1080px) { .site-nav { order: 2; } .search-toggle { order: 3; margin-left: 0; } .brand { margin-right: auto; } }
 .buscador-dlg { width: min(100% - 1.5rem, 640px); max-height: min(80vh, 640px); margin: 10vh auto auto; padding: 0; border: 1px solid var(--border); border-radius: calc(var(--radius) * 1.1); background: #fff; color: var(--text); box-shadow: 0 40px 80px -30px rgba(29,49,59,.45); overflow: hidden; }
-.buscador-dlg[open] { animation: buscador-in .45s var(--ease-brote); }
+/* se abre con teclado (Ctrl+K, /): aparece sin animación, como una paleta de comandos */
 .buscador-dlg::backdrop { background: rgba(29, 49, 59, .35); backdrop-filter: blur(4px); }
-@keyframes buscador-in { from { opacity: 0; transform: translateY(-12px) scale(.98); } }
 .buscador { display: flex; flex-direction: column; max-height: inherit; }
 .buscador__campo { display: flex; align-items: center; gap: .7rem; padding: .9rem 1rem; border-bottom: 1px solid var(--border); color: var(--c-agua); }
 .buscador__campo input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: 400 1.15rem var(--font-body); color: var(--text); padding: .4rem 0; }
@@ -1438,3 +1437,39 @@ details[open]::details-content { height: auto; }
 .buscador-404 input:focus-visible { outline: 2px solid var(--c-turquesa); outline-offset: 2px; }
 @media (min-width: 1080px) { .site-nav__list > li.solo-movil { display: none; } }
 .site-nav.is-open .site-nav__list > li:nth-child(8) { transition-delay: 0.4s; }
+
+/* =====================================================================
+   Refinamiento de interacción (guías de interfaz + criterio de movimiento)
+   - La interfaz responde en menos de 300 ms; lo lento queda para lo contemplativo.
+   - El movimiento al pasar el mouse solo existe donde hay mouse.
+   ===================================================================== */
+html { color-scheme: light; -webkit-tap-highlight-color: rgba(43, 111, 114, .14); }
+a, button, label, summary, select, [role="button"] { touch-action: manipulation; }
+h1, h2, h3, .lab-sec__t { text-wrap: balance; }
+p, li, figcaption, blockquote { text-wrap: pretty; }
+:where(h2, h3, section, figure, article)[id] { scroll-margin-top: 96px; }
+.buscador__res { overscroll-behavior: contain; }
+
+/* Respuestas de interfaz: rápidas y con salida suave */
+.btn { transition: transform .2s var(--ease), background-color .2s, color .2s, box-shadow .25s var(--ease); }
+.btn:active { transform: translateY(0) scale(.98); transition-duration: .1s; }
+.mega-toggle { transition: transform .25s var(--ease), background-color .2s; }
+.site-nav__list > li > a::after { opacity: 0; transform: translateX(-50%) scale(.4); transition: transform .25s var(--ease), opacity .2s; }
+.site-nav__list > li > a:hover::after, .site-nav__list > li > a[aria-current="page"]::after { opacity: 1; }
+.share__btn, .search-toggle, .legend__btn { transition-duration: .2s; }
+@media (min-width: 1080px) {
+  .mega { transition: opacity .2s var(--ease), transform .25s var(--ease), visibility .2s; }
+}
+@media (max-width: 1079px) {
+  .nav-toggle__line { transition: transform .3s var(--ease); }
+  .site-nav { transition: opacity .3s var(--ease), visibility .3s; }
+}
+
+/* En pantallas táctiles el «hover» queda pegado después de tocar: sin desplazamientos */
+@media (hover: none), (pointer: coarse) {
+  .btn:hover, .card:hover, .lab-card:hover, .wa-float:hover, .share__btn:hover, .search-toggle:hover,
+  .lab-teaser__item:hover, .wa-topics a:hover, .mega li a:hover,
+  .lab-nav__link:hover, .exp-catalogo a:hover, .quiz__op:hover:not(:disabled), .altar-lab__ob:hover, .carpeta__item:hover { transform: none; }
+  .brand:hover .brand__mark, .card__link:hover span, .pcard:hover .pcard__illu, .pcard:hover .card__link span,
+  .lab-card:hover .lab-card__illu, .pley__estrella:hover svg, .el-lab__nodo:hover .el-badge, .cielo__estrella:hover svg { transform: none; }
+}
