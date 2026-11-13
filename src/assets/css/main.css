@@ -1473,3 +1473,29 @@ p, li, figcaption, blockquote { text-wrap: pretty; }
   .brand:hover .brand__mark, .card__link:hover span, .pcard:hover .pcard__illu, .pcard:hover .card__link span,
   .lab-card:hover .lab-card__illu, .pley__estrella:hover svg, .el-lab__nodo:hover .el-badge, .cielo__estrella:hover svg { transform: none; }
 }
+
+/* ---- Rendimiento del movimiento ----
+   Fuera de pantalla, los bucles decorativos se detienen (lo marca main.js).
+   Las manchas desenfocadas solo giran y escalan: así la GPU mueve la capa sin volver a pintar el desenfoque. */
+.is-pausado, .is-pausado *, .is-pausado::before, .is-pausado *::before, .is-pausado *::after { animation-play-state: paused !important; }
+.blob, .cta::before, .hero__halo { animation-name: deriva; will-change: transform; }
+@keyframes deriva {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(25deg) scale(1.08); }
+}
+
+/* ---- Primera pantalla: el texto se ve desde el primer pintado (mejor LCP) ----
+   En la portada de cada página el texto ya es visible; solo sube unos píxeles al cargar, sin esperar al JS. */
+.js [data-hero] [data-reveal] { opacity: 1; transform: none; transition: none; animation: asomar var(--dur-3) var(--ease) both; }
+.js [data-hero] [data-reveal-delay="1"] { animation-delay: .08s; }
+.js [data-hero] [data-reveal-delay="2"] { animation-delay: .16s; }
+@keyframes asomar { from { transform: translateY(10px); } }
+@media (prefers-reduced-motion: reduce) { .js [data-hero] [data-reveal] { animation: none; } }
+
+/* ---- Antetítulos con voz propia: cursiva de Fraunces, en minúscula, como una nota al margen ---- */
+.eyebrow { font-family: var(--font-display); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: .01em; font-size: clamp(1rem, .95rem + .2vw, 1.12rem); font-variation-settings: "SOFT" 100, "opsz" 24; }
+
+/* ---- Marco de ilustración: el dibujo ocupa una proporción del propio marco
+   (el padding en % se calculaba sobre el contenedor y, en celulares, achicaba el dibujo a 35 px) ---- */
+.illu-frame, .landing-hero .illu-frame { padding: 0; }
+.illu-frame > .illu { width: 72%; }

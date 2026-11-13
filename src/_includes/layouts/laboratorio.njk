@@ -44,6 +44,7 @@ bodyClass: lab-page
         <div>
           <p><strong>Cómo se armó este laboratorio.</strong> {% if origen %}{{ origen }}{% else %}Es una actividad de exploración creada para esta web a partir de los textos de Lucía. Lo marcado como <em>Palabras de Lucía</em> es textual; lo marcado como <em>Contexto general</em> explica la práctica en general y no es una enseñanza suya.{% endif %}</p>
           {% if fuentes and fuentes.length %}<p class="lab-origen__src">Basado en: {% for f in fuentes %}<a href="{{ f.url }}">{{ f.titulo }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+          {% if actualizado %}<p class="lab-origen__src">Actualizado en <time datetime="{{ actualizado | isoDate }}">{{ actualizado | fechaLarga }}</time>.</p>{% endif %}
         </div>
       </aside>
       {% include "partials/compartir.njk" %}

@@ -97,6 +97,16 @@
     revealables.forEach((el) => io.observe(el));
   }
 
+  /* ---------- Animaciones en bucle: se pausan fuera de pantalla ----------
+     Las ilustraciones respiran solo mientras se ven: ahorra batería y CPU en celulares. */
+  if ("IntersectionObserver" in window && !reduce) {
+    const zonas = $$("body > header, main > *, body > footer, .lab-main > *");
+    const pausa = new IntersectionObserver((entries) => {
+      entries.forEach((e) => e.target.classList.toggle("is-pausado", !e.isIntersecting));
+    }, { rootMargin: "200px 0px" });
+    zonas.forEach((z) => pausa.observe(z));
+  }
+
   /* ---------- Parallax sutil y progreso de recorridos (un solo rAF) ---------- */
   const parallaxEls = reduce ? [] : $$("[data-parallax]").map((el) => ({ el, k: parseFloat(el.dataset.parallax) || 0 }));
   const path = $("[data-path]");
